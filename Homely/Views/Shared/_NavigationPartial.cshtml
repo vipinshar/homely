@@ -1,0 +1,18 @@
+﻿@model Homely.Controllers.Counting
+
+@using PagedList;
+@using PagedList.Mvc
+
+<div id="unobtrusive">
+  
+    </div>
+@Html.Hidden("hdncity",72)
+
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Indexs", new { page=page,city=72,For="Rent" }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "unobtrusive"}))
+
+
+
+@*@section Scripts{
+    <script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+   
+}*@*@

@@ -1,0 +1,404 @@
+﻿
+<style>
+    /*................to lake view alignment paste this code..........*/
+    .left-side-heading {
+        color: #017163;
+        text-transform: uppercase;
+        font-size: 22px;
+        font-weight: 500;
+        margin-top: 8px;
+        line-height: 24px;
+    }
+    /*......................to make bg white paste this code............*/
+    .left-side-bar {
+        width: 100%;
+        overflow: hidden;
+        background-color: #FFFFFF;
+        padding: 0px 10px 10px 10px;
+        border: 1px solid #e8f1fe;
+    }
+</style>
+
+<!-- (paste into header) img thumb slider-->
+<link href="@Url.Content("~/Content/lightslider.css")" rel="stylesheet" />
+
+<style>
+    ul {
+        list-style: none outside none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    .demo .item {
+        margin-bottom: 60px;
+    }
+
+    .content-slider li {
+        background-color: #ed3020;
+        text-align: center;
+        color: #FFF;
+    }
+
+    .content-slider h3 {
+        margin: 0;
+        padding: 70px 0;
+    }
+
+    .demo {
+        width: 90%;
+        margin: auto;
+    }
+</style>
+
+
+<link href="~/Content/SliderImages/camera.css" rel="stylesheet" />
+<script src="~/Scripts/ImagesSlider/jquery.mobile.customized.min.js"></script>
+<script src="~/Scripts/ImagesSlider/jquery.easing.1.3.js"></script>
+<script src="~/Scripts/ImagesSlider/camera.js"></script>
+<!-- img thumb slider-->
+<script>
+    jQuery(function () {
+        jQuery('#camera_wrap_2').camera({
+            height: '200px',
+            loader: 'bar',
+            pagination: false,
+            thumbnails: true,
+            easing: 'linear',
+            time: 3000
+        });
+    });
+    $(function () {
+        $('.camera_wrap img').height('73');
+    });
+</script>
+<script type="text/javascript">
+                                var geocoder;
+                                var map;
+                                var address = "";
+                                function initialize() {
+                                    geocoder = new google.maps.Geocoder();
+                                    var latlng = new google.maps.LatLng(-34.397, 150.644);
+                                    var myOptions = {
+                                        zoom: 12,
+                                        center: latlng,
+                                        mapTypeControl: true,
+                                        mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DROPDOWN_MENU },
+                                        navigationControl: true,
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    };
+                                    map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
+                                    if (geocoder) {
+                                        @{
+                                            string area = "";
+                                            string loca = "";
+                                            if (!string.IsNullOrEmpty(Model.Area))
+                                            {
+                                                area = Model.Area;
+                                            }
+                                            if (!string.IsNullOrEmpty(Model.Locality))
+                                            {
+                                                loca = Model.Locality;
+                                            }
+                                         }
+
+                                        geocoder.geocode({ 'address': '@area' }, function (results, status) {
+                                            if (status == google.maps.GeocoderStatus.OK) {
+                                                if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                                                    map.setCenter(results[0].geometry.location);
+
+                                                    var infowindow = new google.maps.InfoWindow(
+                                                        {
+                                                            content: '<b>' + address + '</b>',
+                                                            size: new google.maps.Size(150, 50)
+                                                        });
+
+                                                    var marker = new google.maps.Marker({
+                                                        position: results[0].geometry.location,
+                                                        map: map,
+                                                        title: address
+                                                    });
+                                                    google.maps.event.addListener(marker, 'click', function () {
+                                                        infowindow.open(map, marker);
+                                                    });
+
+                                                } else {
+                                                    alert("No results found");
+                                                }
+                                            } else {
+                                                alert("Geocode was not successful for the following reason: " + status);
+                                            }
+                                        });
+                                    }
+                                }
+
+                                $(function () {
+                                    initialize();
+                                });
+</script>
+
+@model Homely.Common.Model.PropertDetailViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model != null)
+{
+    if (!Request.Browser.IsMobileDevice)
+    {
+
+        <section class="content-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        @{
+                            Html.RenderAction("RefineSearch", "Property");
+                        }
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="leftmleft">
+                            <!--image slider script-->
+
+                            <div class="demo">
+                                <div class="item">
+                                    <div class="clearfix">
+                                        @if (ViewBag.propImage != null)
+                                        {
+                                        <div class="camera_wrap camera_magenta_skin" id="camera_wrap_2">
+
+                                            @foreach (var item in ViewBag.propImage)
+                                                {
+                                                <div data-thumb="@Url.Content("~/" + item)" data-src="@Url.Content("~/" + item)"></div>
+                                                }
+
+
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                                <!--image slider script-->
+                            </div>
+
+                        </div>
+                        <div class="rightmap">
+                            <div class="map-box">
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOCP8l7r2JcVPxmatJDhQh2eZ0mLND-cI"type="text/javascript"></script>
+                                @*<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCOCP8l7r2JcVPxmatJDhQh2eZ0mLND-cIsensor=false"></script>*@
+                                <div style="overflow:hidden;height:300px;width:100%;">
+                                    <div id="gmap_canvas" style="height:290px;width:100%;"></div>
+                                    <style>
+                                        #gmap_canvas img {
+                                            max-width: none !important;
+                                            background: none !important;
+                                        }
+                                    </style><a class="google-map-code" id="get-map-data"></a>
+                                </div>
+                                <!--Google map script end-->
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="row1">
+                                <div class="col-md-8">
+                                    <div class="show-result">
+                                        <h1 class="left-side-heading">@Model.SocietyName</h1>
+                                    </div>
+                                    <div class="main-content-box">
+                                        <div class="row1">
+                                            <div class="col-md-4">
+                                                <div class="img-section">
+
+                                                    <div class="image_selection_container">
+                                                        @if (ViewBag.propImage != null)
+                                                        {
+                                                            foreach (var item in ViewBag.propImage)
+                                                            {
+                                                        <img src="@Url.Content("~/" + item)" alt="Image Title">
+                                                                break;
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="inr-detail">
+                                                    <i class="fa fa-inr"></i> @Model.Rent
+                                                    <span>@Model.CreateDate.ToString("dd-MMM-yyyy")</span>
+                                                </div>
+                                                <h3 class="view-detail-title">@Model.Area,@Model.City</h3>
+                                                <ul class="property-discription-detail">
+                                                    <li><span>Bedroom</span> @Model.Bedroom bedroom</li>
+                                                    <li><span>Bathroom</span> @Model.Bathroom Bathroom</li>
+                                                    <li><span>Balcony</span> @Model.Balcony Balcony</li>
+                                                    <li><span>Floor No</span> @Model.Floor</li>
+                                                    <li><span>Total Floor</span> @Model.FloorInBuilding Floor</li>
+                                                    <li><span>Furnished</span> @Model.Furnished</li>
+                                                    <li><span>Availability</span> @Model.Availability</li>
+                                                    <li><span>Facing</span> @Model.Facing</li>
+                                                    <li><span>Area</span> @Model.PropArea</li>
+                                                    <li><span>Property Type</span> @Model.SubPropertyType</li>
+                                                    <li><span>Security</span> @Model.Security</li>
+                                                    <li><span>Maintenance</span> @Model.Maintenance</li>
+                                                    <li><span>Minimum Contract</span> @Model.contractName</li>
+                                                    @*<li><span>Restriction</span> @Model.Restriction</li>*@
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row1">
+                                            <div class="col-md-12">
+                                                <h4>PROPERTY DESCRIPTION</h4>
+                                                <p>@Model.Description</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style=" margin:0; padding:0;">
+                                    <div class="user-view">
+                                        <img src="~/images/user-default.png" class="img-responsive" alt="">
+                                        <p class="text-center">@Model.OwnerName (@Model.Ownership)</p>
+                                        <ul class="user-view-detail">
+                                            <li><i class="fa fa-phone-square"></i> <a href="#">Get Contact Detail</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <h1 class="aminities-heading-title">AMENITIES</h1>
+                            <ul class="amenities-detail-des">
+                                @foreach (var item in ViewBag.Amen)
+                                {
+                                <li>
+                                    <img src="@item.BigImageHoverPath" class="img-responsive" alt="" />
+                                    <p>@item.Amenity</p>
+                                </li>
+                                }
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                            }
+                            else
+                            {
+                                <div class="mobdisplay">
+
+                                    <section class="content-section">
+                                        <div class="row1">
+                                            <div class="col-md-8">
+                                                <div class="show-result">
+                                                    <h1 class="left-side-heading">@Model.SocietyName</h1>
+                                                </div>
+                                                <div class="main-content-box">
+                                                    <div class="row1">
+                                                        <div class="col-md-4">
+                                                            <div class="img-section">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="inr-detail">
+                                                                <i class="fa fa-inr"></i> @Model.Rent
+                                                                <span>@Model.CreateDate.ToString("dd-MMM-yyyy")</span>
+                                                            </div>
+                                                            <h3 class="view-detail-title">@Model.Area,@Model.City</h3>
+                                                            <ul class="property-discription-detail">
+                                                                <li><span>Bedroom</span> @Model.Bedroom bedroom</li>
+                                                                <li><span>Bathroom</span> @Model.Bathroom Bathroom</li>
+                                                                <li><span>Balcony</span> @Model.Balcony Balcony</li>
+                                                                <li><span>Floor No</span> @Model.Floor</li>
+                                                                <li><span>Total Floor</span> @Model.FloorInBuilding Floor</li>
+                                                                <li><span>Furnished</span> @Model.Furnished</li>
+                                                                <li><span>Availability</span> @Model.Availability</li>
+                                                                <li><span>Facing</span> @Model.Facing</li>
+                                                                <li><span>Area</span> @Model.PropArea</li>
+                                                                <li><span>Property Type</span> @Model.SubPropertyType</li>
+                                                                <li><span>Security</span> @Model.Security</li>
+                                                                <li><span>Maintenance</span> @Model.Maintenance</li>
+                                                                <li><span>Minimum Contract</span> @Model.contractName</li>
+                                                                @*<li><span>Restriction</span> @Model.Restriction</li>*@
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row1">
+                                                        <div class="col-md-12">
+                                                            <h4>PROPERTY DESCRIPTION</h4>
+                                                            <p>@Model.Description</p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4" style="margin:0; padding:0;">
+                                                <div class="user-view">
+                                                    <img src="~/images/user-default.png" class="img-responsive" alt="">
+                                                    <p class="text-center">@Model.OwnerName (@Model.Ownership)</p>
+                                                    <ul class="user-view-detail">
+                                                        <li><i class="fa fa-phone-square"></i> <strong>@Model.Mobile</strong></li>
+                                                        <li><i class="fa fa-envelope"></i> <a href="#">@Model.EmailID</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="demo">
+                                            <div class="item">
+                                                <div class="clearfix" style="max-width:474px;">
+
+                                                    <div class="camera_wrap camera_magenta_skin" id="camera_wrap_2">
+
+                                                        @if (ViewBag.propImage != null)
+{
+                                                            foreach (var item in ViewBag.propImage)
+                                                            {
+                                                            <div data-thumb="@Url.Content("~/" + item)" data-src="@Url.Content("~/" + item)"></div>
+                                                            }
+
+}
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="rightmap" style="width:99%;float:left">
+                                            <div class="map-box">
+                                                <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+                                                <div style="overflow:hidden;height:300px;width:100%;">
+                                                    <div id="gmap_canvas" style="height:290px;width:100%;"></div>
+                                                    <style>
+                                                        #gmap_canvas img {
+                                                            max-width: none !important;
+                                                            background: none !important;
+                                                        }
+                                                    </style><a class="google-map-code" id="get-map-data"></a>
+                                                </div>
+                                                <!--Google map script end-->
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                        <h1 class="aminities-heading-title">AMENITIES</h1>
+                                        <ul class="amenities-detail-des">
+                                            @foreach (var item in ViewBag.Amen)
+                                            {
+                                            <li>
+                                                <img src="@item.BigImageHoverPath" class="img-responsive" alt="" />
+                                                <p>@item.Amenity</p>
+                                            </li>
+                                            }
+
+
+                                        </ul>
+                                    </section>
+
+                                </div>
+
+                                }
+                            }

@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Homely</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="date-picker/jquery.datetimepicker.css" />
+    <!--<script src="js/bootstrap.js"></script>-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--Float start-->
+    <script type="text/javascript">
+    $(function() {
+        var offset = $("#social").offset();
+        var topPadding = 170;
+        $(window).scroll(function() {
+            if ($(window).scrollTop() > offset.top) {
+                $("#social").stop().animate({
+                    marginTop: $(window).scrollTop() - offset.top + topPadding
+                });
+            } else {
+                $("#social").stop().animate({
+                    marginTop: 50
+                });
+            };
+        });
+    });
+    </script>
+    <!--Float end-->
+    <!-quick contact start-->
+    <script type="text/javascript">
+    $(function() {
+        $('#imgQkList').on('click', function() {
+            $('#tblQkList').toggle(20);
+        });
+
+        //hide it when clicking anywhere else except the popup and the trigger
+        $(document).on('click', function(event) {
+            if (!$(event.target).parents().addBack().is('#tblQkList')) {
+                $('#tblQkList').hide();
+            }
+        });
+
+        // Stop propagation to prevent hiding "#tooltip" when clicking on it
+        $('#imgQkList').on('click', function(event) {
+            event.stopPropagation();
+        });
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#imgQkContact').click(function() {
+            $('#tblQkContact').toggle(20);
+            $('#btnSubmit').click(function() {
+                $('#tblQkContact').hide();
+            });
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div id="social" style="" class="quick-list-box">
+        <div id="quickList" style="position: relative;">
+            <div class="side-popup-form">
+                <ul>
+                    <li>
+                        <img src="images/quick-contact-img.jpg" border="0" alt="" id="imgQkList" style="cursor:pointer" />
+                    </li>
+                    <li id="tblQkList">
+                        <ul class="query-form">
+                            <li>
+                                <form>
+                                    <div class="ff-dd title_new_cntn" style="">
+                                        <label class="title width_title1" style="border-right:2px solid #fff;">Query For</label>
+                                        <div class="title_new_table">
+                                            <input type="radio">Listing</div>
+                                        <div class="title_new_table">
+                                            <input type="radio">Rent</div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title">Name</label>
+                                        <input type="text" name="" class="ffi-in">
+                                    </div>
+                                    <div class="ff-dd">
+                                        <label class="title">Email</label>
+                                        <input type="text" name="" class="ffi-in">
+                                    </div>
+                                    <div class="ff-dd">
+                                        <label class="title">Mobile</label>
+                                        <input type="text" name="" class="ffi-in">
+                                    </div>
+                                    <div class="ff-dd">
+                                        <label class="title">Date</label>
+                                        <input type="text" name="" class="ffi-in" id="datetimepicker">
+                                    </div>
+                                    <div class="ff-dd">
+                                        <label class="title">&nbsp;</label>
+                                        <input type="button" name="" class="ffi-in-btn" value="Submit">
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- -Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content login-modal">
+                <div class="modal-header login-modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="loginModalLabel">USER LOGIN / REGISTER</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div role="tabpanel" class="login-tab">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs mod-nav" role="tablist">
+                                <li role="presentation" class="active"><a id="signin-taba" href="#home" aria-controls="home" role="tab" data-toggle="tab">Login In</a></li>
+                                <li role="presentation"><a id="signup-taba" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Register</a></li>
+                                <li role="presentation"><a id="forgetpass-taba" href="#forget_password" aria-controls="forget_password" role="tab" data-toggle="tab">Forget Password</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active text-center" id="home"> &nbsp;&nbsp; <span id="login_fail" class="response_error" style="display: none;">Loggin failed, please try again.</span>
+                                    <div class="clearfix"></div>
+                                    <form>
+                                        <div class="social-box">
+                                            <!--<div class="row mg-btm">
+                      <div class="col-md-6"> <a href="#" class="btn btn-primary btn-block login-face"> <i class="icon-facebook"></i> Login with Facebook </a> </div>
+                      <div class="col-md-6"> <a href="#" class="btn btn-danger btn-block login-twitter"> <i class="icon-twitter"></i> Login with G+ </a> </div>
+                    </div>-->
+                                        </div>
+                                        <div class="spacer10"> &nbsp; </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="text" class="form-control" id="login_username" placeholder="Username">
+                                            </div>
+                                            <span class="help-block has-error" id="email-error"></span> </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                                                <input type="text" class="form-control" id="remail" placeholder="Email">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="remail-error"></span> </div>
+                                        <button type="button" id="login_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Signing In...."> User Login</button>
+                                        <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+                                            <div class="row">
+                                                <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab"> Forgot password? </a> </div>
+                                                <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab"> Register </a> </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="profile"> &nbsp;&nbsp; <span id="registration_fail" class="response_error" style="display: none;">Registration failed, please try again.</span>
+                                    <div class="clearfix"></div>
+                                    <form>
+                                        <div class="form-group">
+                                            <div class="input-group form-field">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="text" class="form-control" id="username" placeholder="Username">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="username-error"></span> </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                                                <input type="text" class="form-control" id="remail" placeholder="Email">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="remail-error"></span> </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-mobile"></i></div>
+                                                <input type="password" class="form-control" id="password" placeholder="Mobile No.">
+                                            </div>
+                                            <span class="help-block has-error" id="password-error"></span> </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                            </div>
+                                            <span class="help-block has-error" id="password-error"></span> </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <input type="password" class="form-control" id="password" placeholder="Re-Password">
+                                            </div>
+                                            <span class="help-block has-error" id="password-error"></span> </div>
+                                        <button type="button" id="register_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Registering....">User Register</button>
+                                        <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+                                            <div class="row">
+                                                <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab"> Forgot password? </a> </div>
+                                                <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signin-tab"> Sign In </a> </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane text-center" id="forget_password"> &nbsp;&nbsp; <span id="reset_fail" class="response_error" style="display: none;"></span>
+                                    <div class="clearfix"></div>
+                                    <form>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="text" class="form-control" id="femail" placeholder="Email">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="femail-error"></span> </div>
+                                        <button type="button" id="reset_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Please wait....">Forget Password</button>
+                                        <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+                                            <div class="row">
+                                                <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="signin-tab"> Sign In </a> </div>
+                                                <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab"> Sign Up </a> </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- - Login Model Ends Here -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="logo">
+                        <a href="index.html"><img src="images/Homely-logoInner.jpg" class="img-responsive" alt="" /></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header navbar-brand">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            Cities
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Delhi</a></li>
+                                <li><a href="#">Gurgaon</a></li>
+                                <li><a href="#">Ghaziabad</a></li>
+                                <li><a href="#">Noida</a></li>
+                                <li><a href="#">Faridabad</a></li>
+                                <li><a href="#">Greater Noida</a></li>
+                                <li class="reg-sign"><a href="#loginModal" data-toggle="modal">Register</a></li>
+                                <li><a href="#loginModal" data-toggle="modal">Sign in</a></li>
+                                <li><a href="#">Help</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </nav>
+                    <ul class="rent-nav">
+                        <li><a href="#">Rent</a></li>
+                        <li><a href="list-property.html">List Property</a></li>
+                        <li><a href="post-requirment.html">Post Requirement</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inner-banner">
+                        <img src="images/ghaziabad-banner.jpg" class="img-responsive" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="left-side-bar">
+                        <h1 class="left-side-heading">REFINE YOUR SEARCH</h1>
+                        <form>
+                            <div class="form-div-group">
+                                <label class="conta-name">Property Type</label>
+                                <select name="" id="" class="select-field">
+                                    <option value="0">View All</option>
+                                    <option value="">Multistorey Residential Apartment</option>
+                                    <option value="">Paying Guest</option>
+                                    <option value="">Service Apartment</option>
+                                    <option value="">Penthouse</option>
+                                    <option value="">Independent / Builder Floor</option>
+                                    <option value="">Studio Apartment</option>
+                                    <option value="">Independent House/Villa</option>
+                                    <option value="">Residential Land</option>
+                                </select>
+                            </div>
+                            <div class="form-div-group">
+                                <label class="conta-name">Price</label>
+                                <input type="range" name="" id="" class="select-field-range">
+                            </div>
+                            <div class="form-div-group">
+                                <label class="conta-name">Property Id</label>
+                                <input type="text" name="" placeholder="" class="select-field">
+                            </div>
+                            <div class="form-div-group">
+                                <input type="button" name="" placeholder="" value="Search Now" class="search-now-btn">
+                            </div>
+                        </form>
+                        <hr style=" border-top: 1px solid #e7e5e5;">
+                        <h1 class="left-side-heading"><a href="#advancesearch" data-toggle="collapse">Advanced SEARCH <i class="fa fa-search"></i></a></h1>
+                        <hr style=" border-top: 1px solid #e7e5e5;">
+                        <div id="advancesearch" class="collapse">
+                            <div style="height:40px">
+                                <h4 class="ammmm">AMENITIES</h4>
+                            </div>
+                            <ul class="amenities-detail">
+                                <li><img src="images/busstand.jpg" class="img-responsive" alt="">
+                                    <p>Bus Stand</p>
+                                </li>
+                                <li><img src="images/supermarket.jpg" class="img-responsive" alt="">
+                                    <p>Grocery</p>
+                                </li>
+                                <li><img src="images/gas-station02.jpg" class="img-responsive" alt="">
+                                    <p>Petrol Pump</p>
+                                </li>
+                                <li><img src="images/hospital.jpg" class="img-responsive" alt="">
+                                    <p>Hospital</p>
+                                </li>
+                                <li><img src="images/park02.jpg" class="img-responsive" alt="">
+                                    <p>Park</p>
+                                </li>
+                                <li><img src="images/Pharmacy-Medical-Store02.jpg" class="img-responsive" alt="">
+                                    <p>Pharmacy</p>
+                                </li>
+                                <li><img src="images/Restaurants.jpg" class="img-responsive" alt="">
+                                    <p>Restaurants</p>
+                                </li>
+                                <li><img src="images/school.jpg" class="img-responsive" alt="">
+                                    <p>School</p>
+                                </li>
+                                <li><img src="images/gym02.jpg" class="img-responsive" alt="">
+                                    <p>Gym</p>
+                                </li>
+                                <li><img src="images/gaspipeline.jpg" class="img-responsive" alt="">
+                                    <p>Gas Pipeline</p>
+                                </li>
+                                <li><img src="images/clubhouse.jpg" class="img-responsive" alt="">
+                                    <p>Club House</p>
+                                </li>
+                                <li><img src="images/lift02.jpg" class="img-responsive" alt="">
+                                    <p>Lift</p>
+                                </li>
+                                <li><img src="images/parking.jpg" class="img-responsive" alt="">
+                                    <p>Parking</p>
+                                </li>
+                                <li><img src="images/power02.jpg" class="img-responsive" alt="">
+                                    <p>Power Backup</p>
+                                </li>
+                                <li><img src="images/swim02.jpg" class="img-responsive" alt="">
+                                    <p>Swiming Pool</p>
+                                </li>
+                            </ul>
+                            <form>
+                                <div class="form-div-group">
+                                    <label class="conta-name">AVALIABILITY</label>
+                                    <select name="" id="" class="select-field">
+                                        <option value="">View All</option>
+                                        <option value="">30 Days- 45 Days</option>
+                                        <option value="">45 Days-60 Days</option>
+                                        <option value="">30 Days</option>
+                                        <option value="">15 Days</option>
+                                    </select>
+                                </div>
+                                <div class="form-div-group">
+                                    <label class="conta-name">POSTED BY</label>
+                                    <select name="" id="" class="select-field">
+                                        <option value="0">View All</option>
+                                        <option value="1">Owner</option>
+                                        <option value="2">Agent</option>
+                                        <option value="3">Tenant</option>
+                                        <option value="4">Builder</option>
+                                    </select>
+                                </div>
+                                <div class="form-div-group">
+                                    <label class="conta-name">FURNISHING</label>
+                                    <select name="" id="" class="select-field">
+                                        <option value="0">View All</option>
+                                        <option value="1">Furnished</option>
+                                        <option value="2">Semi Furnished</option>
+                                        <option value="3">Non Furnished</option>
+                                    </select>
+                                </div>
+                                <div class="form-div-group">
+                                    <label class="conta-name">BEDROOMS</label>
+                                    <select name="" id="" class="select-field">
+                                        <option value="0">View All</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+                                <div class="form-div-group">
+                                    <input type="button" name="" placeholder="" value="Search Now" class="search-now-btn">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-8">
+                        <ul class="renting-faster-search-box2">
+                            <li>
+                                <input type="text" name="" id="" placeholder="Enter Locality, City" class="input-search">
+                                <select name="" id="" class="input-select-field">
+                                    <option value="1">1 BHK</option>
+                                    <option value="2">2 BHK</option>
+                                    <option value="3">3 BHK</option>
+                                    <option value="4">4 BHK</option>
+                                    <option value="5">5 BHK</option>
+                                </select>
+                                <select name="DropDownList1" id="DropDownList1" class="input-select-field2">
+                                    <option value="5000-7000">5000-7000</option>
+                                    <option value="7000-10000">7000-10000</option>
+                                    <option value="10000-12000">10000-12000</option>
+                                    <option value="12000-15000">12000-15000</option>
+                                    <option value="15000-20000">15000-20000</option>
+                                </select>
+                                <input type="button" name="" id="" value="search" class="input-search-btn">
+                            </li>
+                            <li></li>
+                        </ul>
+                        <div class="show-result">1-3 of 3 Result</div>
+                        <div class="main-content-box">
+                            <div class="col-xs-4">
+                                <div class="img-section">
+                                    <img src="images/detials-img-big.jpg" class="img-responsive" alt="">
+                                    <h3>INDIRAPURAM, GHAZIABAD, UTTAR PRADESH, INDIA </h3>
+                                    <hr style="margin-bottom:10px; margin-top:10px;">
+                                    <p>
+                                        <input type="checkbox" name="" id=""> Compare</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="inr-detail">
+                                    <i class="fa fa-inr"></i> 20000
+                                    <span>27 Jan 2016</span>
+                                </div>
+                                <ul class="des-detail">
+                                    <li class="homeid"><span>Id</span> HOME100255</li>
+                                    <li class="wed-room">3 Bed Room</li>
+                                    <li class="wath-room">3 Bathroom </li>
+                                    <li class="area-det">1500 SQ.FT</li>
+                                    <li><a href="view-listing-detail.html">View Detail</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="main-content-box">
+                            <div class="col-xs-4">
+                                <div class="img-section">
+                                    <img src="images/detials-img-big.jpg" class="img-responsive" alt="">
+                                    <h3>INDIRAPURAM, GHAZIABAD, UTTAR PRADESH, INDIA </h3>
+                                    <hr style="margin-bottom:10px; margin-top:10px;">
+                                    <p>
+                                        <input type="checkbox" name="" id=""> Compare</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="inr-detail">
+                                    <i class="fa fa-inr"></i> 20000
+                                    <span>27 Jan 2016</span>
+                                </div>
+                                <ul class="des-detail">
+                                    <li class="homeid"><span>Id</span> HOME100255</li>
+                                    <li class="wed-room">3 Bed Room</li>
+                                    <li class="wath-room">3 Bathroom </li>
+                                    <li class="area-det">1500 SQ.FT</li>
+                                    <li><a href="view-listing-detail.html">View Detail</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="main-content-box">
+                            <div class="col-xs-4">
+                                <div class="img-section">
+                                    <img src="images/detials-img-big.jpg" class="img-responsive" alt="">
+                                    <h3>INDIRAPURAM, GHAZIABAD, UTTAR PRADESH, INDIA </h3>
+                                    <hr style="margin-bottom:10px; margin-top:10px;">
+                                    <p>
+                                        <input type="checkbox" name="" id=""> Compare</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="inr-detail">
+                                    <i class="fa fa-inr"></i> 20000
+                                    <span>27 Jan 2016</span>
+                                </div>
+                                <ul class="des-detail">
+                                    <li class="homeid"><span>Id</span> HOME100255</li>
+                                    <li class="wed-room">3 Bed Room</li>
+                                    <li class="wath-room">3 Bathroom </li>
+                                    <li class="area-det">1500 SQ.FT</li>
+                                    <li><a href="view-listing-detail.html">View Detail</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <ul class="des-detail2">
+                                <li><a href="#">Compare Properties</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="pagination pagination_home">
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h1 class="home-tabing-title1">HOT PROPERTIES</h1>
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="row0">
+                                <div class="hot-properties-section list_view_page_sec">
+                                    <div class="home-img-detail-box2">
+                                        <div class="tip-item">
+                                            <div class="activator tip-specific-class">
+                                                <img src="images/detials-img-big.jpg" class="img-responsive" alt=""></div>
+                                            <div class="home-detail">
+                                                <ul>
+                                                    <li class="first-collum">Indirapuram, gzb...
+                                                        <br><span>Shanti vihar...</span></li>
+                                                    <li class="second-collum"><i class="fa fa-inr"></i> 10000</li>
+                                                </ul>
+                                            </div>
+                                            <ul class="ssss">
+                                                <li class="area">1500 Sq.ft</li>
+                                                <li class="area2">3</li>
+                                                <li class="area3">3</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="home-img-detail-box2">
+                                        <div class="tip-item">
+                                            <div class="activator tip-specific-class">
+                                                <img src="images/detials-img-big.jpg" class="img-responsive" alt=""></div>
+                                            <div class="home-detail">
+                                                <ul>
+                                                    <li class="first-collum">Indirapuram, gzb...
+                                                        <br><span>Shanti vihar...</span></li>
+                                                    <li class="second-collum"><i class="fa fa-inr"></i> 10000</li>
+                                                </ul>
+                                            </div>
+                                            <ul class="ssss">
+                                                <li class="area">1500 Sq.ft</li>
+                                                <li class="area2">3</li>
+                                                <li class="area3">3</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="home-img-detail-box2">
+                                        <div class="tip-item">
+                                            <div class="activator tip-specific-class">
+                                                <img src="images/detials-img-big.jpg" class="img-responsive" alt=""></div>
+                                            <div class="home-detail">
+                                                <ul>
+                                                    <li class="first-collum">Indirapuram, gzb...
+                                                        <br><span>Shanti vihar...</span></li>
+                                                    <li class="second-collum"><i class="fa fa-inr"></i> 10000</li>
+                                                </ul>
+                                            </div>
+                                            <ul class="ssss">
+                                                <li class="area">1500 Sq.ft</li>
+                                                <li class="area2">3</li>
+                                                <li class="area3">3</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="home-img-detail-box2">
+                                        <div class="tip-item">
+                                            <div class="activator tip-specific-class">
+                                                <img src="images/detials-img-big.jpg" class="img-responsive" alt=""></div>
+                                            <div class="home-detail">
+                                                <ul>
+                                                    <li class="first-collum">Indirapuram, gzb...
+                                                        <br><span>Shanti vihar...</span></li>
+                                                    <li class="second-collum"><i class="fa fa-inr"></i> 10000</li>
+                                                </ul>
+                                            </div>
+                                            <ul class="ssss">
+                                                <li class="area">1500 Sq.ft</li>
+                                                <li class="area2">3</li>
+                                                <li class="area3">3</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="footer-top">
+                        <div class="col-md-3 pd-100">
+                            <h3>PROPERTY IN INDIA</h3>
+                            <ul>
+                                <li><a href="#">Delhi</a></li>
+                                <li><a href="#">Gurgaon</a></li>
+                                <li><a href="#">Ghaziabzd</a></li>
+                                <li><a href="#">Noida</a></li>
+                                <li><a href="#">Faridabad</a></li>
+                                <li><a href="#">Greater Noida</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 pd-70">
+                            <h3>PROPERTY SERVICES</h3>
+                            <ul>
+                                <li><a href="view-listing.html">RESIDENTIAL PROPERTY</a></li>
+                                <li><a href="view-listing.html">LIST YOUR PROPERTY</a></li>
+                                <li><a href="view-listing.html">SEARCH PROPERTY</a></li>
+                                <li><a href="#">LOGIN</a></li>
+                                <li><a href="#">Register</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 pd-40">
+                            <h3>COMPANY</h3>
+                            <ul>
+                                <li><a href="about-us.html">About us</a></li>
+                                <li><a href="contact-us.html">Contact us</a></li>
+                                <li><a href="privacy-policy.html">Privacy policy</a></li>
+                                <li><a href="term-condition.html">TERMS AND CONDITIONS</a></li>
+                                <li><a href="testimonials.html">TESTIMONIALS</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 ">
+                            <h3>FOLLOW US</h3>
+                            <ul class="followus">
+                                <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottum">
+                        <p>Copyright @ 2016 Homely.co.in - All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+    $(document).ready(function() {
+        var minVal = parseInt($('.min-price span').text());
+        var maxVal = parseInt($('.max-price span').text());
+        $("#prices-range").slider({
+            range: true,
+            min: minVal,
+            max: maxVal,
+            step: 5,
+            values: [minVal, maxVal],
+            slide: function(event, ui) {
+                $('.min-price span').text(ui.values[0]);
+                $('.max-price span').text(ui.values[1]);
+            }
+        });
+    });
+    </script>
+</body>
+<!--<script src="date-picker/jquery.js"></script>-->
+<script src="date-picker/jquery.datetimepicker.full.js"></script>
+<script>
+/*
+window.onerror = function(errorMsg) {
+  $('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+
+$.datetimepicker.setLocale('en');
+
+$('#datetimepicker_format').datetimepicker({
+    value: '2015/04/15 05:03',
+    format: $("#datetimepicker_format_value").val()
+});
+$("#datetimepicker_format_change").on("click", function(e) {
+    $("#datetimepicker_format").data('xdsoft_datetimepicker').setOptions({
+        format: $("#datetimepicker_format_value").val()
+    });
+});
+$("#datetimepicker_format_locale").on("change", function(e) {
+    $.datetimepicker.setLocale($(e.currentTarget).val());
+});
+
+$('#datetimepicker').datetimepicker({
+    dayOfWeekStart: 1,
+    lang: 'en',
+    disabledDates: ['1986/01/08', '1986/01/09', '1986/01/10'],
+    startDate: '1986/01/05'
+});
+$('#datetimepicker').datetimepicker({
+    value: '2015/04/15 05:03',
+    step: 10
+});
+
+$('.some_class').datetimepicker();
+
+$('#default_datetimepicker').datetimepicker({
+    formatTime: 'H:i',
+    formatDate: 'd.m.Y',
+    //defaultDate:'8.12.1986', // it's my birthday
+    defaultDate: '+03.01.1970', // it's my birthday
+    defaultTime: '10:00',
+    timepickerScrollbar: false
+});
+
+$('#datetimepicker10').datetimepicker({
+    step: 5,
+    inline: true
+});
+$('#datetimepicker_mask').datetimepicker({
+    mask: '9999/19/39 29:59'
+});
+
+$('#datetimepicker1').datetimepicker({
+    datepicker: false,
+    format: 'H:i',
+    step: 5
+});
+$('#datetimepicker2').datetimepicker({
+    yearOffset: 222,
+    lang: 'ch',
+    timepicker: false,
+    format: 'd/m/Y',
+    formatDate: 'Y/m/d',
+    minDate: '-1970/01/02', // yesterday is minimum date
+    maxDate: '+1970/01/02' // and tommorow is maximum date calendar
+});
+$('#datetimepicker3').datetimepicker({
+    inline: true
+});
+$('#datetimepicker4').datetimepicker();
+$('#open').click(function() {
+    $('#datetimepicker4').datetimepicker('show');
+});
+$('#close').click(function() {
+    $('#datetimepicker4').datetimepicker('hide');
+});
+$('#reset').click(function() {
+    $('#datetimepicker4').datetimepicker('reset');
+});
+$('#datetimepicker5').datetimepicker({
+    datepicker: false,
+    allowTimes: ['12:00', '13:00', '15:00', '17:00', '17:05', '17:20', '19:00', '20:00'],
+    step: 5
+});
+$('#datetimepicker6').datetimepicker();
+$('#destroy').click(function() {
+    if ($('#datetimepicker6').data('xdsoft_datetimepicker')) {
+        $('#datetimepicker6').datetimepicker('destroy');
+        this.value = 'create';
+    } else {
+        $('#datetimepicker6').datetimepicker();
+        this.value = 'destroy';
+    }
+});
+var logic = function(currentDateTime) {
+    if (currentDateTime && currentDateTime.getDay() == 6) {
+        this.setOptions({
+            minTime: '11:00'
+        });
+    } else
+        this.setOptions({
+            minTime: '8:00'
+        });
+};
+$('#datetimepicker7').datetimepicker({
+    onChangeDateTime: logic,
+    onShow: logic
+});
+$('#datetimepicker8').datetimepicker({
+    onGenerate: function(ct) {
+        $(this).find('.xdsoft_date')
+            .toggleClass('xdsoft_disabled');
+    },
+    minDate: '-1970/01/2',
+    maxDate: '+1970/01/2',
+    timepicker: false
+});
+$('#datetimepicker9').datetimepicker({
+    onGenerate: function(ct) {
+        $(this).find('.xdsoft_date.xdsoft_weekend')
+            .addClass('xdsoft_disabled');
+    },
+    weekends: ['01.01.2014', '02.01.2014', '03.01.2014', '04.01.2014', '05.01.2014', '06.01.2014'],
+    timepicker: false
+});
+var dateToDisable = new Date();
+dateToDisable.setDate(dateToDisable.getDate() + 2);
+$('#datetimepicker11').datetimepicker({
+    beforeShowDay: function(date) {
+        if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
+            return [false, ""]
+        }
+
+        return [true, ""];
+    }
+});
+$('#datetimepicker12').datetimepicker({
+    beforeShowDay: function(date) {
+        if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
+            return [true, "custom-date-style"];
+        }
+
+        return [true, ""];
+    }
+});
+$('#datetimepicker_dark').datetimepicker({
+    theme: 'dark'
+})
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+﻿@model List<Homely.Common.Model.PropertyInfo>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <table>
+      <tr>
+          <td style="background-color:yellow">Property Id</td>
+          <td style="background-color:yellow">City</td>
+          <td style="background-color:yellow">Locality</td>
+          <td style="background-color:yellow">Society</td>
+          <td style="background-color:yellow">Owner Mobile</td>
+      </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.PropertyId</td>
+            <td>@item.City</td>
+            <td>@item.Locality</td>
+            <td>@item.Society</td>
+            <td>@item.OwnerContact</td>
+            <td>@item.OwnerName</td>
+        </tr>
+        }
+
+    </table>
+  
+</body>
+</html>

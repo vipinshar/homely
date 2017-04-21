@@ -1,0 +1,179 @@
+﻿@using PagedList;
+@using PagedList.Mvc
+@model Homely.Common.Model.RootObjectForSearchPage
+@{
+    ViewBag.Title = "PropertyByCity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+
+    var compareProp = '@Url.Action("index", "CompareProperty")';
+
+</script>
+
+<input type="hidden" name="hdnTabCity" value="@ViewBag.cityTab" id="hdnTabCity" />
+@Html.Hidden("minValue", new { value = 5000 })
+@Html.Hidden("maxValue", new { value = 30000 })
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="inner-banner">
+                    @if (ViewBag.banner == null)
+                    {
+
+                        <img src="@Url.Content("~/images/banner-img.jpg")" class="img-responsive" alt="" id="img-city">
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(ViewBag.banner)" class="img-responsive" alt="" id="img-city">
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-push-4">
+                <div class="col-md-8">
+
+                    <ul class="renting-faster-search-box2">
+                        <li>
+                            @Html.DropDownListFor(x => x.State, Model._state, "Select state", new { @class = " select-fild select_new_home_width", @required = "required" })
+                            @Html.DropDownListFor(x => x.City, Enumerable.Empty<SelectListItem>(), "Select city", new { @class = "select-fild select_new_home_width" })
+                            @Html.DropDownListFor(x => x.Locality, Enumerable.Empty<SelectListItem>(), "Select locality", new { @class = "select-fild select_new_home_width" })
+                            <div class="clear"></div>
+
+                            <select name="Budget" id="Budget" class="select-fild select_new_home_width">
+                                <option value>Budget</option>
+                                <option value="5000-7000">5000-7000</option>
+                                <option value="7000-10000">7000-10000</option>
+                                <option value="10000-12000">10000-12000</option>
+                                <option value="12000-15000">12000-15000</option>
+                                <option value="15000-20000">15000-20000</option>
+                                <option value="25000-30000">25000-30000</option>
+                                <option value="30000-35000">30000-35000</option>
+                                <option value="35000-40000">35000-40000</option>
+                                <option value="40000-45000">40000-45000</option>
+                                <option value="45000-50000">45000-50000</option>
+                                <option value="50000-55000">50000-55000</option>
+                                <option value="55000-60000">55000-60000</option>
+                                <option value="60000-65000">60000-65000</option>
+                                <option value="65000-70000">65000-70000</option>
+                                <option value="70000-75000">70000-75000</option>
+                                <option value="75000-80000">75000-80000</option>
+                                <option value="80000-85000">80000-85000</option>
+                                <option value="85000-90000">85000-90000</option>
+                                <option value="90000-95000">90000-95000</option>
+                                <option value="95000-100000">95000-100000</option>
+                                <option value="100000-200000">Above 1 Lac</option>
+                            </select>
+
+                            @Html.DropDownListFor(x => x.bedroom, Model._bedroom, "BHK", new { @class = "select-fild select_new_home_width" })
+                            @Html.DropDownListFor(x => x.propertytype, Model._propertyType, "Property Type", new { @class = "select-fild select_new_home_width" })
+
+                            <input type="submit" name="searchFast" id="searchFast" value="GO" class="input-search-btn1">
+                        <li></li>
+                    </ul>
+                    <div class="clear"></div>
+                    <div id="viewListPaging">
+                        @if (Model != null && ViewBag._searchProp != null && ViewBag._searchProp.Count != 0)
+                        {
+                            foreach (var item in ViewBag._searchProp)
+                            {
+                                <div class="main-content-box">
+                                    <div class="col-xs-4">
+                                        <div class="img-section">
+                                            <img src="@Url.Content(item.ImgUrl)" class="img-responsive" alt="">
+                                            <h3>@item.Locality </h3>
+                                            <hr style="margin-bottom:10px; margin-top:10px;">
+                                            <p>
+                                                @Html.CheckBox("chk", false, new { value = item.PropertyCode }) Compare
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="inr-detail">
+                                            <i class="fa fa-inr"></i>@item.Rent
+                                            <span>@item.CreateDate.ToString("dd-MMM-yyyy")</span>
+                                        </div>
+                                        <ul class="des-detail">
+                                            <li class="homeid"><span>Id</span> @item.PropertyCode</li>
+                                            <li class="wed-room">@item.Bedroom Bedroom</li>
+                                            <li class="wath-room">@item.Bathroom Bathroom </li>
+                                            <li class="area-det">@item.Area</li>
+                                            <li><a href="@Url.RouteUrl("ProductDetails", new { id = item.Url })">View Detail</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                            <div>
+                                <ul class="des-detail2">
+                                    <li><a href="#" id="comapre">Compare Properties</a></li>
+                                </ul>
+                            </div>
+
+
+                            @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("ViewListingNavigation", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "viewListPaging" }))
+                        }
+                        else
+                        {
+                            <div>Not found</div>
+                        }
+                    </div>
+
+
+
+                </div>
+                @if (!Request.Browser.IsMobileDevice)
+                {
+                    <div class="col-md-4">
+                        <div class="row3">
+                            <h1 class="home-tabing-title1">HOT PROPERTIES</h1>
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="row0">
+                                    <div class="hot-properties-section list_view_page_sec">
+                                        @Html.Action("HotProperties", "Home")
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="col-md-4 col-md-pull-8">
+                @{
+                    Html.RenderAction("RefineSearch", "Property");
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Scripts/ListProperty/viewlist.js"></script>
+<style>
+    #st {
+        display: none;
+    }
+
+    #ci {
+        display: none;
+    }
+
+    #loc {
+        display: none;
+    }
+
+    #bug {
+        display: none;
+    }
+</style>

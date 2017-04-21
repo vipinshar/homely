@@ -1,0 +1,16 @@
+﻿@model Homely.Common.Model.SuccessMessageViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <div class="container">
+        <div class="thankyoubox">
+            <span class="thankyoubox_content">
+                @Html.Raw(Model.message)
+            </span>
+        </div>
+    </div>
+</section>
+

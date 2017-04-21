@@ -1,0 +1,1317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7B799CE4-D4ED-4756-97C6-0E4E87E937AE}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Homely</RootNamespace>
+    <AssemblyName>Homely</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\GetExcelController.cs" />
+    <Compile Include="Areas\Admin\Models\GetExcelViewModel.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ComparePropertyController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PostRequirmentController.cs" />
+    <Compile Include="Controllers\PropertyController.cs" />
+    <Compile Include="Controllers\ThankYouController.cs" />
+    <Compile Include="CustomRoute\SeoFriendlyRoute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utility\CommonUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\classie.js" />
+    <Content Include="Content\component.css" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\date-picker\jquery.datetimepicker.css" />
+    <Content Include="Content\date-picker\jquery.datetimepicker.full.js" />
+    <Content Include="Content\default.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\blank.gif" />
+    <Content Include="Content\images\camera-loader.gif" />
+    <Content Include="Content\images\camera_skins.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery.lightbox-0.5.css" />
+    <Content Include="Content\lightslider.css" />
+    <Content Include="Content\modernizr.custom.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\SliderImages\camera.css" />
+    <Content Include="Content\style-new.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="HtmlTepmlate\about-us.html" />
+    <Content Include="HtmlTepmlate\compare.html" />
+    <Content Include="HtmlTepmlate\contact-us.html" />
+    <Content Include="HtmlTepmlate\fav_profile.html" />
+    <Content Include="HtmlTepmlate\index.html" />
+    <Content Include="HtmlTepmlate\list-property.html" />
+    <Content Include="HtmlTepmlate\login.html" />
+    <Content Include="HtmlTepmlate\post-requirment.html" />
+    <Content Include="HtmlTepmlate\privacy-policy.html" />
+    <Content Include="HtmlTepmlate\term-condition.html" />
+    <Content Include="HtmlTepmlate\testimonials.html" />
+    <Content Include="HtmlTepmlate\view-listing-detail.html" />
+    <Content Include="HtmlTepmlate\view-listing.html" />
+    <Content Include="images\area-icon.jpg" />
+    <Content Include="images\arrow.png" />
+    <Content Include="images\banner-img.jpg" />
+    <Content Include="images\banner01.jpg" />
+    <Content Include="images\bathroom-icon.jpg" />
+    <Content Include="images\bedroom-icon.jpg" />
+    <Content Include="images\blank.gif" />
+    <Content Include="images\busstand-hover.jpg" />
+    <Content Include="images\busstand.jpg" />
+    <Content Include="images\busstand02-hover.jpg" />
+    <Content Include="images\busstand02.jpg" />
+    <Content Include="images\camera-loader.gif" />
+    <Content Include="images\camera_skins.png" />
+    <Content Include="images\changepassword.png" />
+    <Content Include="images\clubhouse.jpg" />
+    <Content Include="images\clubhouse02-hover.jpg" />
+    <Content Include="images\clubhouse02.jpg" />
+    <Content Include="images\contact_us.png" />
+    <Content Include="images\contact_u_s.png" />
+    <Content Include="images\dashboard-icon.png" />
+    <Content Include="images\delhi-banner.jpg" />
+    <Content Include="images\detials-img-big.jpg" />
+    <Content Include="images\download %281%29.png" />
+    <Content Include="images\download.png" />
+    <Content Include="images\faridabad-banner.jpg" />
+    <Content Include="images\favorite.png" />
+    <Content Include="images\gas-station-hover.jpg" />
+    <Content Include="images\gas-station.jpg" />
+    <Content Include="images\gas-station02-hover.jpg" />
+    <Content Include="images\gas-station02.jpg" />
+    <Content Include="images\gaspipeline-hover.jpg" />
+    <Content Include="images\gaspipeline.jpg" />
+    <Content Include="images\gaspipeline02-hover.jpg" />
+    <Content Include="images\gaspipeline02.jpg" />
+    <Content Include="images\ghaziabad-banner.jpg" />
+    <Content Include="images\greater-noida.jpg" />
+    <Content Include="images\gurgaon-banner.jpg" />
+    <Content Include="images\gym-hover.jpg" />
+    <Content Include="images\gym.jpg" />
+    <Content Include="images\gym02-hover.jpg" />
+    <Content Include="images\gym02.jpg" />
+    <Content Include="images\home-map-old.jpg" />
+    <Content Include="images\home-map.jpg" />
+    <Content Include="images\home-map.png" />
+    <Content Include="images\home-mapn.png" />
+    <Content Include="images\Homely-logo2.jpg" />
+    <Content Include="images\Homely-logoInner.jpg" />
+    <Content Include="images\homely-nav-icon.png" />
+    <Content Include="images\hospital-hover.jpg" />
+    <Content Include="images\hospital.jpg" />
+    <Content Include="images\hospital02-hover.jpg" />
+    <Content Include="images\hospital02.jpg" />
+    <Content Include="images\img-03.jpg" />
+    <Content Include="images\img-04.jpg" />
+    <Content Include="images\img-05.jpg" />
+    <Content Include="images\img-13.jpg" />
+    <Content Include="images\img01-hover.jpg" />
+    <Content Include="images\img01.jpg" />
+    <Content Include="images\img02-hover.jpg" />
+    <Content Include="images\img02.jpg" />
+    <Content Include="images\img03-hover-old.jpg" />
+    <Content Include="images\img03-hover.jpg" />
+    <Content Include="images\img03-old.jpg" />
+    <Content Include="images\img03.jpg" />
+    <Content Include="images\img04-hover.jpg" />
+    <Content Include="images\img04.jpg" />
+    <Content Include="images\img05-hover.jpg" />
+    <Content Include="images\img05.jpg" />
+    <Content Include="images\img09-hover.jpg" />
+    <Content Include="images\img09.jpg" />
+    <Content Include="images\img11-hover.jpg" />
+    <Content Include="images\img11.jpg" />
+    <Content Include="images\img12-hover.jpg" />
+    <Content Include="images\img12.jpg" />
+    <Content Include="images\img13-hover.jpg" />
+    <Content Include="images\img13.jpg" />
+    <Content Include="images\imgs8.png" />
+    <Content Include="images\inner-banner\about us.jpg" />
+    <Content Include="images\inner-banner\contact-us.jpg" />
+    <Content Include="images\inner-banner\ghaziabad-banner.jpg" />
+    <Content Include="images\inner-banner\privacy.jpg" />
+    <Content Include="images\inner-banner\term.jpg" />
+    <Content Include="images\inner-banner\testimonial.jpg" />
+    <Content Include="images\innericon-old.jpg" />
+    <Content Include="images\innericon.png" />
+    <Content Include="images\lift-hover.jpg" />
+    <Content Include="images\lift.jpg" />
+    <Content Include="images\lift02.jpg" />
+    <Content Include="images\lightbox-blank.gif" />
+    <Content Include="images\lightbox-btn-close.gif" />
+    <Content Include="images\lightbox-btn-next.gif" />
+    <Content Include="images\lightbox-btn-prev.gif" />
+    <Content Include="images\lightbox-ico-loading.gif" />
+    <Content Include="images\logo.jpg" />
+    <Content Include="images\logo_small.png" />
+    <Content Include="images\mapcnt6.png" />
+    <Content Include="images\nav-icon.png" />
+    <Content Include="images\noida-banner.jpg" />
+    <Content Include="images\park-hover.jpg" />
+    <Content Include="images\park.jpg" />
+    <Content Include="images\park02-hover.jpg" />
+    <Content Include="images\park02.jpg" />
+    <Content Include="images\parking-hover.jpg" />
+    <Content Include="images\parking.jpg" />
+    <Content Include="images\parking02-hover.jpg" />
+    <Content Include="images\parking02.jpg" />
+    <Content Include="images\Pharmacy-Medical-Store-hover.jpg" />
+    <Content Include="images\Pharmacy-Medical-Store.jpg" />
+    <Content Include="images\Pharmacy-Medical-Store02-hover.jpg" />
+    <Content Include="images\Pharmacy-Medical-Store02.jpg" />
+    <Content Include="images\power-hover.jpg" />
+    <Content Include="images\power.jpg" />
+    <Content Include="images\power02-hover.jpg" />
+    <Content Include="images\power02.jpg" />
+    <Content Include="images\profile-icon.png" />
+    <Content Include="images\quick-contact-img.jpg" />
+    <Content Include="images\quick-contact-img.png" />
+    <Content Include="images\refresh.png" />
+    <Content Include="images\Restaurants-hover.jpg" />
+    <Content Include="images\Restaurants.jpg" />
+    <Content Include="images\Restaurants02-hover.jpg" />
+    <Content Include="images\Restaurants02.jpg" />
+    <Content Include="images\review_stars.png" />
+    <Content Include="images\school-hover.jpg" />
+    <Content Include="images\school.jpg" />
+    <Content Include="images\school02-hover.jpg" />
+    <Content Include="images\school02.jpg" />
+    <Content Include="images\signup-icon.jpg" />
+    <Content Include="images\StaticMapService.png" />
+    <Content Include="images\supermarket-hover.jpg" />
+    <Content Include="images\supermarket.jpg" />
+    <Content Include="images\supermarket02-hover.jpg" />
+    <Content Include="images\supermarket02.jpg" />
+    <Content Include="images\sv5.png" />
+    <Content Include="images\swim02.jpg" />
+    <Content Include="images\swimmingpool-hover.jpg" />
+    <Content Include="images\swimmingpool.jpg" />
+    <Content Include="images\testi-img01.jpg" />
+    <Content Include="images\testi-img02.jpg" />
+    <Content Include="images\testi-img05.jpg" />
+    <Content Include="images\testimonial-icon03.jpg" />
+    <Content Include="images\tmapctrl.png" />
+    <Content Include="images\tmapctrl4.png" />
+    <Content Include="images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="images\user-default.png" />
+    <Content Include="Mailers\forgot-password-email.html" />
+    <Content Include="Mailers\Property.html" />
+    <Content Include="Mailers\registration-email.html" />
+    <Content Include="PropertyImages\default-image.jpg" />
+    <Content Include="PropertyImages\detials-img-big.jpg" />
+    <Content Include="PropertyImages\HOME100001\1.jpg" />
+    <Content Include="PropertyImages\HOME100001\2.jpg" />
+    <Content Include="PropertyImages\HOME100001\3.jpg" />
+    <Content Include="PropertyImages\HOME100001\4.jpg" />
+    <Content Include="PropertyImages\HOME100001\5.jpg" />
+    <Content Include="PropertyImages\HOME100001\download %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100001\download %282%29.jpg" />
+    <Content Include="PropertyImages\HOME100001\download %283%29.jpg" />
+    <Content Include="PropertyImages\HOME100001\download %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100001\download %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100001\download %286%29.jpg" />
+    <Content Include="PropertyImages\HOME100001\download %287%29.jpg" />
+    <Content Include="PropertyImages\HOME100002\3.jpg" />
+    <Content Include="PropertyImages\HOME100002\4.jpg" />
+    <Content Include="PropertyImages\HOME100002\5.jpg" />
+    <Content Include="PropertyImages\HOME100002\download %286%29.jpg" />
+    <Content Include="PropertyImages\HOME100002\download %287%29.jpg" />
+    <Content Include="PropertyImages\HOME100002\download %288%29.jpg" />
+    <Content Include="PropertyImages\HOME100002\MemberImage\arn2d.jpg" />
+    <Content Include="PropertyImages\HOME100003\download %2815%29.jpg" />
+    <Content Include="PropertyImages\HOME100003\download.jpg" />
+    <Content Include="PropertyImages\HOME100003\images %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100003\images %282%29.jpg" />
+    <Content Include="PropertyImages\HOME100003\images %283%29.jpg" />
+    <Content Include="PropertyImages\HOME100003\images %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100003\images %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100003\images %286%29.jpg" />
+    <Content Include="PropertyImages\HOME100003\images %287%29.jpg" />
+    <Content Include="PropertyImages\HOME100003\img01.jpg" />
+    <Content Include="PropertyImages\HOME100003\img02.jpg" />
+    <Content Include="PropertyImages\HOME100003\img03.jpg" />
+    <Content Include="PropertyImages\HOME100003\MemberImage\mens_087.jpg" />
+    <Content Include="PropertyImages\HOME100004\images %2820%29.jpg" />
+    <Content Include="PropertyImages\HOME100004\images %2821%29.jpg" />
+    <Content Include="PropertyImages\HOME100004\images %2822%29.jpg" />
+    <Content Include="PropertyImages\HOME100004\images %2823%29.jpg" />
+    <Content Include="PropertyImages\HOME100004\images %2824%29.jpg" />
+    <Content Include="PropertyImages\HOME100004\MemberImage\pie2d.jpg" />
+    <Content Include="PropertyImages\HOME100005\images.jpg" />
+    <Content Include="PropertyImages\HOME100005\MemberImage\mens_068.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %2810%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %2811%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %2812%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %2813%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %2814%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %2815%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %282%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %283%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %286%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %287%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %288%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download %289%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\download.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2810%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2811%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2812%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2813%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2814%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2815%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2816%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2817%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2818%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2819%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %282%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2820%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2821%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2822%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2823%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2824%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2825%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2826%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2827%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2828%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2829%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %283%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2830%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2831%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %2832%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %286%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %287%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %288%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images %289%29.jpg" />
+    <Content Include="PropertyImages\HOME100006\images.jpg" />
+    <Content Include="PropertyImages\HOME100006\MemberImage\pie0a.jpg" />
+    <Content Include="PropertyImages\HOME100007\download %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100007\MemberImage\pie0a.jpg" />
+    <Content Include="PropertyImages\HOME100008\images %2810%29.jpg" />
+    <Content Include="PropertyImages\HOME100008\images %2817%29.jpg" />
+    <Content Include="PropertyImages\HOME100008\images %2824%29.jpg" />
+    <Content Include="PropertyImages\HOME100008\MemberImage\pie0a.jpg" />
+    <Content Include="PropertyImages\HOME100009\download %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100009\download %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100009\download %286%29.jpg" />
+    <Content Include="PropertyImages\HOME100009\MemberImage\pie0a.jpg" />
+    <Content Include="PropertyImages\HOME100010\hot-properties-img01.jpg" />
+    <Content Include="PropertyImages\HOME100011\img05.jpg" />
+    <Content Include="PropertyImages\HOME100012\img05-hover.jpg" />
+    <Content Include="PropertyImages\HOME100013\IMG_1892.JPG" />
+    <Content Include="PropertyImages\HOME100039\img05-hover.jpg" />
+    <Content Include="PropertyImages\HOME100040\Omsai_P.jpg" />
+    <Content Include="PropertyImages\HOME100041\omsai_P1.jpg" />
+    <Content Include="PropertyImages\HOME100042\Om Sai_P3.jpg" />
+    <Content Include="PropertyImages\HOME100043\Om Sai_P3.jpg" />
+    <Content Include="PropertyImages\HOME100044\Omsai_P4.jpg" />
+    <Content Include="PropertyImages\HOME100045\omsai_a1.jpg" />
+    <Content Include="PropertyImages\HOME100046\omsai_a1.jpg" />
+    <Content Include="PropertyImages\HOME100048\Photo0058.jpg" />
+    <Content Include="PropertyImages\HOME100049\Amp_2bhk1.jpg" />
+    <Content Include="PropertyImages\HOME100050\Amp_2bhk.jpg" />
+    <Content Include="PropertyImages\HOME100050\Amp_2bhk1.jpg" />
+    <Content Include="PropertyImages\HOME100051\Amp_2bhk1.jpg" />
+    <Content Include="PropertyImages\HOME100051\Amp_2bhk2.jpg" />
+    <Content Include="PropertyImages\HOME100052\Amp_2bhk.jpeg" />
+    <Content Include="PropertyImages\HOME100052\Amp_2bhk.jpg" />
+    <Content Include="PropertyImages\HOME100052\Amp_2bhk2.jpg" />
+    <Content Include="PropertyImages\HOME100052\Amp_2bhk3.jpg" />
+    <Content Include="PropertyImages\HOME100053\Amp_2bhk.jpg" />
+    <Content Include="PropertyImages\HOME100053\Amp_2bhk1.jpg" />
+    <Content Include="PropertyImages\HOME100053\Amp_2bhk2.jpg" />
+    <Content Include="PropertyImages\HOME100053\Amp_2bhk3.jpg" />
+    <Content Include="PropertyImages\HOME100054\Noida_Trikuta Apartment.jpg" />
+    <Content Include="PropertyImages\HOME100055\Noida_Trikuta Apartment.jpg" />
+    <Content Include="PropertyImages\HOME100056\noida_mea apts.jpg" />
+    <Content Include="PropertyImages\HOME100057\noida_pratik vihar.jpg" />
+    <Content Include="PropertyImages\HOME100058\noida_bha apts.jpg" />
+    <Content Include="PropertyImages\HOME100062\noida_neelkanth apartment.jpeg" />
+    <Content Include="PropertyImages\HOME100063\kichan croosing.jpeg" />
+    <Content Include="PropertyImages\HOME100064\balconey drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100064\balconey drawing room.jpg" />
+    <Content Include="PropertyImages\HOME100064\BEDROOM CROSING_2bhk.jpg" />
+    <Content Include="PropertyImages\HOME100064\CROSING 3BHK.png" />
+    <Content Include="PropertyImages\HOME100065\balconey drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100065\balconey drawing room1.jpg" />
+    <Content Include="PropertyImages\HOME100065\BEDROOM WINDOW %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100065\payramaunt 3 bhk.jpg" />
+    <Content Include="PropertyImages\HOME100066\BEDROOM CROSING_2bhk.jpg" />
+    <Content Include="PropertyImages\HOME100066\BEDROOM WINDOW %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100067\balconey drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100067\balconey drawing room.jpg" />
+    <Content Include="PropertyImages\HOME100067\BEDROOM CROSING_2bhk.jpg" />
+    <Content Include="PropertyImages\HOME100067\payramaunt 3 bhk.jpg" />
+    <Content Include="PropertyImages\HOME100068\balconey drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100068\balconey drawing room1.jpg" />
+    <Content Include="PropertyImages\HOME100068\BEDROOM WINDOW %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100068\payramaunt 3 bhk.jpg" />
+    <Content Include="PropertyImages\HOME100069\balconey drawing room %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100069\balconey drawing room1.jpg" />
+    <Content Include="PropertyImages\HOME100069\BEDROOM WINDOW %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100069\CROSING 3BHK.png" />
+    <Content Include="PropertyImages\HOME100070\balconey drawing room %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100070\balconey drawing room.jpg" />
+    <Content Include="PropertyImages\HOME100070\BEDROOM CROSING_2bhk.jpg" />
+    <Content Include="PropertyImages\HOME100070\BEDROOM WINDOW %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100071\BEDROOM WINDOW %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100071\CROSING 3BHK.png" />
+    <Content Include="PropertyImages\HOME100072\balconey drawing room %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100072\balconey drawing room.jpg" />
+    <Content Include="PropertyImages\HOME100072\payramaunt 3 bhk.jpg" />
+    <Content Include="PropertyImages\HOME100073\balconey drawing room %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100073\balconey drawing room.jpg" />
+    <Content Include="PropertyImages\HOME100073\balconey drawing room2.jpg" />
+    <Content Include="PropertyImages\HOME100073\BEDROOM CROSING_2bhk.jpg" />
+    <Content Include="PropertyImages\HOME100073\payramaunt 3 bhk.jpg" />
+    <Content Include="PropertyImages\HOME100074\balconey drawing room.jpg" />
+    <Content Include="PropertyImages\HOME100074\BEDROOM WINDOW %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100074\CROSING 3BHK.png" />
+    <Content Include="PropertyImages\HOME100075\kichan croosing.jpeg" />
+    <Content Include="PropertyImages\HOME100076\balconey drawing room-gif.jpg" />
+    <Content Include="PropertyImages\HOME100076\balconey drawing room.jpg" />
+    <Content Include="PropertyImages\HOME100076\balconey drawing room1.gif" />
+    <Content Include="PropertyImages\HOME100076\BEDROOM CROSING_2bhk.jpg" />
+    <Content Include="PropertyImages\HOME100076\BEDROOM WINDOW %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100076\CROSING 3BHK.png" />
+    <Content Include="PropertyImages\HOME100076\payramaunt 3 bhk.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk.jpg1.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk10.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk11.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk12.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk13.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk2.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk3.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk4.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk5.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk6.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk7.jpg" />
+    <Content Include="PropertyImages\HOME100078\amp_4bhk8.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk.jpg1.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk10.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk11.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk12.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk13.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk2.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk3.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk4.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk5.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk6.jpg" />
+    <Content Include="PropertyImages\HOME100080\amp_4bhk7.jpg" />
+    <Content Include="PropertyImages\HOME100084\amp_3bhk.jpg" />
+    <Content Include="PropertyImages\HOME100084\amp_3bhk1.jpg" />
+    <Content Include="PropertyImages\HOME100084\amp_3bhk2.jpg" />
+    <Content Include="PropertyImages\HOME100084\amp_3bhk3.jpg" />
+    <Content Include="PropertyImages\HOME100084\amp_3bhk4.jpg" />
+    <Content Include="PropertyImages\HOME100084\amp_3bhk5.jpg" />
+    <Content Include="PropertyImages\HOME100084\amp_3bhk6.jpg" />
+    <Content Include="PropertyImages\HOME100084\amp_3bhk7.jpg" />
+    <Content Include="PropertyImages\HOME100084\amp_3bhk8.jpg" />
+    <Content Include="PropertyImages\HOME100085\amp_3bhk2.jpg" />
+    <Content Include="PropertyImages\HOME100085\amp_3bhk3.jpg" />
+    <Content Include="PropertyImages\HOME100085\amp_3bhk4.jpg" />
+    <Content Include="PropertyImages\HOME100085\amp_3bhk5.jpg" />
+    <Content Include="PropertyImages\HOME100086\amp_3bhk4.jpg" />
+    <Content Include="PropertyImages\HOME100086\amp_3bhk5.jpg" />
+    <Content Include="PropertyImages\HOME100086\amp_3bhk6.jpg" />
+    <Content Include="PropertyImages\HOME100086\amp_3bhk7.jpg" />
+    <Content Include="PropertyImages\HOME100086\amp_3bhk8.jpg" />
+    <Content Include="PropertyImages\HOME100087\amp_3bhk.jpg" />
+    <Content Include="PropertyImages\HOME100087\amp_3bhk1.jpg" />
+    <Content Include="PropertyImages\HOME100087\amp_3bhk2.jpg" />
+    <Content Include="PropertyImages\HOME100087\amp_3bhk3.jpg" />
+    <Content Include="PropertyImages\HOME100087\amp_3bhk4.jpg" />
+    <Content Include="PropertyImages\HOME100087\amp_3bhk5.jpg" />
+    <Content Include="PropertyImages\HOME100087\amp_3bhk6.jpg" />
+    <Content Include="PropertyImages\HOME100087\amp_3bhk7.jpg" />
+    <Content Include="PropertyImages\HOME100087\amp_3bhk8.jpg" />
+    <Content Include="PropertyImages\HOME100088\amp_3bhk.jpg" />
+    <Content Include="PropertyImages\HOME100088\amp_3bhk1.jpg" />
+    <Content Include="PropertyImages\HOME100088\amp_3bhk2.jpg" />
+    <Content Include="PropertyImages\HOME100088\amp_3bhk3.jpg" />
+    <Content Include="PropertyImages\HOME100088\amp_3bhk4.jpg" />
+    <Content Include="PropertyImages\HOME100088\amp_3bhk5.jpg" />
+    <Content Include="PropertyImages\HOME100089\20140214_125944.jpg" />
+    <Content Include="PropertyImages\HOME100089\20140214_125954.jpg" />
+    <Content Include="PropertyImages\HOME100089\20140214_130020.jpg" />
+    <Content Include="PropertyImages\HOME100089\amp_2bhk1.jpg" />
+    <Content Include="PropertyImages\HOME100090\20140214_125944.jpg" />
+    <Content Include="PropertyImages\HOME100090\20140214_125954.jpg" />
+    <Content Include="PropertyImages\HOME100090\20140214_130001.jpg" />
+    <Content Include="PropertyImages\HOME100090\20140214_130020.jpg" />
+    <Content Include="PropertyImages\HOME100091\unnamed %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100091\unnamed %282%29.jpg" />
+    <Content Include="PropertyImages\HOME100091\unnamed %283%29.jpg" />
+    <Content Include="PropertyImages\HOME100092\unnamed %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100092\unnamed %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100092\unnamed %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100093\unnamed %282%29.jpg" />
+    <Content Include="PropertyImages\HOME100093\unnamed %283%29.jpg" />
+    <Content Include="PropertyImages\HOME100093\unnamed %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100094\unnamed %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100094\unnamed %283%29.jpg" />
+    <Content Include="PropertyImages\HOME100094\unnamed %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100094\unnamed %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100095\unnamed %282%29 - Copy.jpg" />
+    <Content Include="PropertyImages\HOME100095\unnamed %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100095\unnamed.jpg" />
+    <Content Include="PropertyImages\HOME100096\unnamed %283%29 - Copy.jpg" />
+    <Content Include="PropertyImages\HOME100096\unnamed %283%29.jpg" />
+    <Content Include="PropertyImages\HOME100096\unnamed %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100096\unnamed %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100097\unnamed %283%29 - Copy.jpg" />
+    <Content Include="PropertyImages\HOME100097\unnamed %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100097\unnamed %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100097\unnamed.jpg" />
+    <Content Include="PropertyImages\HOME100098\bildar flour drawin room g k-1.jpeg" />
+    <Content Include="PropertyImages\HOME100098\bildar flour g k -1.jpeg" />
+    <Content Include="PropertyImages\HOME100098\bildar flour g k -1[1].jpeg" />
+    <Content Include="PropertyImages\HOME100098\drawing room g k-1 2 bhk.jpeg" />
+    <Content Include="PropertyImages\HOME100098\drawing room g k-1 2 bhk[1].jpeg" />
+    <Content Include="PropertyImages\HOME100098\unnamed %284%29.jpg" />
+    <Content Include="PropertyImages\HOME100098\unnamed %285%29.jpg" />
+    <Content Include="PropertyImages\HOME100098\unnamed.jpg" />
+    <Content Include="PropertyImages\HOME100099\bildar flour drawin room g k-1.jpeg" />
+    <Content Include="PropertyImages\HOME100099\bildar flour g k -1.jpeg" />
+    <Content Include="PropertyImages\HOME100099\bildar flour g k -1[1].jpeg" />
+    <Content Include="PropertyImages\HOME100099\drawing room g k-1 2 bhk.jpeg" />
+    <Content Include="PropertyImages\HOME100099\drawing room g k-1 2 bhk[1].jpeg" />
+    <Content Include="PropertyImages\HOME100104\ip ext dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100104\ip ext room 3 bhk dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100105\ip ext dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100105\ip ext room 3 bhk dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100106\darwing room mayur vihar 1 dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100106\dilhi.gif" />
+    <Content Include="PropertyImages\HOME100106\kichan mayur vihar 1 dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100107\darwing room mayur vihar 1 dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100107\dilho.gif" />
+    <Content Include="PropertyImages\HOME100107\kichan mayur vihar 1 dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100108\DILHI WEST.jpeg" />
+    <Content Include="PropertyImages\HOME100109\DILHI.jpeg" />
+    <Content Include="PropertyImages\HOME100110\faradabad3.jpeg" />
+    <Content Include="PropertyImages\HOME100111\faridabad1.jpeg" />
+    <Content Include="PropertyImages\HOME100112\10957542F-1379938387-Omaxe_Heights.jpeg" />
+    <Content Include="PropertyImages\HOME100113\faredabad2.jpg" />
+    <Content Include="PropertyImages\HOME100114\2bhk.jpeg" />
+    <Content Include="PropertyImages\HOME100114\MemberImage\partik.jpeg" />
+    <Content Include="PropertyImages\HOME100115\loutush.jpeg" />
+    <Content Include="PropertyImages\HOME100116\13407730O-1390579143.jpeg" />
+    <Content Include="PropertyImages\HOME100117\jivanasrey appartment.jpeg" />
+    <Content Include="PropertyImages\HOME100118\14611878O-1394407617.jpeg" />
+    <Content Include="PropertyImages\HOME100119\14611878O-1394407617.jpeg" />
+    <Content Include="PropertyImages\HOME100120\14273896O-1393458539.jpeg" />
+    <Content Include="PropertyImages\HOME100121\OMEX.jpg" />
+    <Content Include="PropertyImages\HOME100122\GIM OMEX.jpg" />
+    <Content Include="PropertyImages\HOME100123\omax.jpg" />
+    <Content Include="PropertyImages\HOME100124\12049990O-1385381595.jpeg" />
+    <Content Include="PropertyImages\HOME100125\1377283865-Express_View_Apartment_-_Sector-93_Noida.jpeg" />
+    <Content Include="PropertyImages\HOME100126\-Express_View_Apartment_-_Sector-93_Noida.jpeg" />
+    <Content Include="PropertyImages\HOME100127\eldico.jpeg" />
+    <Content Include="PropertyImages\HOME100128\13848980O-1392104847.jpeg" />
+    <Content Include="PropertyImages\HOME100129\expresw appart.jpeg" />
+    <Content Include="PropertyImages\HOME100130\niida 1.jpeg" />
+    <Content Include="PropertyImages\HOME100131\noida 2.jpeg" />
+    <Content Include="PropertyImages\HOME100132\14293002T-1393498828.jpeg" />
+    <Content Include="PropertyImages\HOME100133\kichan.jpeg" />
+    <Content Include="PropertyImages\HOME100134\eldico.jpeg" />
+    <Content Include="PropertyImages\HOME100135\kichen.jpeg" />
+    <Content Include="PropertyImages\HOME100136\VINAYK APPARTMENT.jpeg" />
+    <Content Include="PropertyImages\HOME100137\noida 1.jpeg" />
+    <Content Include="PropertyImages\HOME100138\kichen.jpeg" />
+    <Content Include="PropertyImages\HOME100139\noida.jpeg" />
+    <Content Include="PropertyImages\HOME100140\noida.jpeg" />
+    <Content Include="PropertyImages\HOME100141\VINAYK APPARTMENT.jpeg" />
+    <Content Include="PropertyImages\HOME100142\kichan.bmp" />
+    <Content Include="PropertyImages\HOME100143\12049990O-1385381595.jpeg" />
+    <Content Include="PropertyImages\HOME100144\privysampleflatdrawingroom.jpg" />
+    <Content Include="PropertyImages\HOME100145\gung.jpg" />
+    <Content Include="PropertyImages\HOME100146\gungaon sec-15.jpeg" />
+    <Content Include="PropertyImages\HOME100147\gungaon sec-15 w.jpeg" />
+    <Content Include="PropertyImages\HOME100148\appartment in gungav.jpeg" />
+    <Content Include="PropertyImages\HOME100149\10161116O-1381639328.jpeg" />
+    <Content Include="PropertyImages\HOME100150\10161116O-1381639328.jpeg" />
+    <Content Include="PropertyImages\HOME100151\10161116O-1381639328.jpeg" />
+    <Content Include="PropertyImages\HOME100152\outer_view.jpg" />
+    <Content Include="PropertyImages\HOME100153\10098044O-1381639329.jpeg" />
+    <Content Include="PropertyImages\HOME100154\14608298O-1394413059.jpeg" />
+    <Content Include="PropertyImages\HOME100155\10668328F-1378384507-Emilia_Vatika_City.jpeg" />
+    <Content Include="PropertyImages\HOME100156\img_8362.jpg" />
+    <Content Include="PropertyImages\HOME100157\14608310O-1394413042.jpeg" />
+    <Content Include="PropertyImages\HOME100158\gungaon.jpeg" />
+    <Content Include="PropertyImages\HOME100159\2.png" />
+    <Content Include="PropertyImages\HOME100160\rs-Haryana.jpg" />
+    <Content Include="PropertyImages\HOME100161\-Real-Estate.jpg" />
+    <Content Include="PropertyImages\HOME100162\9581570O-1393910972.jpeg" />
+    <Content Include="PropertyImages\HOME100163\14857166T-1395137522.jpeg" />
+    <Content Include="PropertyImages\HOME100164\14002524O-1392629227.jpeg" />
+    <Content Include="PropertyImages\HOME100165\14500764O-1394110555.jpeg" />
+    <Content Include="PropertyImages\HOME100166\14999704O-1395535942.jpeg" />
+    <Content Include="PropertyImages\HOME100167\14500286O-1394109877.jpeg" />
+    <Content Include="PropertyImages\HOME100168\14999648O-1395536027.jpeg" />
+    <Content Include="PropertyImages\HOME100169\dwarka.jpeg" />
+    <Content Include="PropertyImages\HOME100170\garedabad.jpeg" />
+    <Content Include="PropertyImages\HOME100172\9913180F-1373972825-Residential_Flats-Sarita_Vihar.jpeg" />
+    <Content Include="PropertyImages\HOME100173\sauth dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100174\dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100176\drawing room patpanganj dilhi 2bhk.jpeg" />
+    <Content Include="PropertyImages\HOME100177\drawing room patpanganj dilhi 2bhk.jpeg" />
+    <Content Include="PropertyImages\HOME100180\indrapuram.jpeg" />
+    <Content Include="PropertyImages\HOME100180\orange cauntry drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100180\room indrapuram orange caunty.jpeg" />
+    <Content Include="PropertyImages\HOME100181\orange cauntry drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100181\room indrapuram orange caunty.jpeg" />
+    <Content Include="PropertyImages\HOME100182\14452790O-1394012597.jpeg" />
+    <Content Include="PropertyImages\HOME100182\drawing room 3 bhk mahagun.jpeg" />
+    <Content Include="PropertyImages\HOME100182\mahagun drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100182\mahagun kichen.jpeg" />
+    <Content Include="PropertyImages\HOME100183\indrapuram.jpeg" />
+    <Content Include="PropertyImages\HOME100186\KICHEN AJRANA.JPG" />
+    <Content Include="PropertyImages\HOME100187\13420184O-1390636268.jpeg" />
+    <Content Include="PropertyImages\HOME100189\13518204O-1390990278.jpeg" />
+    <Content Include="PropertyImages\HOME100190\13518200O-1390990286.jpeg" />
+    <Content Include="PropertyImages\HOME100191\KICHEN SUPSRTECH.JPG" />
+    <Content Include="PropertyImages\HOME100192\14457408O-1394019538.jpeg" />
+    <Content Include="PropertyImages\HOME100193\13518202O-1390990282.jpeg" />
+    <Content Include="PropertyImages\HOME100193\mahagun drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100193\mahagun kichen.jpeg" />
+    <Content Include="PropertyImages\HOME100193\mahagun room 2bhk.jpeg" />
+    <Content Include="PropertyImages\HOME100194\bedroom savior.jpeg" />
+    <Content Include="PropertyImages\HOME100194\drawing room savior.jpeg" />
+    <Content Include="PropertyImages\HOME100194\kichaen savior.jpeg" />
+    <Content Include="PropertyImages\HOME100196\15080824O-1395747907.jpeg" />
+    <Content Include="PropertyImages\HOME100197\Crossing Infra.jpeg" />
+    <Content Include="PropertyImages\HOME100199\crossing.jpeg" />
+    <Content Include="PropertyImages\HOME100200\noida.jpeg" />
+    <Content Include="PropertyImages\HOME100201\15376022O-1396420873.jpeg" />
+    <Content Include="PropertyImages\HOME100202\-HIG_Flats_-_Sector_105.jpeg" />
+    <Content Include="PropertyImages\HOME100203\Sector-105 Noida.jpeg" />
+    <Content Include="PropertyImages\HOME100204\Purvanchal Silver City.jpg" />
+    <Content Include="PropertyImages\HOME100205\dsc03033.jpg" />
+    <Content Include="PropertyImages\HOME100207\15429506O-1396481736.jpeg" />
+    <Content Include="PropertyImages\HOME100207\MemberImage\_PHOTO.jpeg" />
+    <Content Include="PropertyImages\HOME100222\hanuman enqlave.jpeg" />
+    <Content Include="PropertyImages\HOME100223\hanuman.jpeg" />
+    <Content Include="PropertyImages\HOME100224\drawing room reil vihar indrapuram.jpeg" />
+    <Content Include="PropertyImages\HOME100224\drawing room reil vihar indrapuram[1].jpeg" />
+    <Content Include="PropertyImages\HOME100224\rail vhar kichan indrapuram.jpeg" />
+    <Content Include="PropertyImages\HOME100224\rail vihar indrapuram room.jpeg" />
+    <Content Include="PropertyImages\HOME100224\rail_vihar06.jpg" />
+    <Content Include="PropertyImages\HOME100225\drawing room reil vihar indrapuram.jpeg" />
+    <Content Include="PropertyImages\HOME100225\drawing room reil vihar indrapuram[1].jpeg" />
+    <Content Include="PropertyImages\HOME100225\rail vhar kichan indrapuram.jpeg" />
+    <Content Include="PropertyImages\HOME100225\rail vihar indrapuram room.jpeg" />
+    <Content Include="PropertyImages\HOME100225\rail_vihar08.jpg" />
+    <Content Include="PropertyImages\HOME100226\image-1.jpeg" />
+    <Content Include="PropertyImages\HOME100227\image-2.jpeg" />
+    <Content Include="PropertyImages\HOME100228\image-4.jpeg" />
+    <Content Include="PropertyImages\HOME100229\image-4.jpeg" />
+    <Content Include="PropertyImages\HOME100230\gu.jpeg" />
+    <Content Include="PropertyImages\HOME100231\%27.jpeg" />
+    <Content Include="PropertyImages\HOME100232\gungavn.jpeg" />
+    <Content Include="PropertyImages\HOME100234\2 bhk,,,,,,,.jpeg" />
+    <Content Include="PropertyImages\HOME100235\images-2.jpeg" />
+    <Content Include="PropertyImages\HOME100235\orange cauntry drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100235\room indrapuram orange caunty.jpeg" />
+    <Content Include="PropertyImages\HOME100236\1 bhk indrapuram.jpeg" />
+    <Content Include="PropertyImages\HOME100236\indrapuram kichan sakti khand.jpeg" />
+    <Content Include="PropertyImages\HOME100236\sakti khand indrapuram kichan.jpeg" />
+    <Content Include="PropertyImages\HOME100237\images4.jpeg" />
+    <Content Include="PropertyImages\HOME100238\1384666776_545732444_1-For-Sale-flat-in-indirapuram-Gyan-khand-1-4bhk-area-1800sqft-cont-9560918881-Indirapuram.jpg" />
+    <Content Include="PropertyImages\HOME100238\images4.jpeg" />
+    <Content Include="PropertyImages\HOME100238\images41.jpeg" />
+    <Content Include="PropertyImages\HOME100239\images-3.jpeg" />
+    <Content Include="PropertyImages\HOME100239\kichan shalimar bagh dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100240\15434692O-1396501442.jpeg" />
+    <Content Include="PropertyImages\HOME100241\images-1.jpeg" />
+    <Content Include="PropertyImages\HOME100241\rohni sec 9 drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100241\room rahni sec 9.jpeg" />
+    <Content Include="PropertyImages\HOME100242\images-4.jpeg" />
+    <Content Include="PropertyImages\HOME100242\kichan rohni sec 14 dilhi.jpeg" />
+    <Content Include="PropertyImages\HOME100242\rahni sec-14 drawing room.jpeg" />
+    <Content Include="PropertyImages\HOME100243\images-5.jpeg" />
+    <Content Include="PropertyImages\HOME100247\Chrysanthemum_63561500147789.5.jpg" />
+    <Content Include="PropertyImages\HOME100247\Desert_63559430230998.8.jpg" />
+    <Content Include="PropertyImages\HOME100273\138416615_2_1000x700_independent-furnished-room-in-ardee-city-sector-52-gurgaon-upload-photos_rev001.jpg" />
+    <Content Include="PropertyImages\HOME100273\138416615_3_1000x700_independent-furnished-room-in-ardee-city-sector-52-gurgaon-rent_rev001.jpg" />
+    <Content Include="PropertyImages\HOME100273\138416615_4_1000x700_independent-furnished-room-in-ardee-city-sector-52-gurgaon-real-estate_rev001.jpg" />
+    <Content Include="PropertyImages\HOME100273\138416615_5_1000x700_independent-furnished-room-in-ardee-city-sector-52-gurgaon-haryana_rev001.jpg" />
+    <Content Include="PropertyImages\HOME100273\138416615_6_1000x700_independent-furnished-room-in-ardee-city-sector-52-gurgaon-_rev001.jpg" />
+    <Content Include="PropertyImages\HOME100273\138416615_7_1000x700_independent-furnished-room-in-ardee-city-sector-52-gurgaon-_rev001 %281%29.jpg" />
+    <Content Include="PropertyImages\HOME100273\138416615_7_1000x700_independent-furnished-room-in-ardee-city-sector-52-gurgaon-_rev001.jpg" />
+    <Content Include="PropertyImages\HOME100274\20150824_162515.jpg" />
+    <Content Include="PropertyImages\HOME100276\2BHK-Apartment-for-Sale-in-Sector-16-Greater-Noida-at-Gaur-City-2-10th-Avenue.gif" />
+    <Content Include="PropertyImages\HOME100276\MemberImage\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME100278\18716932M-1404463318.jpeg" />
+    <Content Include="PropertyImages\HOME100278\MemberImage\31498285M-1427196910.jpeg" />
+    <Content Include="PropertyImages\HOME100279\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME100279\MemberImage\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME100280\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME100280\MemberImage\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME100281\01.jpg" />
+    <Content Include="PropertyImages\HOME100281\MemberImage\01.jpg" />
+    <Content Include="PropertyImages\HOME100282\40104225M-1439923274.jpeg" />
+    <Content Include="PropertyImages\HOME100282\MemberImage\40104225M-1439923274.jpeg" />
+    <Content Include="PropertyImages\HOME100286\MemberImage\new image.02.jpg" />
+    <Content Include="PropertyImages\HOME100286\new image.jpg" />
+    <Content Include="PropertyImages\HOME100287\MemberImage\new image.02.jpg" />
+    <Content Include="PropertyImages\HOME100287\new image.jpg" />
+    <Content Include="PropertyImages\HOME100296\20150627_085546.jpg" />
+    <Content Include="PropertyImages\HOME100304\airport-hover.jpg" />
+    <Content Include="PropertyImages\HOME100305\airport02-hover.jpg" />
+    <Content Include="PropertyImages\HOME100307\airport-hover.jpg" />
+    <Content Include="PropertyImages\HOME100308\Default.png" />
+    <Content Include="PropertyImages\HOME100317\IMAG0197 - 2014-08-24 at 13-14-15.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0200 - 2014-08-24 at 13-32-35.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0201 - 2014-08-24 at 13-33-06.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0203 - 2014-08-24 at 13-35-20.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0204 - 2014-08-24 at 13-35-48.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0205 - 2014-08-24 at 13-36-07.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0206 - 2014-08-24 at 13-36-14.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0207 - 2014-08-24 at 13-36-20.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0208 - 2014-08-24 at 13-36-26.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0209 - 2014-08-24 at 13-36-38.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0210 - 2014-08-24 at 13-36-48.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0212 - 2014-08-24 at 13-37-12.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0217 - 2014-08-24 at 13-38-41.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0219 - 2014-08-24 at 13-39-04.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0221 - 2014-08-24 at 13-39-41.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0222 - 2014-08-24 at 13-39-55.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0228 - 2014-08-24 at 13-41-39.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0229 - 2014-08-24 at 13-42-00.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0230 - 2014-08-24 at 13-42-06.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0233 - 2014-08-24 at 13-42-23.jpg" />
+    <Content Include="PropertyImages\HOME100317\IMAG0234 - 2014-08-24 at 13-42-28.jpg" />
+    <Content Include="PropertyImages\HOME100318\farmhouse.jpg" />
+    <Content Include="PropertyImages\HOME100318\MemberImage\farmhouse.jpg" />
+    <Content Include="PropertyImages\HOME100331\IMG_5438.jpg" />
+    <Content Include="PropertyImages\HOME100336\Living Room View 1.JPG" />
+    <Content Include="PropertyImages\HOME100336\MemberImage\Dining Room View 1.JPG" />
+    <Content Include="PropertyImages\HOME100337\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME100337\MemberImage\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME100338\44322771in64279.jpg" />
+    <Content Include="PropertyImages\HOME100338\MemberImage\44322771in64279.jpg" />
+    <Content Include="PropertyImages\HOME100339\44322771in64279.jpg" />
+    <Content Include="PropertyImages\HOME100339\MemberImage\44322771in64279.jpg" />
+    <Content Include="PropertyImages\HOME100340\P1040761.JPG" />
+    <Content Include="PropertyImages\HOME100343\crossings_republik_ghaziabad_7690135435787816060.jpg" />
+    <Content Include="PropertyImages\HOME100344\crossings_republik_ghaziabad_7690135435787816060.jpg" />
+    <Content Include="PropertyImages\HOME100344\MemberImage\crossings_republik_ghaziabad_7690135435787816060.jpg" />
+    <Content Include="PropertyImages\HOME100355\MemberImage\mahagun-noida-header4.jpg" />
+    <Content Include="PropertyImages\HOME100355\moderne-14.jpg" />
+    <Content Include="PropertyImages\HOME100356\mahagun-noida-header4.jpg" />
+    <Content Include="PropertyImages\HOME100356\MemberImage\Project-Photo-69-Mahagun-Moderne-Noida-5020746_1296_976_310_462.JPEG" />
+    <Content Include="PropertyImages\HOME100357\1380972217-banner-amber.jpg" />
+    <Content Include="PropertyImages\HOME100357\MemberImage\mainelivation.jpg" />
+    <Content Include="PropertyImages\HOME100358\mahagun-noida-header4.jpg" />
+    <Content Include="PropertyImages\HOME100358\MemberImage\mahagun-moderne-500x500.jpg" />
+    <Content Include="PropertyImages\HOME100359\Mahagun-Moderne-banner.jpg" />
+    <Content Include="PropertyImages\HOME100359\MemberImage\mahagun-moderne-500x500.jpg" />
+    <Content Include="PropertyImages\HOME100360\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME100360\MemberImage\banner54.jpeg" />
+    <Content Include="PropertyImages\HOME100361\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME100361\MemberImage\44322771in64279.jpg" />
+    <Content Include="PropertyImages\HOME100369\IMG-20160207-WA0006.jpg" />
+    <Content Include="PropertyImages\HOME100369\IMG-20160207-WA0007.jpg" />
+    <Content Include="PropertyImages\HOME100369\IMG-20160207-WA0008.jpg" />
+    <Content Include="PropertyImages\HOME100369\IMG-20160207-WA0009.jpg" />
+    <Content Include="PropertyImages\HOME100369\IMG-20160207-WA0010.jpg" />
+    <Content Include="PropertyImages\HOME100369\IMG-20160207-WA0011.jpg" />
+    <Content Include="PropertyImages\HOME100369\IMG-20160207-WA0012.jpg" />
+    <Content Include="PropertyImages\HOME100369\IMG-20160207-WA0020.jpg" />
+    <Content Include="PropertyImages\HOME100369\IMG-20160207-WA0021.jpg" />
+    <Content Include="PropertyImages\HOME100369\IMG-20160207-WA0022.jpg" />
+    <Content Include="PropertyImages\HOME100369\MemberImage\IMG-20160207-WA0006.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8829.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8831.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8832.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8838.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8841.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8843.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8845.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8846.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8850.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8855.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8858.jpg" />
+    <Content Include="PropertyImages\HOME100370\DSC_8859.jpg" />
+    <Content Include="PropertyImages\HOME110372\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME110372\MemberImage\20150217_053254_1424174574.88_84543.jpg" />
+    <Content Include="PropertyImages\HOME110373\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME110373\MemberImage\20150217_053254_1424174574.88_84543.jpg" />
+    <Content Include="PropertyImages\HOME110374\20150217_053254_1424174574.88_84543.jpg" />
+    <Content Include="PropertyImages\HOME110374\MemberImage\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME110375\20150217_053254_1424174574.88_84543.jpg" />
+    <Content Include="PropertyImages\HOME110375\MemberImage\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME110376\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME110377\banner54.jpeg" />
+    <Content Include="PropertyImages\HOME110377\MemberImage\20150217_053254_1424174574.88_84543.jpg" />
+    <Content Include="PropertyImages\HOME110378\54d35bd60fdb0.jpg" />
+    <Content Include="PropertyImages\HOME110378\MemberImage\01.jpg" />
+    <Content Include="PropertyImages\HOME110379\178_c8f2jit1_square-phase-2.jpg" />
+    <Content Include="PropertyImages\HOME110379\MemberImage\xm5tdb.jpg" />
+    <Content Include="PropertyImages\HOME110380\gh_7_apartment_for_sale_at_crossing_republik_ghaziabad_8960044439494707851.jpg" />
+    <Content Include="PropertyImages\HOME110380\MemberImage\86042045_1_1000x700_3-bhk-spacious-flat-in-gh-7-crossings-republik-ghaziabad-ghaziabad.jpg" />
+    <Content Include="PropertyImages\HOME110382\44322771in64279.jpg" />
+    <Content Include="PropertyImages\HOME110382\MemberImage\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME110383\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME110383\MemberImage\44322771in64279.jpg" />
+    <Content Include="PropertyImages\HOME110384\banner54.jpeg" />
+    <Content Include="PropertyImages\HOME110384\MemberImage\137470165_14441755953_large.jpg" />
+    <Content Include="PropertyImages\HOME110387\1.jpg" />
+    <Content Include="PropertyImages\HOME110387\4.jpg" />
+    <Content Include="PropertyImages\HOME110387\5.jpg" />
+    <Content Include="PropertyImages\HOME110389\Divine Meadows.png" />
+    <Content Include="PropertyImages\HOME110390\images %281%29.jpg" />
+    <Content Include="PropertyImages\HOME110392\gaur-city-2-16th-avenue-banner.jpg" />
+    <Content Include="PropertyImages\HOME110392\MemberImage\gaur14thcity.jpg" />
+    <Content Include="PropertyImages\HOME110393\gaur-city-2-16th-avenue-banner.jpg" />
+    <Content Include="PropertyImages\HOME110393\MemberImage\guar-city.jpg" />
+    <Content Include="PropertyImages\HOME110394\gaur-city-2-16th-avenue-banner.jpg" />
+    <Content Include="PropertyImages\HOME110394\MemberImage\guar-city.jpg" />
+    <Content Include="PropertyImages\HOME110395\gaur-city-2-16th-avenue-banner.jpg" />
+    <Content Include="PropertyImages\HOME110395\MemberImage\gaur14thcity.jpg" />
+    <Content Include="PropertyImages\HOME110398\49584889O-1451578474.jpeg" />
+    <Content Include="PropertyImages\HOME110398\MemberImage\49584901O-1451578469.jpeg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\GetExcel\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\GetExcel\Excel.cshtml" />
+    <None Include="Properties\PublishProfiles\homely-new.pubxml" />
+    <None Include="Properties\PublishProfiles\homely.pubxml" />
+    <None Include="Properties\PublishProfiles\homelydev.pubxml" />
+    <None Include="Properties\PublishProfiles\test.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Global\globalFile.js" />
+    <Content Include="Scripts\HomePage\index.js" />
+    <Content Include="Scripts\ImagesSlider\camera.js" />
+    <Content Include="Scripts\ImagesSlider\camera.min.js" />
+    <Content Include="Scripts\ImagesSlider\jquery.easing.1.3.js" />
+    <Content Include="Scripts\ImagesSlider\jquery.min.js" />
+    <Content Include="Scripts\ImagesSlider\jquery.mobile.customized.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\bootstrap.min.js" />
+    <Content Include="Scripts\js\jquery-1.10.2.js" />
+    <Content Include="Scripts\js\jquery-ui.js" />
+    <Content Include="Scripts\js\jquery.lightbox-0.5.min.js" />
+    <Content Include="Scripts\js\jquery.min.js" />
+    <Content Include="Scripts\lighslider.js" />
+    <Content Include="Scripts\ListProperty\Property.js" />
+    <Content Include="Scripts\ListProperty\viewlist.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ui-range\jquery.BA.ToolTip.js" />
+    <Content Include="Scripts\ui-range\jquery.easing.1.3.js" />
+    <Content Include="Scripts\ui-range\jquery.easing.min.js" />
+    <Content Include="Scripts\ui-range\jquery.easy-ticker.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_featuredPartial.cshtml" />
+    <Content Include="Views\Shared\_hotProperties.cshtml" />
+    <Content Include="Views\Shared\_NavigationPartial.cshtml" />
+    <Content Include="Views\Shared\_FreshListingPartial.cshtml" />
+    <Content Include="Views\Property\Index.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Shared\_RefineSearch.cshtml" />
+    <Content Include="Views\Property\PropertyByCity.cshtml" />
+    <Content Include="Views\Shared\_ViewListingPartial.cshtml" />
+    <Content Include="Views\PostRequirment\Index.cshtml" />
+    <Content Include="Views\Shared\thankyou.cshtml" />
+    <Content Include="Views\Shared\thankyouIndex.cshtml" />
+    <Content Include="Views\CompareProperty\Index.cshtml" />
+    <Content Include="Views\Account\UserProfile.cshtml" />
+    <Content Include="Views\Feedback\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="PropertyImages\HOME100014\" />
+    <Folder Include="PropertyImages\HOME100015\" />
+    <Folder Include="PropertyImages\HOME100016\" />
+    <Folder Include="PropertyImages\HOME100017\" />
+    <Folder Include="PropertyImages\HOME100018\" />
+    <Folder Include="PropertyImages\HOME100019\" />
+    <Folder Include="PropertyImages\HOME100020\" />
+    <Folder Include="PropertyImages\HOME100021\" />
+    <Folder Include="PropertyImages\HOME100022\" />
+    <Folder Include="PropertyImages\HOME100023\" />
+    <Folder Include="PropertyImages\HOME100024\" />
+    <Folder Include="PropertyImages\HOME100025\" />
+    <Folder Include="PropertyImages\HOME100026\" />
+    <Folder Include="PropertyImages\HOME100027\" />
+    <Folder Include="PropertyImages\HOME100028\" />
+    <Folder Include="PropertyImages\HOME100029\" />
+    <Folder Include="PropertyImages\HOME100030\" />
+    <Folder Include="PropertyImages\HOME100031\" />
+    <Folder Include="PropertyImages\HOME100032\" />
+    <Folder Include="PropertyImages\HOME100033\" />
+    <Folder Include="PropertyImages\HOME100034\" />
+    <Folder Include="PropertyImages\HOME100035\" />
+    <Folder Include="PropertyImages\HOME100036\" />
+    <Folder Include="PropertyImages\HOME100037\" />
+    <Folder Include="PropertyImages\HOME100038\" />
+    <Folder Include="PropertyImages\HOME100047\" />
+    <Folder Include="PropertyImages\HOME100059\" />
+    <Folder Include="PropertyImages\HOME100060\" />
+    <Folder Include="PropertyImages\HOME100061\" />
+    <Folder Include="PropertyImages\HOME100077\" />
+    <Folder Include="PropertyImages\HOME100079\" />
+    <Folder Include="PropertyImages\HOME100081\" />
+    <Folder Include="PropertyImages\HOME100082\" />
+    <Folder Include="PropertyImages\HOME100083\" />
+    <Folder Include="PropertyImages\HOME100100\" />
+    <Folder Include="PropertyImages\HOME100101\" />
+    <Folder Include="PropertyImages\HOME100102\" />
+    <Folder Include="PropertyImages\HOME100103\" />
+    <Folder Include="PropertyImages\HOME100171\" />
+    <Folder Include="PropertyImages\HOME100175\" />
+    <Folder Include="PropertyImages\HOME100178\" />
+    <Folder Include="PropertyImages\HOME100179\" />
+    <Folder Include="PropertyImages\HOME100184\" />
+    <Folder Include="PropertyImages\HOME100185\" />
+    <Folder Include="PropertyImages\HOME100188\" />
+    <Folder Include="PropertyImages\HOME100195\" />
+    <Folder Include="PropertyImages\HOME100198\" />
+    <Folder Include="PropertyImages\HOME100206\" />
+    <Folder Include="PropertyImages\HOME100208\" />
+    <Folder Include="PropertyImages\HOME100209\" />
+    <Folder Include="PropertyImages\HOME100210\" />
+    <Folder Include="PropertyImages\HOME100211\" />
+    <Folder Include="PropertyImages\HOME100212\" />
+    <Folder Include="PropertyImages\HOME100213\" />
+    <Folder Include="PropertyImages\HOME100214\" />
+    <Folder Include="PropertyImages\HOME100215\" />
+    <Folder Include="PropertyImages\HOME100216\" />
+    <Folder Include="PropertyImages\HOME100217\" />
+    <Folder Include="PropertyImages\HOME100218\" />
+    <Folder Include="PropertyImages\HOME100219\" />
+    <Folder Include="PropertyImages\HOME100220\" />
+    <Folder Include="PropertyImages\HOME100221\" />
+    <Folder Include="PropertyImages\HOME100233\" />
+    <Folder Include="PropertyImages\HOME100244\" />
+    <Folder Include="PropertyImages\HOME100245\" />
+    <Folder Include="PropertyImages\HOME100246\" />
+    <Folder Include="PropertyImages\HOME100248\" />
+    <Folder Include="PropertyImages\HOME100249\" />
+    <Folder Include="PropertyImages\HOME100251\" />
+    <Folder Include="PropertyImages\HOME100252\" />
+    <Folder Include="PropertyImages\HOME100253\" />
+    <Folder Include="PropertyImages\HOME100254\" />
+    <Folder Include="PropertyImages\HOME100255\" />
+    <Folder Include="PropertyImages\HOME100256\" />
+    <Folder Include="PropertyImages\HOME100257\" />
+    <Folder Include="PropertyImages\HOME100258\" />
+    <Folder Include="PropertyImages\HOME100259\" />
+    <Folder Include="PropertyImages\HOME100260\" />
+    <Folder Include="PropertyImages\HOME100261\" />
+    <Folder Include="PropertyImages\HOME100262\" />
+    <Folder Include="PropertyImages\HOME100265\" />
+    <Folder Include="PropertyImages\HOME100266\" />
+    <Folder Include="PropertyImages\HOME100267\" />
+    <Folder Include="PropertyImages\HOME100268\" />
+    <Folder Include="PropertyImages\HOME100269\" />
+    <Folder Include="PropertyImages\HOME100270\" />
+    <Folder Include="PropertyImages\HOME100271\" />
+    <Folder Include="PropertyImages\HOME100272\" />
+    <Folder Include="PropertyImages\HOME100275\" />
+    <Folder Include="PropertyImages\HOME100277\" />
+    <Folder Include="PropertyImages\HOME100283\" />
+    <Folder Include="PropertyImages\HOME100284\" />
+    <Folder Include="PropertyImages\HOME100285\" />
+    <Folder Include="PropertyImages\HOME100288\" />
+    <Folder Include="PropertyImages\HOME100289\" />
+    <Folder Include="PropertyImages\HOME100290\" />
+    <Folder Include="PropertyImages\HOME100291\" />
+    <Folder Include="PropertyImages\HOME100292\" />
+    <Folder Include="PropertyImages\HOME100293\" />
+    <Folder Include="PropertyImages\HOME100294\" />
+    <Folder Include="PropertyImages\HOME100295\" />
+    <Folder Include="PropertyImages\HOME100297\" />
+    <Folder Include="PropertyImages\HOME100298\" />
+    <Folder Include="PropertyImages\HOME100299\" />
+    <Folder Include="PropertyImages\HOME100300\" />
+    <Folder Include="PropertyImages\HOME100301\" />
+    <Folder Include="PropertyImages\HOME100302\" />
+    <Folder Include="PropertyImages\HOME100306\" />
+    <Folder Include="PropertyImages\HOME100309\" />
+    <Folder Include="PropertyImages\HOME100310\" />
+    <Folder Include="PropertyImages\HOME100311\" />
+    <Folder Include="PropertyImages\HOME100312\" />
+    <Folder Include="PropertyImages\HOME100313\" />
+    <Folder Include="PropertyImages\HOME100314\" />
+    <Folder Include="PropertyImages\HOME100315\" />
+    <Folder Include="PropertyImages\HOME100316\" />
+    <Folder Include="PropertyImages\HOME100319\" />
+    <Folder Include="PropertyImages\HOME100320\" />
+    <Folder Include="PropertyImages\HOME100321\" />
+    <Folder Include="PropertyImages\HOME100322\" />
+    <Folder Include="PropertyImages\HOME100323\" />
+    <Folder Include="PropertyImages\HOME100324\" />
+    <Folder Include="PropertyImages\HOME100325\" />
+    <Folder Include="PropertyImages\HOME100326\" />
+    <Folder Include="PropertyImages\HOME100327\" />
+    <Folder Include="PropertyImages\HOME100328\" />
+    <Folder Include="PropertyImages\HOME100329\" />
+    <Folder Include="PropertyImages\HOME100330\" />
+    <Folder Include="PropertyImages\HOME100332\" />
+    <Folder Include="PropertyImages\HOME100333\" />
+    <Folder Include="PropertyImages\HOME100334\" />
+    <Folder Include="PropertyImages\HOME100335\" />
+    <Folder Include="PropertyImages\HOME100341\" />
+    <Folder Include="PropertyImages\HOME100342\" />
+    <Folder Include="PropertyImages\HOME100345\" />
+    <Folder Include="PropertyImages\HOME100346\" />
+    <Folder Include="PropertyImages\HOME100347\" />
+    <Folder Include="PropertyImages\HOME100348\" />
+    <Folder Include="PropertyImages\HOME100349\" />
+    <Folder Include="PropertyImages\HOME100350\" />
+    <Folder Include="PropertyImages\HOME100351\" />
+    <Folder Include="PropertyImages\HOME100352\" />
+    <Folder Include="PropertyImages\HOME100353\" />
+    <Folder Include="PropertyImages\HOME100362\" />
+    <Folder Include="PropertyImages\HOME100363\" />
+    <Folder Include="PropertyImages\HOME100364\" />
+    <Folder Include="PropertyImages\HOME100365\" />
+    <Folder Include="PropertyImages\HOME100366\" />
+    <Folder Include="PropertyImages\HOME100367\" />
+    <Folder Include="PropertyImages\HOME100368\" />
+    <Folder Include="PropertyImages\HOME100371\" />
+    <Folder Include="PropertyImages\HOME100372\" />
+    <Folder Include="PropertyImages\HOME110381\" />
+    <Folder Include="PropertyImages\HOME110385\" />
+    <Folder Include="PropertyImages\HOME110386\" />
+    <Folder Include="PropertyImages\HOME110388\" />
+    <Folder Include="PropertyImages\HOME110391\" />
+    <Folder Include="PropertyImages\HOME110396\" />
+    <Folder Include="PropertyImages\HOME110397\" />
+    <Folder Include="PropertyImages\HOME110399\" />
+    <Folder Include="Views\ThankYou\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Homely.Common\Homely.Common.csproj">
+      <Project>{cd104f9f-d9a6-44ef-8613-36172bb73292}</Project>
+      <Name>Homely.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Homely.Infrastructure\Homely.Infrastructure.csproj">
+      <Project>{10846d14-5abf-40ea-828f-11fef40ebc04}</Project>
+      <Name>Homely.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57573</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57573/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,155 @@
+﻿@model Homely.Common.Model.PostFeedbackViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="left-side-heading">GIVE YOUR FEEDBACK</h1>
+
+            </div>
+        </div>
+        <div class="row">
+            @using (Html.BeginForm())
+            {
+                <div class="col-md-12 padd-right">
+                    <div class="main-content-list">
+                        <div class="col-md-12 col-md-margin">
+                            <div class="form-group-cont-main">
+                                <label class="content-name">NAME</label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "text-fild3", @required = "required" })
+                                    @Html.ValidationMessageFor(x => x.Name)
+                                </div>
+                            </div>
+
+
+                            <div class="form-group-cont-main2">
+                                <label class="content-name">EMAIL</label>
+                                <div class="col-md-6">
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "text-fild", @required = "required", @type = "email" })
+                                    @Html.ValidationMessageFor(x => x.Email)
+                                </div>
+                            </div>
+                            <div class="form-group-cont-main">
+                                <label class="content-name">MOBILE NO.</label>
+                                @if (Request.Browser.IsMobileDevice)
+                                {
+                                    <input type="text" name="" class="text-fildn5 mobleft" value="+91" style="margin-left:8px;width:11%">
+                                    @Html.TextBoxFor(x => x.Mobile, new { @class = "text-fildn4 mobright", @required = "required", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57", @maxlength = "10",@style="width:45%" })
+                                }
+                                else
+                                {
+                                <input type="text" name="" class="text-fildn5 mobleft" value="+91">
+                                    @Html.TextBoxFor(x => x.Mobile, new { @class = "text-fildn4 mobright", @required = "required", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57", @maxlength = "10" })
+                                }
+
+                               
+                                @Html.ValidationMessageFor(x => x.Mobile)
+
+                            </div>
+                            <div class="form-group-cont-main2">
+                                <label class="content-name">FEEDBACK</label>
+                                <div class="col-md-6">
+                                    @Html.TextAreaFor(x => x.Feedback, new { @class = "custom_textarea", @rows = "2", @cols = "20" })
+                                </div>
+
+                            </div>
+                            <div class="form-group-cont-main">
+                                <label class="content-name">&nbsp;</label>
+                                <input type="submit" name="save" value="SEND" class="save_button" />
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+
+        </div>
+    </div>
+</section>
+
+<style>
+    .form-group-cont-main input.text-fildn5 {
+       
+        margin-left: 20px;
+        border: 1px solid #ccc;
+        height: 32px;
+        width: 5%;
+        float: left;
+        margin-top: 7px;
+        padding-left: 3px;
+        font-size: 11px;
+        font-weight: 300;
+        line-height: 32px;
+        -webkit-box-shadow: 0 0 12px #cfcece;
+        box-shadow: 0 0 12px #cfcece;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        background-color: rgb(235, 235, 228);
+    }
+
+    .custom_textarea {
+        margin-left: 6px;
+        width: 65%;
+        -moz-box-shadow: 0 0 12px #cfcece;
+        -webkit-box-shadow: 0 0 12px #cfcece;
+        box-shadow: 0 0 12px #cfcece;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        border: solid 1px #d3d8e0;
+        /* margin: 5px 1px 1px 0px; */
+        padding: 6px;
+        /* width: 80%; */
+        vertical-align: middle;
+        font-size: 12px;
+    }
+
+    .save_button {
+        background: #007163;
+        color: #fff;
+        border: 1px solid #007163;
+        border-radius: 3px;
+        padding: 7px 10px;
+        margin-left: 1.5%;
+    }
+
+        .save_button:hover {
+            background-color: #F08D00;
+        }
+
+    .mobleft {
+        width: 20%;
+        float: left;
+    }
+
+    .mobright {
+        width: 70%;
+        float: left;
+    }
+
+    .form-group-cont-main input.text-fildn4, .form-group-cont-main2 input.text-fildn4 {
+        margin-left: 11px;
+        border: 1px solid #ccc;
+        padding: 5px;
+        height: 32px;
+        width: 25%;
+        float: left;
+        margin-top: 7px;
+        line-height: 32px;
+        -webkit-box-shadow: 0 0 12px #cfcece;
+        box-shadow: 0 0 12px #cfcece;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+   
+</style>

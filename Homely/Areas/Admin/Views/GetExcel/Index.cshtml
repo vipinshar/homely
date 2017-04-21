@@ -1,0 +1,54 @@
+﻿@model Homely.Areas.Admin.Models.GetExcelViewModel
+@using Homely.Common.Model
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/js/jquery.min.js"></script>
+    <link href="~/Content/date-picker/jquery.datetimepicker.css" rel="stylesheet" />
+    <script src="~/Content/date-picker/jquery.datetimepicker.full.js"></script>
+    <script>
+
+        $(function () {
+            $('#from').datetimepicker();
+            $('#to').datetimepicker();
+        });
+
+        
+    </script>
+</head>
+<body>
+    @using (Html.BeginForm("", "", FormMethod.Post))
+    {   
+        List<MetaDataViewModel> lst = new List<MetaDataViewModel>();
+        lst.Add(new MetaDataViewModel { id = 41, name = "Delhi" });
+
+        lst.Add(new MetaDataViewModel { id = 7, name = "Gurgaon" });
+        lst.Add(new MetaDataViewModel { id = 1, name = "Noida" });
+        lst.Add(new MetaDataViewModel { id = 14, name = "Ghaziabd" });
+        lst.Add(new MetaDataViewModel { id = 6, name = "Faridabad" });
+        lst.Add(new MetaDataViewModel { id = 8, name = "Kundli" });
+   
+
+        <div class="row">
+            <label>Select City</label>
+            @Html.DropDownListFor(x => x.CityId, new SelectList(lst, "id", "name"));
+        </div>
+        <div class="row">
+            <label>From Date</label>
+            <input type="text" name="FromDate" id="from" required />
+        </div>
+        <div class="row">
+            <label>To Date</label>
+            <input type="text" name="ToDate" id="to" required/>
+        </div>
+        <input type="submit" name="submit" value="GetExcel" />
+        }
+</body>
+</html>

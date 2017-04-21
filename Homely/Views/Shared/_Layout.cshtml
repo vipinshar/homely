@@ -1,0 +1,1021 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Homely</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.lightbox-0.5.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    @*<link href="~/Content/style-new.css" rel="stylesheet" />*@
+    <link href="~/Content/custom.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/js/jquery.min.js"></script>
+
+    <script src="~/Scripts/js/jquery.lightbox-0.5.min.js"></script>
+
+    @*<link href="~/Content/style-new.css" rel="stylesheet" />*@
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="~/Content/date-picker/jquery.datetimepicker.css" rel="stylesheet" />
+    <script src="~/Content/date-picker/jquery.datetimepicker.full.js"></script>
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript">
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement
+          (o)
+          ,
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-72967688-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <!--Nav side icon start-->
+    <link href="~/Content/default.css" rel="stylesheet" />
+    <link href="~/Content/component.css" rel="stylesheet" />
+    <script src="~/Content/modernizr.custom.js"></script>
+    <!--End-->
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('input[type=radio][name=ownerShipType]').change(function () {
+                debugger;
+                switch (this.value) {
+                    case "1":
+                        $('#div_reg_tenet_perm_address').hide();
+                        $('#div_reg_company_name').hide();
+                        $('#div_reg_company_address').hide();
+                        $('#div_reg_tenet_perm_address').hide();
+                        $('#div_reg_tenet_comp_add').hide();
+                        break;
+                    case "2":
+                        $('#div_reg_company_name').show();
+                        $('#div_reg_company_address').show();
+                        $('#div_reg_tenet_perm_address').hide();
+                        $('#div_reg_tenet_comp_add').hide();
+                        break;
+                    case "3":
+                        $('#div_reg_company_name').hide();
+                        $('#div_reg_company_address').hide();
+                        $('#div_reg_tenet_perm_address').show();
+                        $('#div_reg_tenet_comp_add').show();
+                        break;
+                    case "4":
+                        break;
+                }
+            });
+        });
+        var featuredUrl = "@Url.Action("FeaturedListing", "Home")";
+        var imgUrl = "@Request.ApplicationPath";
+        var getCity = "@Url.Action("GetCityByState","Property")";
+        var getLocality = "@Url.Action("GetLocalityByCity", "Property")";
+        var quickUrl = "@Url.Action("QuickListing","Home")";
+        var searchProp = "@Url.Action("SearchProp", "Property")";
+        var getProperty = '@Url.Action("GetDetail", "Property")';
+        $(window).scroll(function () {
+            // if ($(window).scrollTop() > offset.top) {
+            //     $("#social").stop().animate({
+            //         marginTop: $(window).scrollTop() - offset.top + topPadding
+            //     });
+            // } else {
+            //     $("#social").stop().animate({
+            //         marginTop: 50
+            //     });
+            // };
+
+
+            // alert("asd");
+            //if ($(this).scrollTop() > 150 && !$('header').hasClass('open')) {
+            //    $('header').addClass('open');
+            //    // $('header').slideDown();
+            //} else if ($(this).scrollTop() <= 150) {
+            //    // alert("NO");
+            //    $('header').removeClass('open');
+            //    // $('header').slideUp();
+            //};
+
+        });
+        $(function () {
+            $('#datetimepicker').datetimepicker(
+                {
+                    minDate: new Date()
+                }
+                );
+        });
+        $(function () {
+            $('#quickSubmit').click(function () {
+                debugger;
+                if ($('#quickName').val() == "") {
+                    $('#quickName').focus();
+                    return false;
+                }
+                if ($('#quickEmail').val() == "") {
+                    $('#quickEmail').focus();
+                    return false;
+                }
+                if (!validateEmail($('#quickEmail').val())) {
+                    $('#quickEmail').focus();
+                    return false;
+                }
+                if ($('#quickMobile').val() == "") {
+                    $('#quickMobile').focus();
+                    return false;
+                }
+
+                var obj = new Object();
+                obj.email = $('#quickEmail').val();
+                obj.For = $("input[name='quickFor']:checked").val();
+                obj.Name = $('#quickName').val();
+                obj.Mobile = $('#quickMobile').val();
+
+                $.ajax({
+                    url: quickUrl,
+                    type: "POST",
+                    data: obj,
+                    success: function (result) {
+                        $('#tblQkList').hide();
+                        $('#quickName').val('');
+                        $('#quickMobile').val('')
+                        $('#quickEmail').val('')
+                    }
+
+                })
+
+            });
+        });
+        function validateEmail(sEmail) {
+            var filter = /^[\w\-\.\+]+\@@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+            if (filter.test(sEmail)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
+    <style type="text/css">
+        .ui-slider-horizontal .ui-state-default {
+            background: white no-repeat scroll 50% 50%;
+        }
+    </style>
+
+    <!--------------check box popup -->
+    <!--Float start-->
+    <script type="text/javascript">
+        $(function () {
+            var offset = $("#social").offset();
+            var topPadding = 200;
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > offset.top) {
+                    $("#social").stop().animate({
+                        marginTop: $(window).scrollTop() - offset.top + topPadding
+                    });
+                } else {
+                    $("#social").stop().animate({
+                        marginTop: 60
+                    });
+                };
+            });
+        });
+    </script>
+    <!--Float end-->
+    <!-quick contact start-->
+    <script type="text/javascript">
+        $(function () {
+            $('#imgQkList').on('click', function () {
+                $('#tblQkList').toggle(20);
+            });
+
+            //hide it when clicking anywhere else except the popup and the trigger
+            $(document).on('click', function (event) {
+                if (!$(event.target).parents().addBack().is('#tblQkList')) {
+                    $('#tblQkList').hide();
+                }
+            });
+
+            // Stop propagation to prevent hiding "#tooltip" when clicking on it
+            $('#imgQkList').on('click', function (event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#imgQkContact').click(function () {
+                $('#tblQkContact').toggle(20);
+                $('#btnSubmit').click(function () {
+                    $('#tblQkContact').hide();
+                });
+            });
+        });
+    </script>
+    <link href="~/Content/date-picker/jquery.datetimepicker.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="social" style="margin-top:180px" class="quick-list-box">
+        <div id="quickList" style="position: relative;">
+            <div class="side-popup-form">
+                <ul>
+                    <li>
+                        <img src="@Url.Content("~/images/contact_us.png")" border="0" alt="" id="imgQkList" style="cursor:pointer" />
+
+                    </li>
+                    <li id="tblQkList" class="within01n">
+                        <ul class="query-form">
+                            <li>
+                                <form>
+                                    <div class="ff-dd title_new_cntn">
+
+                                        <div class="newtablel"><input type="radio" name="quickFor" checked="checked" value="1" style="margin: 0px 3px 0 0" /></div>
+                                        <div class="newtabler"><strong>List Your Property</strong></div>
+                                        <div class="clear"></div>
+                                        <div class="newtablel"><input type="radio" name="quickFor" value="2" style="margin: 0px 3px 0 0" /></div>
+                                        <div class="newtabler"> <strong>Search Rental Property</strong></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title"><strong>NAME</strong></label>
+                                        <input type="text" name="userName" id="quickName" class="ffi-in" required>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title"><strong>EMAIL</strong></label>
+                                        <input type="text" name="userEmail" id="quickEmail" class="ffi-in" required>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title"><strong>MOBILE</strong></label>
+                                        <input type="text" name="userMob" id="quickMobile" class="ffi-in">
+                                    </div>
+
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title"><strong>DATE</strong></label>
+                                        <input type="text" name="quickDate" class="ffi-in" id="datetimepicker">
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title">
+                                            <br>
+                                        </label>
+                                        <input type="button" name="quickSubmit" id="quickSubmit" class="ffi-in-btn" value="Submit">
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- -Login Modal -->
+
+
+
+    <div class="modal fade" id="loginModal1" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content login-modal">
+                <div class="modal-header login-modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="loginModalLabel">USER LOGIN / REGISTER</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div role="tabpanel" class="login-tab">
+                            <!-- Nav tabs -->
+                            <span id="registration_fail" class="response_error" style="display:none;">The entered Email Id/Mobile is already registered. Please enter another Email Id/Mobile.</span>
+                            <ul class="nav nav-tabs mod-nav" role="tablist">
+
+                                <li role="presentation" class="active"><a id="signin-taba" href="#home" aria-controls="home" role="tab" data-toggle="tab">Login In</a></li>
+                                <li role="presentation"><a id="signup-taba" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">New User Register</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active text-center" id="home">
+                                    &nbsp;&nbsp; <span id="login_fail" class="response_error" style="display: none;">Loggin failed, please try again.</span>
+                                    <div class="clearfix"></div>
+                                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                                    {   <div class="social-box"></div>
+
+                                    <div class="spacer10"> &nbsp; </div>
+                                    <div class="form-group form-field">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                            <input type="text" class="form-control" id="login_username" placeholder="Email" name="login_username">
+                                        </div>
+                                        <span class="help-block has-error" id="email-error"></span>
+                                    </div>
+                                    <div class="form-group form-field">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                                            <input type="password" class="form-control" id="login_passw" placeholder="Password" name="login_passw">
+                                        </div>
+                                        <span class="help-block has-error" data-error='0' id="remail-error"></span>
+                                    </div>
+                                    <input type="submit" id="login_btn" class="btn btn-danger login-btn" data-loading-text="Signing In...." value="submit" />
+                                    <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+                                            <div class="row">
+                                                <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab"> Forgot password? </a> </div>
+                                                <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab"> Register </a> </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="profile">
+                                    &nbsp;&nbsp;
+                                    <div class="clearfix"></div>
+                                    @using (Html.BeginForm("Registers", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "signUp" }))
+                                    {
+                                       <div class="form-group form-field">
+                                        <div class="input-group home_login">
+                                            @{
+                                                    List<Homely.Common.Model.MetaDataViewModel> lst = new List<Homely.Common.Model.MetaDataViewModel>();
+                                                    lst.Add(new Homely.Common.Model.MetaDataViewModel { id = 1, name = "Owner" });
+                                                    lst.Add(new Homely.Common.Model.MetaDataViewModel { id = 2, name = "Agent" });
+                                                    lst.Add(new Homely.Common.Model.MetaDataViewModel { id = 3, name = "Tenant" });
+                                                    lst.Add(new Homely.Common.Model.MetaDataViewModel { id = 4, name = "Builder" });
+                                            }
+                                            @{int firstOwner = 0;}
+                                            <label class="content-name">OWNERSHIP</label>
+
+                                            @foreach (var tra in lst)
+                                                {
+                                                    if (firstOwner == 0)
+                                                    {
+                                                @Html.RadioButton("ownerShipType", tra.id, true, new { @class = "redio-btn input_align" })
+                                                    }
+                                                    else
+                                                    { @Html.RadioButton("ownerShipType", tra.id, new { @class = "redio-btn input_align" })}
+                                                <span>@tra.name</span>
+                                                    firstOwner = firstOwner + 1;
+                                                }
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-field">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                            <input type="text" class="form-control" id="Name" placeholder="Name" required name="Name">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group form-field">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                                            <input type="email" class="form-control" id="reg_email" placeholder="EMAIL" required name="emailId">
+                                        </div>
+                                        <span class="help-block has-error" data-error='0' id="remail-error"></span>
+                                    </div>
+                                    <div class="form-group form-field">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-mobile-phone"></i></div>
+                                            <input name="mobile" type="text" class="form-control" id="reg_mobile" placeholder="MOBILE" required maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                        </div>
+                                        <span class="help-block has-error" id="password-error"></span>
+                                    </div>
+                                    <div class="form-group form-field">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                            <input type="password" class="form-control" id="reg_password" placeholder="PASSWORD" required name="password">
+                                        </div>
+                                        <span class="help-block has-error" id="password-error"></span>
+                                    </div>
+
+                                    <div class="form-group form-field" style="display:none" id="div_reg_company_name">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                            <input type="text" class="form-control" id="reg_company_name" placeholder="COMPANY NAME" name="companyName">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-field" style="display:none" id="div_reg_company_address">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                            <input type="text" class="form-control" id="reg_company_address" placeholder="COMPANY ADDRESS" name="companyAddress">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-field">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                            <select id="reg_state" name="reg_state" class="form-control" required>
+                                                <option ="">Please select</option>
+                                                <option value="1">Andhra Pradesh</option>
+                                                <option value="2">Arunachal Pradesh</option>
+                                                <option value="3">Assam</option>
+                                                <option value="4">Bihar</option>
+                                                <option value="5">Chhattisgarh</option>
+                                                <option value="6">Goa</option>
+                                                <option value="7">Gujarat</option>
+                                                <option value="8">Haryana</option>
+                                                <option value="9">Himachal Pradesh</option>
+                                                <option value="10">Jammu and Kashmir</option>
+                                                <option value="11">Jharkhand</option>
+                                                <option value="12">Karnataka</option>
+                                                <option value="13">Kerala</option>
+                                                <option value="14">Madhya Pradesh</option>
+                                                <option value="15">Maharashtra</option>
+                                                <option value="16">Manipur</option>
+                                                <option value="17">Meghalaya</option>
+                                                <option value="18">Mizoram</option>
+                                                <option value="19">Nagaland</option>
+                                                <option value="20">Odisha(Orissa)</option>
+                                                <option value="21">Punjab</option>
+                                                <option value="22">Rajasthan</option>
+                                                <option value="23">Sikkim</option>
+                                                <option value="24">Tamil Nadu</option>
+                                                <option value="25">Tripura</option>
+                                                <option value="26">Uttar Pradesh</option>
+                                                <option value="27">Uttarakhand</option>
+                                                <option value="28">West Bengal</option>
+                                                <option value="30">Delhi</option>
+                                                <option value="32">Telangana</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group form-field">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                            <select id="reg_City" class="form-control" name="locality" required>
+                                                <option>Please select</option>
+                                            </select>
+                                        </div>
+                                        <span class="help-block has-error" id="password-error"></span>
+                                    </div>
+
+
+                                    <div class="form-group form-field" style="display:none" id="div_reg_tenet_perm_address">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                            <input type="text" class="form-control" id="reg_tenet_perm_address" placeholder="PERMANENT ADDRESS">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-field" style="display:none" id="div_reg_tenet_comp_add">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                            <input type="text" class="form-control" id="reg_tenet_comp_add" placeholder="COMPANY ADDRESS">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-field">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                            <input type="file" class="form-control" id="reg_file" placeholder="PROFILE IMAGE" name="profileImage">
+                                        </div>
+
+                                    </div>
+                                    <input type="submit" name="UserRegister" value="User Register" id="register_btn" class="btn btn-danger login-btn" />
+                                    @*<button type="button" id="register_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Registering....">User Register</button>*@
+                                    <div class="clearfix"></div>
+                                    <div class="login-modal-footer">
+                                        <div class="row">
+                                            <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab"> Forgot password? </a> </div>
+                                            <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signin-tab"> Sign In </a> </div>
+                                        </div>
+                                    </div>
+                                                    }
+                                </div>
+                                <div role="tabpanel" class="tab-pane text-center" id="forget_password">
+                                    &nbsp;&nbsp; <span id="reset_fail" class="response_error" style="display: none;"></span>
+                                    <div class="clearfix"></div>
+                                    <form>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="text" class="form-control" id="forg_email" placeholder="Email">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="femail-error"></span>
+                                        </div>
+                                        <button type="button" id="forget_btn" class="btn btn-danger login-btn" data-loading-text="Please wait....">Forget Password</button>
+                                        <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+                                            <div class="row">
+                                                <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="signin-tab"> Sign In </a> </div>
+                                                <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab"> Sign Up </a> </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- - Login Model Ends Here -->
+    <!--Edit property-->
+    @using (Html.BeginForm("GetDetail", "Property", FormMethod.Post))
+    {
+        <div class="modal fade" id="editProp" tabindex="-1" role="dialog" aria-labelledby="editProp" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content login-modal">
+                    <div class="modal-header login-modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-center" id="editProp">ENTER YOUR PROPERTY DETAIL</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <div role="tabpanel" class="login-tab">
+                                <!-- Nav tabs -->
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active text-center" id="home">
+                                        &nbsp;&nbsp; <span id="login_fail" class="response_error" style="display: none;">Loggin failed, please try again.</span>
+                                        <div class="clearfix"></div>
+
+
+                                        <div class="spacer10"> &nbsp; </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="text" class="form-control" id="prop_uniqId" name="prop_uniqId" placeholder="ENTER PROPERT UNIQUE ID" required>
+
+                                            </div>
+                                            <span class="help-block has-error" id="email-error"></span>
+                                        </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <input type="password" class="form-control" id="prop_password" name="prop_password" placeholder="PASSWORD" required>
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="remail-error"></span>
+                                        </div>
+                                        @*<button type="button" id="submit_btn_edit" class="btn btn-block btn-danger login-btn" data-loading-text="Signing In....">Submit</button>*@
+                                        <input type="submit" id="submit_btn_edit" class="btn btn-danger login-btn" data-loading-text="Signing In...." value="Submit">
+                                        <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+
+                                        </div>
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="profile">
+                                        &nbsp;&nbsp; <span id="registration_fail" class="response_error" style="display: none;">Registration failed, please try again.</span>
+                                        <div class="clearfix"></div>
+                                        <form>
+                                            <div class="form-group">
+                                                <div class="input-group form-field">
+                                                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                    <input type="text" class="form-control" id="username" placeholder="Username">
+                                                </div>
+                                                <span class="help-block has-error" data-error='0' id="username-error"></span>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                                                    <input type="text" class="form-control" id="remail" placeholder="Email">
+                                                </div>
+                                                <span class="help-block has-error" data-error='0' id="remail-error"></span>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fa fa-mobile-phone"></i></div>
+                                                    <input type="password" class="form-control" id="password" placeholder="Mobile No.">
+                                                </div>
+                                                <span class="help-block has-error" id="password-error"></span>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                    <input type="password" class="form-control" id="password" placeholder="Password">
+                                                </div>
+                                                <span class="help-block has-error" id="password-error"></span>
+                                            </div>
+                                            <div class="form-group form-field">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                    <input type="password" class="form-control" id="password" placeholder="Re-Password">
+                                                </div>
+                                                <span class="help-block has-error" id="password-error"></span>
+                                            </div>
+                                            <button type="button" id="register_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Registering....">User Register</button>
+                                            <div class="clearfix"></div>
+                                            <div class="login-modal-footer">
+                                                <div class="row">
+                                                    <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab"> Forgot password? </a> </div>
+                                                    <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signin-tab"> Sign In </a> </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane text-center" id="forget_password">
+                                        &nbsp;&nbsp; <span id="reset_fail" class="response_error" style="display: none;"></span>
+                                        <div class="clearfix"></div>
+                                        <form>
+                                            <div class="form-group form-field">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                    <input type="text" class="form-control" id="femail" placeholder="Email">
+                                                </div>
+                                                <span class="help-block has-error" data-error='0' id="femail-error"></span>
+                                            </div>
+                                            <button type="button" id="reset_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Please wait....">Forget Password</button>
+                                            <div class="clearfix"></div>
+                                            <div class="login-modal-footer">
+                                                <div class="row">
+                                                    <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="signin-tab"> Sign In </a> </div>
+                                                    <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab"> Sign Up </a> </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <!--End edit property-->
+
+    @if (!Request.Browser.IsMobileDevice)
+    {
+        <div class="webdisplay">
+            <header>
+                <div class="container">
+                    <div class="row">
+                        <div class="tapnavn1">
+                            <div class="logo">
+                                <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/images/Homely-logoInner.jpg")" width="250" class="img-responsive" alt="" /></a>
+                            </div>
+                        </div>
+
+                        <!-- Class "cbp-spmenu-open" gets applied to menu -->
+                        <div class="tapnav2">
+                            <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+                                <h3><img src="@Url.Content("~/images/logo.jpg")" class="img-responsive" alt="" width="120" /></h3>
+                                @if (User.Identity.IsAuthenticated)
+                                { <a href="#">DASHBOARD</a> }
+                                else
+                                {
+
+                                    <a href="#loginModal1" data-toggle="modal">SIGN UP</a>
+                                }
+                                <a href="#">CAREER</a>
+                                <a href="#">HELP</a>
+
+                            </nav>
+
+                            <div class="main" style="margin-left: 46%;">
+                                <section class="buttonset" style="font-size: 10px;">
+                                    <button id="showRightPush" style="padding:0px;"> <img src="/images/homely-nav-icon.png" width="30" id="imgNav"></button>
+                                    MENU
+                                </section>
+                            </div>
+
+
+
+                            <script src="~/Content/classie.js"></script>
+                            <script>
+                                var menuLeft = document.getElementById('cbp-spmenu-s1'),
+                                    menuRight = document.getElementById('cbp-spmenu-s2'),
+                                    menuTop = document.getElementById('cbp-spmenu-s3'),
+                                    menuBottom = document.getElementById('cbp-spmenu-s4'),
+
+                                    showRightPush = document.getElementById('showRightPush'),
+                                    body = document.body;
+
+
+                                showRightPush.onclick = function () {
+                                    classie.toggle(this, 'active');
+                                    classie.toggle(body, 'cbp-spmenu-push-toleft');
+                                    classie.toggle(menuRight, 'cbp-spmenu-open');
+                                    disableOther('showRightPush');
+                                };
+
+                                function disableOther(button) {
+
+                                    if (button !== 'showRightPush') {
+                                        classie.toggle(showRightPush, 'disabled');
+                                    }
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nav class="navbar navbar-default">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header navbar-brand">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    Cities
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li>@Html.RouteLink("Delhi", "CityDetails", new { id = "Delhi" })</li>
+                                        <li>@Html.RouteLink("Gurgaon", "CityDetails", new { id = "Gurgaon" })</li>
+                                        <li>@Html.RouteLink("Ghaziabad", "CityDetails", new { id = "Ghaziabad" })</li>
+                                        <li>@Html.RouteLink("Noida", "CityDetails", new { id = "Noida" })</li>
+                                        <li>@Html.RouteLink("Faridabad", "CityDetails", new { id = "Faridabad" })</li>
+
+                                        @*<li>@Html.RouteLink("Greater Noida", "CityDetails", new { id = "Greater Noida" })</li>*@
+                                        <li>@Html.RouteLink("Kundli", "CityDetails", new { id = "Sonipat" })</li>
+                                        @if (!User.Identity.IsAuthenticated)
+                                        {
+                                            <li class="reg-sign"><a href="@Url.Action("Index","Feedback")">Feedback</a></li>
+                                            <li><a href="#loginModal1" data-toggle="modal">Sign in</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class="reg-sign"><a href="#" data-toggle="modal"></a></li>
+                                            <li><a href="#" data-toggle="modal"></a></li>
+                                            <li>@Html.ActionLink("Logout", "LogOff", "Account")</li>
+                                        }
+                                        <li><a href="#editProp" data-toggle="modal">Edit Property</a></li>
+                                        <li><a href="#">Help</a></li>
+                                    </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                            </nav>
+                            <ul class="rent-nav">
+                                <li>@Html.RouteLink("Rental Properties", "CityDetails", new { id = "RENT" })</li>
+                                <li>@Html.ActionLink("List Property", "Index", "Property")</li>
+                                <li>@Html.ActionLink("Post Requirment", "Index", "PostRequirment")</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    }
+    else
+    {
+        <div class="mobdisply">
+            <header>
+                <div class="container">
+                    <div class="row">
+                        <div class="tapnav1">
+                            <div class="logo" style="margin-left:-4%;">
+                                <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/images/logo.jpg")" class="img-responsive" alt="" /></a>
+                            </div>
+                        </div>
+
+                        <!-- Class "cbp-spmenu-open" gets applied to menu -->
+                        <div class="tapnav2">
+                            <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+                                <h3><img src="@Url.Content("~/images/logo.jpg")" class="img-responsive" alt="" width="120" /></h3>
+                                @if (User.Identity.IsAuthenticated)
+                                { <a href="#">DASHBOARD</a> }
+                                else
+                                {
+
+                                    <a href="#loginModal1" data-toggle="modal">SIGN UP</a>
+                                }
+                                <a href="#">CAREER</a>
+                                <a href="#">HELP</a>
+
+                            </nav>
+
+                            <div class="main" style="padding: 0 1.875em 3.125em 4.675em">
+                                <section class="buttonset" style="font-size: 10px;">
+                                    <button id="showRightPush" style="padding:0px;"> <img src="/images/homely-nav-icon.png" width="30" id="imgNav"></button>
+                                    MENU
+                                </section>
+
+                            </div>
+
+                            <!-- Classie - class helper functions by @@desandro https://github.com/desandro/classie -->
+
+                            <script src="~/Content/classie.js"></script>
+                            <script>
+                                var menuLeft = document.getElementById('cbp-spmenu-s1'),
+                                    menuRight = document.getElementById('cbp-spmenu-s2'),
+                                    menuTop = document.getElementById('cbp-spmenu-s3'),
+                                    menuBottom = document.getElementById('cbp-spmenu-s4'),
+
+                                    showRightPush = document.getElementById('showRightPush'),
+                                    body = document.body;
+
+
+                                showRightPush.onclick = function () {
+                                    classie.toggle(this, 'active');
+                                    classie.toggle(body, 'cbp-spmenu-push-toleft');
+                                    classie.toggle(menuRight, 'cbp-spmenu-open');
+                                    disableOther('showRightPush');
+                                };
+
+                                function disableOther(button) {
+
+                                    if (button !== 'showRightPush') {
+                                        classie.toggle(showRightPush, 'disabled');
+                                    }
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nav class="navbar navbar-default">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header navbar-brand">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <label style="float:left; font-weight:500;">Cities</label>
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li>@Html.RouteLink("Delhi", "CityDetails", new { id = "Delhi" })</li>
+                                        <li>@Html.RouteLink("Gurgaon", "CityDetails", new { id = "Gurgaon" })</li>
+                                        <li>@Html.RouteLink("Ghaziabad", "CityDetails", new { id = "Ghaziabad" })</li>
+                                        <li>@Html.RouteLink("Noida", "CityDetails", new { id = "Noida" })</li>
+                                        <li>@Html.RouteLink("Faridabad", "CityDetails", new { id = "Faridabad" })</li>
+
+                                        @*<li>@Html.RouteLink("Greater Noida", "CityDetails", new { id = "Greater Noida" })</li>*@
+                                        <li>@Html.RouteLink("Kundli", "CityDetails", new { id = "Sonipat" })</li>
+                                        @if (!User.Identity.IsAuthenticated)
+                                        {
+                                            <li class="reg-sign"><a href="@Url.Action("Index","Feedback")">Feedback</a></li>
+                                            <li><a href="#loginModal1" data-toggle="modal">Sign in</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class="reg-sign"><a href="#" data-toggle="modal"></a></li>
+                                            <li><a href="#" data-toggle="modal"></a></li>
+                                            <li>@Html.ActionLink("Logout", "LogOff", "Account")</li>
+                                        }
+                                        <li><a href="#editProp" data-toggle="modal">Edit Property</a></li>
+                                        <li><a href="#">Help</a></li>
+                                    </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                            </nav>
+                            <ul class="rent-nav">
+                                <li>@Html.RouteLink("RENTAL PROPERTIES", "CityDetails", new { id = "RENT" })</li>
+                                <li>@Html.ActionLink("LIST PROPERTY", "Index", "Property")</li>
+                                <li>@Html.ActionLink("POST REQUIRMENT", "Index", "PostRequirment")</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    }
+
+
+    @RenderBody()
+    @if (!Request.Browser.IsMobileDevice)
+    { 	<footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="footer-top">
+                        <div class="col-md-3 pd-100">
+                            <h3>PROPERTY IN INDIA</h3>
+                            <ul>
+                                <li><a href="@Url.RouteUrl("CityDetails", new { id = "Delhi" })">Delhi</a></li>
+                                <li><a href="@Url.RouteUrl("CityDetails", new { id = "Gurgaon" })">Gurgaon</a></li>
+                                <li><a href="@Url.RouteUrl("CityDetails", new { id = "Ghaziabad" })">Ghaziabad</a></li>
+                                <li><a href="@Url.RouteUrl("CityDetails", new { id = "Noida" })">Noida</a></li>
+                                <li><a href="@Url.RouteUrl("CityDetails", new { id = "Faridabad" })">Faridabad</a></li>
+                                @*<li><a href="@Url.RouteUrl("CityDetails", new { id = "Greater Noida" })">Greater Noida</a></li>*@
+                            </ul>
+                        </div>
+                        <div class="col-md-3 pd-70">
+                            <h3>PROPERTY SERVICES</h3>
+                            <ul>
+                                <li>@Html.RouteLink("Rental Properties", "CityDetails", new { id = "RENT" })</li>
+                                <li>@Html.ActionLink("List Property", "Index", "Property")</li>
+                                <li>@Html.ActionLink("POST REQUIRMENT", "Index", "PostRequirment")</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 pd-40">
+                            <h3>COMPANY</h3>
+                            <ul>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Contact us</a></li>
+                                <li><a href="#">Privacy policy</a></li>
+                                <li><a href="#">TERMS AND CONDITIONS</a></li>
+                                <li><a href="#">TESTIMONIALS</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 ">
+                            <h3>FOLLOW US</h3>
+                            <ul class="followus">
+                                <li><a href="https://www.facebook.com/Renting-495701037291296/" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottum">
+                        <p>Copyright @@ 2016 Homely.co.in - All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    }
+    else
+    {
+        <div class="mobdisplay">
+            <!---------------------------------------------------- footer -------------------------------------------------->
+            <footer class="footer-section_margin">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="footer-top">
+                                <div class="inner-footer-new">
+                                    <h3>PROPERTY IN INDIA</h3>
+                                    <ul>
+                                        <li><a href="@Url.RouteUrl("CityDetails", new { id = "Delhi" })">Delhi</a></li>
+                                        <li><a href="@Url.RouteUrl("CityDetails", new { id = "Gurgaon" })">Gurgaon</a></li>
+                                        <li><a href="@Url.RouteUrl("CityDetails", new { id = "Ghaziabad" })">Ghaziabad</a></li>
+                                        <li><a href="@Url.RouteUrl("CityDetails", new { id = "Noida" })">Noida</a></li>
+                                        <li><a href="@Url.RouteUrl("CityDetails", new { id = "Faridabad" })">Faridabad</a></li>
+                                    </ul>
+                                </div>
+                                <div class="inner-footer-new">
+                                    <h3>PROPERTY SERVICES</h3>
+                                    <ul>
+                                        <li>@Html.RouteLink("Rental Properties", "CityDetails", new { id = "RENT" })</li>
+                                        <li>@Html.ActionLink("List Property", "Index", "Property")</li>
+                                        <li>@Html.ActionLink("POST REQUIRMENT", "Index", "PostRequirment")</li>
+                                    </ul>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="inner-footer-new">
+                                    <h3>COMPANY</h3>
+                                    <ul>
+                                        <li><a href="#">About us</a></li>
+                                        <li><a href="#">Contact us</a></li>
+                                        <li><a href="#">Privacy policy</a></li>
+                                        <li><a href="#">Terms and Conditions</a></li>
+                                        <li><a href="#">Testimonials</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="inner-footer-new">
+                                    <h3>FOLLOW US</h3>
+                                    <ul class="followus">
+                                        <li><a href="https://www.facebook.com/Renting-495701037291296/" target="_blank"><i class="fa fa-facebook-square"></i></a> </li>
+                                        <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+
+            <div class="footer-bottum">
+                <p align="center">
+                    Copyright @@ 2016 Homely.co.in
+                    All Rights Reserved
+                </p>
+            </div>
+            <!---------------------------------------------------- footer -------------------------------------------------->
+
+
+        </div>
+
+    }
+
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+
+
+    <script src="~/Scripts/js/jquery-ui.js"></script>
+    <script src="~/Scripts/Global/globalFile.js"></script>
+
+</body>
+</html>

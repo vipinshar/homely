@@ -1,0 +1,2875 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="homely_newModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ContactUs">
+          <Key>
+            <PropertyRef Name="ContactUsID" />
+          </Key>
+          <Property Name="ContactUsID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationID" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="QueryFrom" Type="nvarchar(max)" />
+          <Property Name="QueryType" Type="nvarchar(max)" />
+          <Property Name="Query" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_FavouriteProperty">
+          <Key>
+            <PropertyRef Name="FavoriteId" />
+          </Key>
+          <Property Name="FavoriteId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyCode" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Feedback">
+          <Key>
+            <PropertyRef Name="pkId" />
+          </Key>
+          <Property Name="pkId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" />
+          <Property Name="mobile" Type="nvarchar(max)" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="feedback" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Amenities">
+          <Key>
+            <PropertyRef Name="Amenity" />
+          </Key>
+          <Property Name="AmenityId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amenity" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="50" />
+          <Property Name="BigImagePath" Type="varchar" MaxLength="50" />
+          <Property Name="BigImageHoverPath" Type="varchar" MaxLength="50" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ImageHoverPath" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Availability">
+          <Key>
+            <PropertyRef Name="Availability" />
+          </Key>
+          <Property Name="AvailabilityId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Availability" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Bedroom">
+          <Key>
+            <PropertyRef Name="bedroomId" />
+          </Key>
+          <Property Name="bedroomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bedroomrestrictionName" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Master_City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="StateID" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar(max)" />
+          <Property Name="CountryCode" Type="nvarchar(max)" />
+          <Property Name="Enabled" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Facing">
+          <Key>
+            <PropertyRef Name="Facing" />
+          </Key>
+          <Property Name="FacingId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Facing" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Furnished">
+          <Key>
+            <PropertyRef Name="Furnished" />
+          </Key>
+          <Property Name="FurnishedId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Furnished" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Messages">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Name="MessageId" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="MessageFor" Type="nvarchar(max)" />
+          <Property Name="MessageType" Type="nvarchar(max)" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_MinimumContract">
+          <Key>
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="contractId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contractName" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Ownership">
+          <Key>
+            <PropertyRef Name="Ownership" />
+          </Key>
+          <Property Name="OwnershipId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ownership" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_PropertyType">
+          <Key>
+            <PropertyRef Name="PropertyTypeID" />
+          </Key>
+          <Property Name="PropertyTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyType" Type="nvarchar(max)" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Restriction">
+          <Key>
+            <PropertyRef Name="restrictionId" />
+          </Key>
+          <Property Name="restrictionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="restrictionName" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Master_State">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateID" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_SubCity">
+          <Key>
+            <PropertyRef Name="SubCity" />
+          </Key>
+          <Property Name="SubCity" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SubCityId" Type="int" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_SubPropertyType">
+          <Key>
+            <PropertyRef Name="SubPropertyType" />
+          </Key>
+          <Property Name="SubPropertyTypeID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyTypeID" Type="int" Nullable="false" />
+          <Property Name="SubPropertyType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Suitable">
+          <Key>
+            <PropertyRef Name="suitableId" />
+          </Key>
+          <Property Name="suitableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="suitableName" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Transaction">
+          <Key>
+            <PropertyRef Name="Transaction" />
+          </Key>
+          <Property Name="TransactionId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Transaction" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'homely_new.dbo.tbl_PostRequirment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_PostRequirment">
+          <Key>
+            <PropertyRef Name="PostRequirmentID" />
+            <PropertyRef Name="PropertyType" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="RequiredArea" />
+            <PropertyRef Name="TransactionType" />
+            <PropertyRef Name="MinimumPrice" />
+            <PropertyRef Name="maximumPrice" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Enabled" />
+          </Key>
+          <Property Name="PostRequirmentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationID" Type="uniqueidentifier" />
+          <Property Name="PropertyType" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="City" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CityOther" Type="nvarchar(max)" />
+          <Property Name="Locality" Type="nvarchar(max)" />
+          <Property Name="RequiredArea" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TransactionType" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Amenities" Type="nvarchar(max)" />
+          <Property Name="MinimumPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="maximumPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BHK" Type="nvarchar(max)" />
+          <Property Name="AgeConstruction" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ClientName" Type="nvarchar(max)" />
+          <Property Name="ClientEmail" Type="nvarchar(max)" />
+          <Property Name="ClientAddress" Type="nvarchar(max)" />
+          <Property Name="ClientAddress2" Type="nvarchar(max)" />
+          <Property Name="ClientAddress3" Type="nvarchar(max)" />
+          <Property Name="ClientMobile" Type="nvarchar(max)" />
+          <Property Name="ClientState" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ClientCity" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ClientCityOther" Type="nvarchar(max)" />
+          <Property Name="ClientPinCode" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Property">
+          <Key>
+            <PropertyRef Name="PropertyCode" />
+          </Key>
+          <Property Name="PropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationID" Type="uniqueidentifier" />
+          <Property Name="TransactionType" Type="int" Nullable="false" />
+          <Property Name="OwnershipType" Type="int" Nullable="false" />
+          <Property Name="SubPropertyType" Type="int" Nullable="false" />
+          <Property Name="PropertyCity" Type="int" Nullable="false" />
+          <Property Name="PropertyOtherCity" Type="nvarchar(max)" />
+          <Property Name="Locality" Type="nvarchar(max)" />
+          <Property Name="Area" Type="int" Nullable="false" />
+          <Property Name="Measure" Type="nvarchar(max)" />
+          <Property Name="Rent" Type="int" Nullable="false" />
+          <Property Name="SocietyName" Type="nvarchar(max)" />
+          <Property Name="Bedroom" Type="nvarchar(max)" />
+          <Property Name="Floor" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Availability" Type="int" />
+          <Property Name="Bathroom" Type="nvarchar(max)" />
+          <Property Name="Balcony" Type="nvarchar(max)" />
+          <Property Name="FloorInBuilding" Type="nvarchar(max)" />
+          <Property Name="Furnished" Type="int" Nullable="false" />
+          <Property Name="Facing" Type="int" Nullable="false" />
+          <Property Name="Amenities" Type="nvarchar(max)" />
+          <Property Name="ShoppingMallDistance" Type="int" Nullable="false" />
+          <Property Name="HospitalDistance" Type="int" Nullable="false" />
+          <Property Name="SchoolDistance" Type="int" Nullable="false" />
+          <Property Name="ATMDistance" Type="int" Nullable="false" />
+          <Property Name="OwnerName" Type="nvarchar(max)" />
+          <Property Name="OwnerCity" Type="int" Nullable="false" />
+          <Property Name="OwnerOtherCity" Type="nvarchar(max)" />
+          <Property Name="OwnerAddress" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="AlternateNumber" Type="nvarchar(max)" />
+          <Property Name="EmailID" Type="nvarchar(max)" />
+          <Property Name="Verified" Type="bit" Nullable="false" />
+          <Property Name="Rented" Type="bit" Nullable="false" />
+          <Property Name="HotProperty" Type="bit" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="RegiesterdFrom" Type="nvarchar(max)" />
+          <Property Name="OwnerState" Type="int" />
+          <Property Name="OwnerAddress2" Type="nvarchar(max)" />
+          <Property Name="OwnerAddress3" Type="nvarchar(max)" />
+          <Property Name="OwnerPinCode" Type="nvarchar(max)" />
+          <Property Name="TimeSlot" Type="int" />
+          <Property Name="AnyOtherTime" Type="nvarchar(max)" />
+          <Property Name="slugUrl" Type="nvarchar(max)" />
+          <Property Name="LocalityId" Type="int" />
+          <Property Name="suitable" Type="nvarchar(max)" />
+          <Property Name="securityDeposit" Type="nvarchar(max)" />
+          <Property Name="maintenanceCharge" Type="nvarchar(max)" />
+          <Property Name="restriction" Type="nvarchar(max)" />
+          <Property Name="minimumContract" Type="nvarchar(max)" />
+          <Property Name="editPassword" Type="nvarchar(max)" />
+          <Property Name="PropertyNumberSeries" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyCode" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Property1">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyNumberSeries" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PropertyCode" Type="nvarchar(max)" />
+          <Property Name="RegistrationID" Type="uniqueidentifier" />
+          <Property Name="TransactionType" Type="int" Nullable="false" />
+          <Property Name="OwnershipType" Type="int" Nullable="false" />
+          <Property Name="SubPropertyType" Type="int" Nullable="false" />
+          <Property Name="PropertyCity" Type="int" Nullable="false" />
+          <Property Name="PropertyOtherCity" Type="nvarchar(max)" />
+          <Property Name="Locality" Type="nvarchar(max)" />
+          <Property Name="Area" Type="int" Nullable="false" />
+          <Property Name="Measure" Type="nvarchar(max)" />
+          <Property Name="Rent" Type="int" Nullable="false" />
+          <Property Name="SocietyName" Type="nvarchar(max)" />
+          <Property Name="Bedroom" Type="nvarchar(max)" />
+          <Property Name="Floor" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Availability" Type="int" />
+          <Property Name="Bathroom" Type="nvarchar(max)" />
+          <Property Name="Balcony" Type="nvarchar(max)" />
+          <Property Name="FloorInBuilding" Type="nvarchar(max)" />
+          <Property Name="Furnished" Type="int" Nullable="false" />
+          <Property Name="Facing" Type="int" Nullable="false" />
+          <Property Name="Amenities" Type="nvarchar(max)" />
+          <Property Name="ShoppingMallDistance" Type="int" Nullable="false" />
+          <Property Name="HospitalDistance" Type="int" Nullable="false" />
+          <Property Name="SchoolDistance" Type="int" Nullable="false" />
+          <Property Name="ATMDistance" Type="int" Nullable="false" />
+          <Property Name="OwnerName" Type="nvarchar(max)" />
+          <Property Name="OwnerCity" Type="int" Nullable="false" />
+          <Property Name="OwnerOtherCity" Type="nvarchar(max)" />
+          <Property Name="OwnerAddress" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="AlternateNumber" Type="nvarchar(max)" />
+          <Property Name="EmailID" Type="nvarchar(max)" />
+          <Property Name="Verified" Type="bit" Nullable="false" />
+          <Property Name="Rented" Type="bit" Nullable="false" />
+          <Property Name="HotProperty" Type="bit" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="RegiesterdFrom" Type="nvarchar(max)" />
+          <Property Name="OwnerState" Type="int" />
+          <Property Name="OwnerAddress2" Type="nvarchar(max)" />
+          <Property Name="OwnerAddress3" Type="nvarchar(max)" />
+          <Property Name="OwnerPinCode" Type="nvarchar(max)" />
+          <Property Name="TimeSlot" Type="int" />
+          <Property Name="AnyOtherTime" Type="nvarchar(max)" />
+          <Property Name="slugUrl" Type="nvarchar(max)" />
+          <Property Name="LocalityId" Type="int" />
+          <Property Name="suitable" Type="nvarchar(max)" />
+          <Property Name="securityDeposit" Type="nvarchar(max)" />
+          <Property Name="maintenanceCharge" Type="nvarchar(max)" />
+          <Property Name="restriction" Type="nvarchar(max)" />
+          <Property Name="minimumContract" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_PropertyReview">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationID" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="EmailId" Type="nvarchar(max)" />
+          <Property Name="Review" Type="nvarchar(max)" />
+          <Property Name="HomePage" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="OwnershipType" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ReviewFor" Type="nvarchar(max)" />
+          <Property Name="ReviewForValue" Type="nvarchar(max)" />
+          <Property Name="RatingLocation1" Type="nvarchar(max)" />
+          <Property Name="RatingLocation2" Type="nvarchar(max)" />
+          <Property Name="RatingLocation3" Type="nvarchar(max)" />
+          <Property Name="RatingLocation4" Type="nvarchar(max)" />
+          <Property Name="RatingLocation5" Type="nvarchar(max)" />
+          <Property Name="RatingLocation6" Type="nvarchar(max)" />
+          <Property Name="RatingSociety1" Type="nvarchar(max)" />
+          <Property Name="RatingSociety2" Type="nvarchar(max)" />
+          <Property Name="RatingSociety3" Type="nvarchar(max)" />
+          <Property Name="RatingSociety4" Type="nvarchar(max)" />
+          <Property Name="RatingSociety5" Type="nvarchar(max)" />
+          <Property Name="RatingSociety6" Type="nvarchar(max)" />
+          <Property Name="RatingSociety7" Type="nvarchar(max)" />
+          <Property Name="Approved" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'homely_new.dbo.tbl_QuickListing' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_QuickListing">
+          <Key>
+            <PropertyRef Name="ListingID" />
+            <PropertyRef Name="CreateDate" />
+            <PropertyRef Name="Enabled" />
+          </Key>
+          <Property Name="ListingID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegistrationID" Type="uniqueidentifier" />
+          <Property Name="ContactFor" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateBy" Type="nvarchar(max)" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Registration">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="RegistrationID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OwnershipType" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Alternate" Type="varchar" MaxLength="15" />
+          <Property Name="City" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CompanyAddress" Type="varchar" MaxLength="500" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" />
+          <Property Name="PropertyType" Type="varchar" MaxLength="50" />
+          <Property Name="DealsIn" Type="varchar" MaxLength="500" />
+          <Property Name="SpecialiseIn" Type="varchar(max)" />
+          <Property Name="PropertiesAt" Type="varchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="PermanentAddress" Type="varchar" MaxLength="500" />
+          <Property Name="Image" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblArea">
+          <Key>
+            <PropertyRef Name="pkAreaId" />
+          </Key>
+          <Property Name="pkAreaId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fkCity" Type="bigint" />
+          <Property Name="areaName" Type="varchar" MaxLength="250" />
+          <Property Name="latitude" Type="float" />
+          <Property Name="longitude" Type="float" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDelete" Type="bit" />
+          <Property Name="modifiedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblAreas">
+          <Key>
+            <PropertyRef Name="pkAreaId" />
+          </Key>
+          <Property Name="pkAreaId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fkCity" Type="bigint" />
+          <Property Name="areaName" Type="nvarchar(max)" />
+          <Property Name="latitude" Type="float" />
+          <Property Name="longitude" Type="float" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDelete" Type="bit" />
+          <Property Name="modifiedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCities">
+          <Key>
+            <PropertyRef Name="pkCityId" />
+          </Key>
+          <Property Name="pkCityId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fkStateId" Type="bigint" />
+          <Property Name="cityName" Type="nvarchar(max)" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" />
+          <Property Name="modifiedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="pkCityId" />
+          </Key>
+          <Property Name="pkCityId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fkStateId" Type="bigint" />
+          <Property Name="cityName" Type="varchar" MaxLength="150" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDelete" Type="bit" />
+          <Property Name="modifiedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCountries">
+          <Key>
+            <PropertyRef Name="pkCountryId" />
+          </Key>
+          <Property Name="pkCountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="countryName" Type="nvarchar(max)" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDelete" Type="bit" />
+          <Property Name="modifiedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+          <Property Name="shortName" Type="nvarchar(max)" />
+          <Property Name="phoneCode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblCountry">
+          <Key>
+            <PropertyRef Name="pkCountryId" />
+          </Key>
+          <Property Name="pkCountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="countryName" Type="varchar" MaxLength="150" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDelete" Type="bit" />
+          <Property Name="modifiedBy" Type="bigint" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="pkStateId" />
+          </Key>
+          <Property Name="pkStateId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fkCountryId" Type="bigint" Nullable="false" />
+          <Property Name="stateName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblStates">
+          <Key>
+            <PropertyRef Name="pkStateId" />
+          </Key>
+          <Property Name="pkStateId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fkCountryId" Type="bigint" Nullable="false" />
+          <Property Name="stateName" Type="nvarchar(max)" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+          <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <Function Name="PROC_AddFavouriteProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="PropertyCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_AddProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="TransactionType" Type="int" Mode="In" />
+          <Parameter Name="OwnershipType" Type="int" Mode="In" />
+          <Parameter Name="PropertyType" Type="int" Mode="In" />
+          <Parameter Name="PropertyCity" Type="int" Mode="In" />
+          <Parameter Name="Locality" Type="varchar" Mode="In" />
+          <Parameter Name="Area" Type="int" Mode="In" />
+          <Parameter Name="Measure" Type="varchar" Mode="In" />
+          <Parameter Name="Rent" Type="int" Mode="In" />
+          <Parameter Name="SocietyName" Type="varchar" Mode="In" />
+          <Parameter Name="Bedroom" Type="int" Mode="In" />
+          <Parameter Name="Floor" Type="int" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="Bathroom" Type="int" Mode="In" />
+          <Parameter Name="Balcony" Type="int" Mode="In" />
+          <Parameter Name="FloorInBuilding" Type="varchar" Mode="In" />
+          <Parameter Name="Furnished" Type="int" Mode="In" />
+          <Parameter Name="Facing" Type="int" Mode="In" />
+          <Parameter Name="Amenities" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ShoppingMallDistance" Type="int" Mode="In" />
+          <Parameter Name="HospitalDistance" Type="int" Mode="In" />
+          <Parameter Name="SchoolDistance" Type="int" Mode="In" />
+          <Parameter Name="ATMDistance" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="MemberCity" Type="int" Mode="In" />
+          <Parameter Name="MemberAddress" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+          <Parameter Name="AlternateNumber" Type="varchar" Mode="In" />
+          <Parameter Name="MemberEmailID" Type="varchar" Mode="In" />
+          <Parameter Name="Availability" Type="int" Mode="In" />
+          <Parameter Name="PropertyOtherCity" Type="varchar" Mode="In" />
+          <Parameter Name="OwnerOtherCity" Type="varchar" Mode="In" />
+          <Parameter Name="MemberState" Type="int" Mode="In" />
+          <Parameter Name="MemberAddress2" Type="varchar" Mode="In" />
+          <Parameter Name="MemberAddress3" Type="varchar" Mode="In" />
+          <Parameter Name="MemberPinCode" Type="varchar" Mode="In" />
+          <Parameter Name="TimeSlot" Type="int" Mode="In" />
+          <Parameter Name="slugUrl" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="LocalityID" Type="int" Mode="In" />
+          <Parameter Name="suitable" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="securityDeposit" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="maintenaneCharge" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="minimumContract" Type="int" Mode="In" />
+          <Parameter Name="restriction" Type="int" Mode="In" />
+          <Parameter Name="pwd" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="PROC_AddPropertyReview" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OwnershipType" Type="numeric" Mode="In" />
+          <Parameter Name="ReviewFor" Type="varchar" Mode="In" />
+          <Parameter Name="ReviewForValue" Type="varchar" Mode="In" />
+          <Parameter Name="Review" Type="varchar(max)" Mode="In" />
+          <Parameter Name="RatingLocation1" Type="varchar" Mode="In" />
+          <Parameter Name="RatingLocation2" Type="varchar" Mode="In" />
+          <Parameter Name="RatingLocation3" Type="varchar" Mode="In" />
+          <Parameter Name="RatingLocation4" Type="varchar" Mode="In" />
+          <Parameter Name="RatingLocation5" Type="varchar" Mode="In" />
+          <Parameter Name="RatingLocation6" Type="varchar" Mode="In" />
+          <Parameter Name="RatingSociety1" Type="varchar" Mode="In" />
+          <Parameter Name="RatingSociety2" Type="varchar" Mode="In" />
+          <Parameter Name="RatingSociety3" Type="varchar" Mode="In" />
+          <Parameter Name="RatingSociety4" Type="varchar" Mode="In" />
+          <Parameter Name="RatingSociety5" Type="varchar" Mode="In" />
+          <Parameter Name="RatingSociety6" Type="varchar" Mode="In" />
+          <Parameter Name="RatingSociety7" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_Agent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="int" Mode="In" />
+          <Parameter Name="OwnershipType" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+          <Parameter Name="Alternate" Type="varchar" Mode="In" />
+          <Parameter Name="CompanyName" Type="varchar" Mode="In" />
+          <Parameter Name="CompanyAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="PropertyType" Type="varchar(max)" Mode="In" />
+          <Parameter Name="DealsIn" Type="varchar" Mode="In" />
+          <Parameter Name="SpecialiseIn" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Image" Type="varchar" Mode="In" />
+          <Parameter Name="For" Type="varchar" Mode="In" />
+          <Parameter Name="RegistrationID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_Builder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="int" Mode="In" />
+          <Parameter Name="OwnershipType" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+          <Parameter Name="Alternate" Type="varchar" Mode="In" />
+          <Parameter Name="CompanyName" Type="varchar" Mode="In" />
+          <Parameter Name="CompanyAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="PropertyType" Type="varchar(max)" Mode="In" />
+          <Parameter Name="PropertiesAt" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Image" Type="varchar" Mode="In" />
+          <Parameter Name="For" Type="varchar" Mode="In" />
+          <Parameter Name="RegistrationID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_ChangePassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="OldPwd" Type="varchar" Mode="In" />
+          <Parameter Name="NewPwd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_City_State" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StateId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PROC_ContacUs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailID" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="QueryType" Type="varchar" Mode="In" />
+          <Parameter Name="Query" Type="varchar(max)" Mode="In" />
+          <Parameter Name="QueryFrom" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_DealersDetial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StateId" Type="numeric" Mode="In" />
+          <Parameter Name="CityId" Type="numeric" Mode="In" />
+          <Parameter Name="Location" Type="varchar" Mode="In" />
+          <Parameter Name="PropertyType" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="PROC_FavouriteProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_ForgotPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_GetAmenForDetailPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyCode" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="PROC_HomePage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PROC_HomePageGzbListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="city" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PROC_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_MasterData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PROC_MasterData_Review" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PROC_MemberDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_Owner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="int" Mode="In" />
+          <Parameter Name="OwnershipType" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+          <Parameter Name="Alternate" Type="varchar" Mode="In" />
+          <Parameter Name="For" Type="varchar" Mode="In" />
+          <Parameter Name="RegistrationID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_PostRequirment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="PropertyType" Type="numeric" Mode="In" />
+          <Parameter Name="City" Type="numeric" Mode="In" />
+          <Parameter Name="OtherCity" Type="varchar" Mode="In" />
+          <Parameter Name="Locality" Type="varchar" Mode="In" />
+          <Parameter Name="RequiredArea" Type="numeric" Mode="In" />
+          <Parameter Name="Amenities" Type="varchar(max)" Mode="In" />
+          <Parameter Name="TransactionType" Type="numeric" Mode="In" />
+          <Parameter Name="MinimumPrice" Type="numeric" Mode="In" />
+          <Parameter Name="MaximumPrice" Type="numeric" Mode="In" />
+          <Parameter Name="BHK" Type="varchar(max)" Mode="In" />
+          <Parameter Name="AgeConstruction" Type="numeric" Mode="In" />
+          <Parameter Name="ClientName" Type="varchar" Mode="In" />
+          <Parameter Name="ClientMobile" Type="varchar" Mode="In" />
+          <Parameter Name="ClientEmail" Type="varchar" Mode="In" />
+          <Parameter Name="ClientState" Type="numeric" Mode="In" />
+          <Parameter Name="ClientCity" Type="numeric" Mode="In" />
+          <Parameter Name="ClientOtherCity" Type="varchar" Mode="In" />
+          <Parameter Name="ClientAddress" Type="varchar" Mode="In" />
+          <Parameter Name="ClientAddress2" Type="varchar" Mode="In" />
+          <Parameter Name="ClientAddress3" Type="varchar" Mode="In" />
+          <Parameter Name="ClientPinCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_PropCounting" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PROC_Property_City" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="City" Type="int" Mode="In" />
+          <Parameter Name="For" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_Property_City_New" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="City" Type="int" Mode="In" />
+          <Parameter Name="For" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_PropertyComparison" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyCode1" Type="varchar" Mode="In" />
+          <Parameter Name="PropertyCode2" Type="varchar" Mode="In" />
+          <Parameter Name="PropertyCode3" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_PropertyDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropertyCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_QuickListing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailID" Type="varchar" Mode="In" />
+          <Parameter Name="ContactingFor" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_Review" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PROC_Search1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PROC_SearchProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CityId" Type="numeric" Mode="In" />
+          <Parameter Name="LocalityId" Type="varchar" Mode="In" />
+          <Parameter Name="Locality" Type="varchar" Mode="In" />
+          <Parameter Name="PropertyType" Type="numeric" Mode="In" />
+          <Parameter Name="MinPrice" Type="numeric" Mode="In" />
+          <Parameter Name="MaxPrice" Type="numeric" Mode="In" />
+          <Parameter Name="PropertyCode" Type="varchar" Mode="In" />
+          <Parameter Name="Amenities" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Avaliability" Type="numeric" Mode="In" />
+          <Parameter Name="Ownership" Type="numeric" Mode="In" />
+          <Parameter Name="Furnishing" Type="numeric" Mode="In" />
+          <Parameter Name="Bedroom" Type="numeric" Mode="In" />
+          <Parameter Name="MinimumContract" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_Tenant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="int" Mode="In" />
+          <Parameter Name="OwnershipType" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+          <Parameter Name="Alternate" Type="varchar" Mode="In" />
+          <Parameter Name="CompanyAddress" Type="varchar" Mode="In" />
+          <Parameter Name="PermanentAddress" Type="varchar" Mode="In" />
+          <Parameter Name="For" Type="varchar" Mode="In" />
+          <Parameter Name="RegistrationID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PROC_Testimonials" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PROC_UpdateProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PropCode" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="TransactionType" Type="int" Mode="In" />
+          <Parameter Name="OwnershipType" Type="int" Mode="In" />
+          <Parameter Name="PropertyType" Type="int" Mode="In" />
+          <Parameter Name="PropertyCity" Type="int" Mode="In" />
+          <Parameter Name="Locality" Type="varchar" Mode="In" />
+          <Parameter Name="Area" Type="int" Mode="In" />
+          <Parameter Name="Measure" Type="varchar" Mode="In" />
+          <Parameter Name="Rent" Type="int" Mode="In" />
+          <Parameter Name="SocietyName" Type="varchar" Mode="In" />
+          <Parameter Name="Bedroom" Type="int" Mode="In" />
+          <Parameter Name="Floor" Type="int" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="Bathroom" Type="int" Mode="In" />
+          <Parameter Name="Balcony" Type="int" Mode="In" />
+          <Parameter Name="FloorInBuilding" Type="varchar" Mode="In" />
+          <Parameter Name="Furnished" Type="int" Mode="In" />
+          <Parameter Name="Facing" Type="int" Mode="In" />
+          <Parameter Name="Amenities" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ShoppingMallDistance" Type="int" Mode="In" />
+          <Parameter Name="HospitalDistance" Type="int" Mode="In" />
+          <Parameter Name="SchoolDistance" Type="int" Mode="In" />
+          <Parameter Name="ATMDistance" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="MemberCity" Type="int" Mode="In" />
+          <Parameter Name="MemberAddress" Type="varchar" Mode="In" />
+          <Parameter Name="Mobile" Type="varchar" Mode="In" />
+          <Parameter Name="AlternateNumber" Type="varchar" Mode="In" />
+          <Parameter Name="MemberEmailID" Type="varchar" Mode="In" />
+          <Parameter Name="Availability" Type="int" Mode="In" />
+          <Parameter Name="PropertyOtherCity" Type="varchar" Mode="In" />
+          <Parameter Name="OwnerOtherCity" Type="varchar" Mode="In" />
+          <Parameter Name="MemberState" Type="int" Mode="In" />
+          <Parameter Name="MemberAddress2" Type="varchar" Mode="In" />
+          <Parameter Name="MemberAddress3" Type="varchar" Mode="In" />
+          <Parameter Name="MemberPinCode" Type="varchar" Mode="In" />
+          <Parameter Name="TimeSlot" Type="int" Mode="In" />
+          <Parameter Name="slugUrl" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="LocalityID" Type="int" Mode="In" />
+          <Parameter Name="suitable" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="securityDeposit" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="maintenaneCharge" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="minimumContract" Type="int" Mode="In" />
+          <Parameter Name="restriction" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Split" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RowData" Type="varchar" Mode="In" />
+          <Parameter Name="SplitOn" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="int" Nullable="false" />
+                <Property Name="Data" Type="varchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="usp_HotProperties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="homely_newModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ContactUs" EntityType="Self.tbl_ContactUs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_FavouriteProperty" EntityType="Self.tbl_FavouriteProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Feedback" EntityType="Self.tbl_Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Amenities" EntityType="Self.tbl_Master_Amenities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Availability" EntityType="Self.tbl_Master_Availability" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Bedroom" EntityType="Self.tbl_Master_Bedroom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_City" EntityType="Self.tbl_Master_City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Country" EntityType="Self.tbl_Master_Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Facing" EntityType="Self.tbl_Master_Facing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Furnished" EntityType="Self.tbl_Master_Furnished" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Messages" EntityType="Self.tbl_Master_Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_MinimumContract" EntityType="Self.tbl_Master_MinimumContract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Ownership" EntityType="Self.tbl_Master_Ownership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_PropertyType" EntityType="Self.tbl_Master_PropertyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Restriction" EntityType="Self.tbl_Master_Restriction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_State" EntityType="Self.tbl_Master_State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_SubCity" EntityType="Self.tbl_Master_SubCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_SubPropertyType" EntityType="Self.tbl_Master_SubPropertyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Suitable" EntityType="Self.tbl_Master_Suitable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Master_Transaction" EntityType="Self.tbl_Master_Transaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Property" EntityType="Self.tbl_Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Property1" EntityType="Self.tbl_Property1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_PropertyReview" EntityType="Self.tbl_PropertyReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Registration" EntityType="Self.tbl_Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblArea" EntityType="Self.tblArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAreas" EntityType="Self.tblAreas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCities" EntityType="Self.tblCities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCountries" EntityType="Self.tblCountries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStates" EntityType="Self.tblStates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_PostRequirment" EntityType="Self.tbl_PostRequirment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_PostRequirment].[PostRequirmentID] AS [PostRequirmentID], 
+    [tbl_PostRequirment].[RegistrationID] AS [RegistrationID], 
+    [tbl_PostRequirment].[PropertyType] AS [PropertyType], 
+    [tbl_PostRequirment].[City] AS [City], 
+    [tbl_PostRequirment].[CityOther] AS [CityOther], 
+    [tbl_PostRequirment].[Locality] AS [Locality], 
+    [tbl_PostRequirment].[RequiredArea] AS [RequiredArea], 
+    [tbl_PostRequirment].[TransactionType] AS [TransactionType], 
+    [tbl_PostRequirment].[Amenities] AS [Amenities], 
+    [tbl_PostRequirment].[MinimumPrice] AS [MinimumPrice], 
+    [tbl_PostRequirment].[maximumPrice] AS [maximumPrice], 
+    [tbl_PostRequirment].[BHK] AS [BHK], 
+    [tbl_PostRequirment].[AgeConstruction] AS [AgeConstruction], 
+    [tbl_PostRequirment].[ClientName] AS [ClientName], 
+    [tbl_PostRequirment].[ClientEmail] AS [ClientEmail], 
+    [tbl_PostRequirment].[ClientAddress] AS [ClientAddress], 
+    [tbl_PostRequirment].[ClientAddress2] AS [ClientAddress2], 
+    [tbl_PostRequirment].[ClientAddress3] AS [ClientAddress3], 
+    [tbl_PostRequirment].[ClientMobile] AS [ClientMobile], 
+    [tbl_PostRequirment].[ClientState] AS [ClientState], 
+    [tbl_PostRequirment].[ClientCity] AS [ClientCity], 
+    [tbl_PostRequirment].[ClientCityOther] AS [ClientCityOther], 
+    [tbl_PostRequirment].[ClientPinCode] AS [ClientPinCode], 
+    [tbl_PostRequirment].[CreatedDate] AS [CreatedDate], 
+    [tbl_PostRequirment].[CreatedBy] AS [CreatedBy], 
+    [tbl_PostRequirment].[Enabled] AS [Enabled]
+    FROM [dbo].[tbl_PostRequirment] AS [tbl_PostRequirment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_QuickListing" EntityType="Self.tbl_QuickListing" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_QuickListing].[ListingID] AS [ListingID], 
+    [tbl_QuickListing].[RegistrationID] AS [RegistrationID], 
+    [tbl_QuickListing].[ContactFor] AS [ContactFor], 
+    [tbl_QuickListing].[Name] AS [Name], 
+    [tbl_QuickListing].[Email] AS [Email], 
+    [tbl_QuickListing].[Mobile] AS [Mobile], 
+    [tbl_QuickListing].[CreateDate] AS [CreateDate], 
+    [tbl_QuickListing].[CreateBy] AS [CreateBy], 
+    [tbl_QuickListing].[Enabled] AS [Enabled]
+    FROM [dbo].[tbl_QuickListing] AS [tbl_QuickListing]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="homely_newModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="Split_Result">
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ContactUs">
+          <Key>
+            <PropertyRef Name="ContactUsID" />
+          </Key>
+          <Property Name="ContactUsID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationID" Type="Guid" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QueryFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QueryType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Query" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_FavouriteProperty">
+          <Key>
+            <PropertyRef Name="FavoriteId" />
+          </Key>
+          <Property Name="FavoriteId" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationId" Type="Guid" Nullable="false" />
+          <Property Name="PropertyCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Feedback">
+          <Key>
+            <PropertyRef Name="pkId" />
+          </Key>
+          <Property Name="pkId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Amenities">
+          <Key>
+            <PropertyRef Name="Amenity" />
+          </Key>
+          <Property Name="AmenityId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amenity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BigImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BigImageHoverPath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ImageHoverPath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Availability">
+          <Key>
+            <PropertyRef Name="Availability" />
+          </Key>
+          <Property Name="AvailabilityId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Availability" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Bedroom">
+          <Key>
+            <PropertyRef Name="bedroomId" />
+          </Key>
+          <Property Name="bedroomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bedroomrestrictionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="StateID" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Facing">
+          <Key>
+            <PropertyRef Name="Facing" />
+          </Key>
+          <Property Name="FacingId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Facing" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Furnished">
+          <Key>
+            <PropertyRef Name="Furnished" />
+          </Key>
+          <Property Name="FurnishedId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Furnished" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Messages">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Name="MessageId" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MessageFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MessageType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_MinimumContract">
+          <Key>
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="contractId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contractName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Ownership">
+          <Key>
+            <PropertyRef Name="Ownership" />
+          </Key>
+          <Property Name="OwnershipId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ownership" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_PropertyType">
+          <Key>
+            <PropertyRef Name="PropertyTypeID" />
+          </Key>
+          <Property Name="PropertyTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Restriction">
+          <Key>
+            <PropertyRef Name="restrictionId" />
+          </Key>
+          <Property Name="restrictionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="restrictionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_State">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateID" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_SubCity">
+          <Key>
+            <PropertyRef Name="SubCity" />
+          </Key>
+          <Property Name="SubCity" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubCityId" Type="Int32" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_SubPropertyType">
+          <Key>
+            <PropertyRef Name="SubPropertyType" />
+          </Key>
+          <Property Name="SubPropertyTypeID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyTypeID" Type="Int32" Nullable="false" />
+          <Property Name="SubPropertyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Suitable">
+          <Key>
+            <PropertyRef Name="suitableId" />
+          </Key>
+          <Property Name="suitableId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="suitableName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Master_Transaction">
+          <Key>
+            <PropertyRef Name="Transaction" />
+          </Key>
+          <Property Name="TransactionId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Transaction" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Property">
+          <Key>
+            <PropertyRef Name="PropertyCode" />
+          </Key>
+          <Property Name="PropertyID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationID" Type="Guid" />
+          <Property Name="TransactionType" Type="Int32" Nullable="false" />
+          <Property Name="OwnershipType" Type="Int32" Nullable="false" />
+          <Property Name="SubPropertyType" Type="Int32" Nullable="false" />
+          <Property Name="PropertyCity" Type="Int32" Nullable="false" />
+          <Property Name="PropertyOtherCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Locality" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="Int32" Nullable="false" />
+          <Property Name="Measure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rent" Type="Int32" Nullable="false" />
+          <Property Name="SocietyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bedroom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Availability" Type="Int32" />
+          <Property Name="Bathroom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Balcony" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FloorInBuilding" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Furnished" Type="Int32" Nullable="false" />
+          <Property Name="Facing" Type="Int32" Nullable="false" />
+          <Property Name="Amenities" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShoppingMallDistance" Type="Int32" Nullable="false" />
+          <Property Name="HospitalDistance" Type="Int32" Nullable="false" />
+          <Property Name="SchoolDistance" Type="Int32" Nullable="false" />
+          <Property Name="ATMDistance" Type="Int32" Nullable="false" />
+          <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerCity" Type="Int32" Nullable="false" />
+          <Property Name="OwnerOtherCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AlternateNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Verified" Type="Boolean" Nullable="false" />
+          <Property Name="Rented" Type="Boolean" Nullable="false" />
+          <Property Name="HotProperty" Type="Boolean" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RegiesterdFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerState" Type="Int32" />
+          <Property Name="OwnerAddress2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerAddress3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerPinCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeSlot" Type="Int32" />
+          <Property Name="AnyOtherTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="slugUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocalityId" Type="Int32" />
+          <Property Name="suitable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="securityDeposit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="maintenanceCharge" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="restriction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="minimumContract" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="editPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyNumberSeries" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Property1">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="Guid" Nullable="false" />
+          <Property Name="PropertyNumberSeries" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PropertyCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationID" Type="Guid" />
+          <Property Name="TransactionType" Type="Int32" Nullable="false" />
+          <Property Name="OwnershipType" Type="Int32" Nullable="false" />
+          <Property Name="SubPropertyType" Type="Int32" Nullable="false" />
+          <Property Name="PropertyCity" Type="Int32" Nullable="false" />
+          <Property Name="PropertyOtherCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Locality" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="Int32" Nullable="false" />
+          <Property Name="Measure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rent" Type="Int32" Nullable="false" />
+          <Property Name="SocietyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bedroom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Availability" Type="Int32" />
+          <Property Name="Bathroom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Balcony" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FloorInBuilding" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Furnished" Type="Int32" Nullable="false" />
+          <Property Name="Facing" Type="Int32" Nullable="false" />
+          <Property Name="Amenities" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShoppingMallDistance" Type="Int32" Nullable="false" />
+          <Property Name="HospitalDistance" Type="Int32" Nullable="false" />
+          <Property Name="SchoolDistance" Type="Int32" Nullable="false" />
+          <Property Name="ATMDistance" Type="Int32" Nullable="false" />
+          <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerCity" Type="Int32" Nullable="false" />
+          <Property Name="OwnerOtherCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AlternateNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Verified" Type="Boolean" Nullable="false" />
+          <Property Name="Rented" Type="Boolean" Nullable="false" />
+          <Property Name="HotProperty" Type="Boolean" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RegiesterdFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerState" Type="Int32" />
+          <Property Name="OwnerAddress2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerAddress3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerPinCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeSlot" Type="Int32" />
+          <Property Name="AnyOtherTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="slugUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocalityId" Type="Int32" />
+          <Property Name="suitable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="securityDeposit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="maintenanceCharge" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="restriction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="minimumContract" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_PropertyReview">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationID" Type="Guid" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Review" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HomePage" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="OwnershipType" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ReviewFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReviewForValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingLocation1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingLocation2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingLocation3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingLocation4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingLocation5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingLocation6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingSociety1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingSociety2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingSociety3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingSociety4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingSociety5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingSociety6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RatingSociety7" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Approved" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Registration">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="RegistrationID" Type="Guid" Nullable="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OwnershipType" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Alternate" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DealsIn" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SpecialiseIn" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PropertiesAt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblArea">
+          <Key>
+            <PropertyRef Name="pkAreaId" />
+          </Key>
+          <Property Name="pkAreaId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fkCity" Type="Int64" />
+          <Property Name="areaName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="Double" />
+          <Property Name="longitude" Type="Double" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDelete" Type="Boolean" />
+          <Property Name="modifiedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblAreas">
+          <Key>
+            <PropertyRef Name="pkAreaId" />
+          </Key>
+          <Property Name="pkAreaId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fkCity" Type="Int64" />
+          <Property Name="areaName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="latitude" Type="Double" />
+          <Property Name="longitude" Type="Double" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDelete" Type="Boolean" />
+          <Property Name="modifiedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblCities">
+          <Key>
+            <PropertyRef Name="pkCityId" />
+          </Key>
+          <Property Name="pkCityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fkStateId" Type="Int64" />
+          <Property Name="cityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" />
+          <Property Name="modifiedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="pkCityId" />
+          </Key>
+          <Property Name="pkCityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fkStateId" Type="Int64" />
+          <Property Name="cityName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDelete" Type="Boolean" />
+          <Property Name="modifiedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblCountries">
+          <Key>
+            <PropertyRef Name="pkCountryId" />
+          </Key>
+          <Property Name="pkCountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDelete" Type="Boolean" />
+          <Property Name="modifiedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <Property Name="shortName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="phoneCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblCountry">
+          <Key>
+            <PropertyRef Name="pkCountryId" />
+          </Key>
+          <Property Name="pkCountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countryName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDelete" Type="Boolean" />
+          <Property Name="modifiedBy" Type="Int64" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="pkStateId" />
+          </Key>
+          <Property Name="pkStateId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fkCountryId" Type="Int64" Nullable="false" />
+          <Property Name="stateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblStates">
+          <Key>
+            <PropertyRef Name="pkStateId" />
+          </Key>
+          <Property Name="pkStateId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fkCountryId" Type="Int64" Nullable="false" />
+          <Property Name="stateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+          <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_PostRequirment">
+          <Key>
+            <PropertyRef Name="PostRequirmentID" />
+            <PropertyRef Name="PropertyType" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="RequiredArea" />
+            <PropertyRef Name="TransactionType" />
+            <PropertyRef Name="MinimumPrice" />
+            <PropertyRef Name="maximumPrice" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Enabled" />
+          </Key>
+          <Property Name="PostRequirmentID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationID" Type="Guid" />
+          <Property Name="PropertyType" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="City" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CityOther" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Locality" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequiredArea" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TransactionType" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Amenities" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MinimumPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="maximumPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BHK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AgeConstruction" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ClientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientAddress2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientAddress3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientMobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientState" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ClientCity" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ClientCityOther" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientPinCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_QuickListing">
+          <Key>
+            <PropertyRef Name="ListingID" />
+            <PropertyRef Name="CreateDate" />
+            <PropertyRef Name="Enabled" />
+          </Key>
+          <Property Name="ListingID" Type="Guid" Nullable="false" />
+          <Property Name="RegistrationID" Type="Guid" />
+          <Property Name="ContactFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="tbl_ContactUs" EntityType="Self.tbl_ContactUs" />
+          <EntitySet Name="tbl_FavouriteProperty" EntityType="Self.tbl_FavouriteProperty" />
+          <EntitySet Name="tbl_Feedback" EntityType="Self.tbl_Feedback" />
+          <EntitySet Name="tbl_Master_Amenities" EntityType="Self.tbl_Master_Amenities" />
+          <EntitySet Name="tbl_Master_Availability" EntityType="Self.tbl_Master_Availability" />
+          <EntitySet Name="tbl_Master_Bedroom" EntityType="Self.tbl_Master_Bedroom" />
+          <EntitySet Name="tbl_Master_City" EntityType="Self.tbl_Master_City" />
+          <EntitySet Name="tbl_Master_Country" EntityType="Self.tbl_Master_Country" />
+          <EntitySet Name="tbl_Master_Facing" EntityType="Self.tbl_Master_Facing" />
+          <EntitySet Name="tbl_Master_Furnished" EntityType="Self.tbl_Master_Furnished" />
+          <EntitySet Name="tbl_Master_Messages" EntityType="Self.tbl_Master_Messages" />
+          <EntitySet Name="tbl_Master_MinimumContract" EntityType="Self.tbl_Master_MinimumContract" />
+          <EntitySet Name="tbl_Master_Ownership" EntityType="Self.tbl_Master_Ownership" />
+          <EntitySet Name="tbl_Master_PropertyType" EntityType="Self.tbl_Master_PropertyType" />
+          <EntitySet Name="tbl_Master_Restriction" EntityType="Self.tbl_Master_Restriction" />
+          <EntitySet Name="tbl_Master_State" EntityType="Self.tbl_Master_State" />
+          <EntitySet Name="tbl_Master_SubCity" EntityType="Self.tbl_Master_SubCity" />
+          <EntitySet Name="tbl_Master_SubPropertyType" EntityType="Self.tbl_Master_SubPropertyType" />
+          <EntitySet Name="tbl_Master_Suitable" EntityType="Self.tbl_Master_Suitable" />
+          <EntitySet Name="tbl_Master_Transaction" EntityType="Self.tbl_Master_Transaction" />
+          <EntitySet Name="tbl_Property" EntityType="Self.tbl_Property" />
+          <EntitySet Name="tbl_Property1" EntityType="Self.tbl_Property1" />
+          <EntitySet Name="tbl_PropertyReview" EntityType="Self.tbl_PropertyReview" />
+          <EntitySet Name="tbl_Registration" EntityType="Self.tbl_Registration" />
+          <EntitySet Name="tblArea" EntityType="Self.tblArea" />
+          <EntitySet Name="tblAreas" EntityType="Self.tblAreas" />
+          <EntitySet Name="tblCities" EntityType="Self.tblCities" />
+          <EntitySet Name="tblCity" EntityType="Self.tblCity" />
+          <EntitySet Name="tblCountries" EntityType="Self.tblCountries" />
+          <EntitySet Name="tblCountry" EntityType="Self.tblCountry" />
+          <EntitySet Name="tblState" EntityType="Self.tblState" />
+          <EntitySet Name="tblStates" EntityType="Self.tblStates" />
+          <EntitySet Name="tbl_PostRequirment" EntityType="Self.tbl_PostRequirment" />
+          <EntitySet Name="tbl_QuickListing" EntityType="Self.tbl_QuickListing" />
+          <FunctionImport Name="Split" IsComposable="true" ReturnType="Collection(homely_newModel.Split_Result)">
+            <Parameter Name="RowData" Mode="In" Type="String" />
+            <Parameter Name="SplitOn" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_AddFavouriteProperty" ReturnType="Collection(String)">
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="PropertyCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_AddProperty" ReturnType="Collection(String)">
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="TransactionType" Mode="In" Type="Int32" />
+            <Parameter Name="OwnershipType" Mode="In" Type="Int32" />
+            <Parameter Name="PropertyType" Mode="In" Type="Int32" />
+            <Parameter Name="PropertyCity" Mode="In" Type="Int32" />
+            <Parameter Name="Locality" Mode="In" Type="String" />
+            <Parameter Name="Area" Mode="In" Type="Int32" />
+            <Parameter Name="Measure" Mode="In" Type="String" />
+            <Parameter Name="Rent" Mode="In" Type="Int32" />
+            <Parameter Name="SocietyName" Mode="In" Type="String" />
+            <Parameter Name="Bedroom" Mode="In" Type="Int32" />
+            <Parameter Name="Floor" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Bathroom" Mode="In" Type="Int32" />
+            <Parameter Name="Balcony" Mode="In" Type="Int32" />
+            <Parameter Name="FloorInBuilding" Mode="In" Type="String" />
+            <Parameter Name="Furnished" Mode="In" Type="Int32" />
+            <Parameter Name="Facing" Mode="In" Type="Int32" />
+            <Parameter Name="Amenities" Mode="In" Type="String" />
+            <Parameter Name="ShoppingMallDistance" Mode="In" Type="Int32" />
+            <Parameter Name="HospitalDistance" Mode="In" Type="Int32" />
+            <Parameter Name="SchoolDistance" Mode="In" Type="Int32" />
+            <Parameter Name="ATMDistance" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="MemberCity" Mode="In" Type="Int32" />
+            <Parameter Name="MemberAddress" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="AlternateNumber" Mode="In" Type="String" />
+            <Parameter Name="MemberEmailID" Mode="In" Type="String" />
+            <Parameter Name="Availability" Mode="In" Type="Int32" />
+            <Parameter Name="PropertyOtherCity" Mode="In" Type="String" />
+            <Parameter Name="OwnerOtherCity" Mode="In" Type="String" />
+            <Parameter Name="MemberState" Mode="In" Type="Int32" />
+            <Parameter Name="MemberAddress2" Mode="In" Type="String" />
+            <Parameter Name="MemberAddress3" Mode="In" Type="String" />
+            <Parameter Name="MemberPinCode" Mode="In" Type="String" />
+            <Parameter Name="TimeSlot" Mode="In" Type="Int32" />
+            <Parameter Name="slugUrl" Mode="In" Type="String" />
+            <Parameter Name="LocalityID" Mode="In" Type="Int32" />
+            <Parameter Name="suitable" Mode="In" Type="String" />
+            <Parameter Name="securityDeposit" Mode="In" Type="String" />
+            <Parameter Name="maintenaneCharge" Mode="In" Type="String" />
+            <Parameter Name="minimumContract" Mode="In" Type="Int32" />
+            <Parameter Name="restriction" Mode="In" Type="Int32" />
+            <Parameter Name="pwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_AddPropertyReview" ReturnType="Collection(String)">
+            <Parameter Name="OwnershipType" Mode="In" Type="Decimal" />
+            <Parameter Name="ReviewFor" Mode="In" Type="String" />
+            <Parameter Name="ReviewForValue" Mode="In" Type="String" />
+            <Parameter Name="Review" Mode="In" Type="String" />
+            <Parameter Name="RatingLocation1" Mode="In" Type="String" />
+            <Parameter Name="RatingLocation2" Mode="In" Type="String" />
+            <Parameter Name="RatingLocation3" Mode="In" Type="String" />
+            <Parameter Name="RatingLocation4" Mode="In" Type="String" />
+            <Parameter Name="RatingLocation5" Mode="In" Type="String" />
+            <Parameter Name="RatingLocation6" Mode="In" Type="String" />
+            <Parameter Name="RatingSociety1" Mode="In" Type="String" />
+            <Parameter Name="RatingSociety2" Mode="In" Type="String" />
+            <Parameter Name="RatingSociety3" Mode="In" Type="String" />
+            <Parameter Name="RatingSociety4" Mode="In" Type="String" />
+            <Parameter Name="RatingSociety5" Mode="In" Type="String" />
+            <Parameter Name="RatingSociety6" Mode="In" Type="String" />
+            <Parameter Name="RatingSociety7" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_Agent" ReturnType="Collection(String)">
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="Int32" />
+            <Parameter Name="OwnershipType" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="Alternate" Mode="In" Type="String" />
+            <Parameter Name="CompanyName" Mode="In" Type="String" />
+            <Parameter Name="CompanyAddress" Mode="In" Type="String" />
+            <Parameter Name="PropertyType" Mode="In" Type="String" />
+            <Parameter Name="DealsIn" Mode="In" Type="String" />
+            <Parameter Name="SpecialiseIn" Mode="In" Type="String" />
+            <Parameter Name="Image" Mode="In" Type="String" />
+            <Parameter Name="For" Mode="In" Type="String" />
+            <Parameter Name="RegistrationID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_Builder" ReturnType="Collection(String)">
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="Int32" />
+            <Parameter Name="OwnershipType" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="Alternate" Mode="In" Type="String" />
+            <Parameter Name="CompanyName" Mode="In" Type="String" />
+            <Parameter Name="CompanyAddress" Mode="In" Type="String" />
+            <Parameter Name="PropertyType" Mode="In" Type="String" />
+            <Parameter Name="PropertiesAt" Mode="In" Type="String" />
+            <Parameter Name="Image" Mode="In" Type="String" />
+            <Parameter Name="For" Mode="In" Type="String" />
+            <Parameter Name="RegistrationID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_ChangePassword" ReturnType="Collection(String)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="OldPwd" Mode="In" Type="String" />
+            <Parameter Name="NewPwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_City_State" ReturnType="Collection(homely_newModel.PROC_City_State_Result)">
+            <Parameter Name="StateId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_ContacUs">
+            <Parameter Name="EmailID" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="QueryType" Mode="In" Type="String" />
+            <Parameter Name="Query" Mode="In" Type="String" />
+            <Parameter Name="QueryFrom" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_DealersDetial">
+            <Parameter Name="StateId" Mode="In" Type="Decimal" />
+            <Parameter Name="CityId" Mode="In" Type="Decimal" />
+            <Parameter Name="Location" Mode="In" Type="String" />
+            <Parameter Name="PropertyType" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_FavouriteProperty" ReturnType="Collection(homely_newModel.PROC_FavouriteProperty_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_ForgotPassword" ReturnType="Collection(homely_newModel.PROC_ForgotPassword_Result)">
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_GetAmenForDetailPage" ReturnType="Collection(homely_newModel.PROC_GetAmenForDetailPage_Result)">
+            <Parameter Name="PropertyCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_HomePage" ReturnType="Collection(homely_newModel.PROC_HomePage_Result)" />
+          <FunctionImport Name="PROC_HomePageGzbListing" ReturnType="Collection(homely_newModel.PROC_HomePageGzbListing_Result)">
+            <Parameter Name="city" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_Login" ReturnType="Collection(homely_newModel.PROC_Login_Result)">
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_MasterData" ReturnType="Collection(homely_newModel.PROC_MasterData_Result)" />
+          <FunctionImport Name="PROC_MasterData_Review" ReturnType="Collection(homely_newModel.PROC_MasterData_Review_Result)" />
+          <FunctionImport Name="PROC_MemberDetails" ReturnType="Collection(homely_newModel.PROC_MemberDetails_Result)">
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_Owner" ReturnType="Collection(String)">
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="Int32" />
+            <Parameter Name="OwnershipType" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="Alternate" Mode="In" Type="String" />
+            <Parameter Name="For" Mode="In" Type="String" />
+            <Parameter Name="RegistrationID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_PostRequirment">
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="PropertyType" Mode="In" Type="Decimal" />
+            <Parameter Name="City" Mode="In" Type="Decimal" />
+            <Parameter Name="OtherCity" Mode="In" Type="String" />
+            <Parameter Name="Locality" Mode="In" Type="String" />
+            <Parameter Name="RequiredArea" Mode="In" Type="Decimal" />
+            <Parameter Name="Amenities" Mode="In" Type="String" />
+            <Parameter Name="TransactionType" Mode="In" Type="Decimal" />
+            <Parameter Name="MinimumPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="MaximumPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="BHK" Mode="In" Type="String" />
+            <Parameter Name="AgeConstruction" Mode="In" Type="Decimal" />
+            <Parameter Name="ClientName" Mode="In" Type="String" />
+            <Parameter Name="ClientMobile" Mode="In" Type="String" />
+            <Parameter Name="ClientEmail" Mode="In" Type="String" />
+            <Parameter Name="ClientState" Mode="In" Type="Decimal" />
+            <Parameter Name="ClientCity" Mode="In" Type="Decimal" />
+            <Parameter Name="ClientOtherCity" Mode="In" Type="String" />
+            <Parameter Name="ClientAddress" Mode="In" Type="String" />
+            <Parameter Name="ClientAddress2" Mode="In" Type="String" />
+            <Parameter Name="ClientAddress3" Mode="In" Type="String" />
+            <Parameter Name="ClientPinCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_PropCounting" ReturnType="Collection(homely_newModel.PROC_PropCounting_Result)" />
+          <FunctionImport Name="PROC_Property_City">
+            <Parameter Name="City" Mode="In" Type="Int32" />
+            <Parameter Name="For" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_Property_City_New">
+            <Parameter Name="City" Mode="In" Type="Int32" />
+            <Parameter Name="For" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_PropertyComparison" ReturnType="Collection(homely_newModel.PROC_PropertyComparison_Result)">
+            <Parameter Name="PropertyCode1" Mode="In" Type="String" />
+            <Parameter Name="PropertyCode2" Mode="In" Type="String" />
+            <Parameter Name="PropertyCode3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_PropertyDetails" ReturnType="Collection(homely_newModel.PROC_PropertyDetails_Result)">
+            <Parameter Name="PropertyCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_QuickListing">
+            <Parameter Name="EmailID" Mode="In" Type="String" />
+            <Parameter Name="ContactingFor" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_Review" ReturnType="Collection(homely_newModel.PROC_Review_Result)" />
+          <FunctionImport Name="PROC_Search1" ReturnType="Collection(homely_newModel.PROC_Search1_Result)" />
+          <FunctionImport Name="PROC_SearchProperty">
+            <Parameter Name="CityId" Mode="In" Type="Decimal" />
+            <Parameter Name="LocalityId" Mode="In" Type="String" />
+            <Parameter Name="Locality" Mode="In" Type="String" />
+            <Parameter Name="PropertyType" Mode="In" Type="Decimal" />
+            <Parameter Name="MinPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="MaxPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="PropertyCode" Mode="In" Type="String" />
+            <Parameter Name="Amenities" Mode="In" Type="String" />
+            <Parameter Name="Avaliability" Mode="In" Type="Decimal" />
+            <Parameter Name="Ownership" Mode="In" Type="Decimal" />
+            <Parameter Name="Furnishing" Mode="In" Type="Decimal" />
+            <Parameter Name="Bedroom" Mode="In" Type="Decimal" />
+            <Parameter Name="MinimumContract" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_Tenant" ReturnType="Collection(String)">
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="Int32" />
+            <Parameter Name="OwnershipType" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="Alternate" Mode="In" Type="String" />
+            <Parameter Name="CompanyAddress" Mode="In" Type="String" />
+            <Parameter Name="PermanentAddress" Mode="In" Type="String" />
+            <Parameter Name="For" Mode="In" Type="String" />
+            <Parameter Name="RegistrationID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_Testimonials" ReturnType="Collection(homely_newModel.PROC_Testimonials_Result)" />
+          <FunctionImport Name="PROC_UpdateProperty">
+            <Parameter Name="PropCode" Mode="In" Type="String" />
+            <Parameter Name="TransactionType" Mode="In" Type="Int32" />
+            <Parameter Name="OwnershipType" Mode="In" Type="Int32" />
+            <Parameter Name="PropertyType" Mode="In" Type="Int32" />
+            <Parameter Name="PropertyCity" Mode="In" Type="Int32" />
+            <Parameter Name="Locality" Mode="In" Type="String" />
+            <Parameter Name="Area" Mode="In" Type="Int32" />
+            <Parameter Name="Measure" Mode="In" Type="String" />
+            <Parameter Name="Rent" Mode="In" Type="Int32" />
+            <Parameter Name="SocietyName" Mode="In" Type="String" />
+            <Parameter Name="Bedroom" Mode="In" Type="Int32" />
+            <Parameter Name="Floor" Mode="In" Type="Int32" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="Bathroom" Mode="In" Type="Int32" />
+            <Parameter Name="Balcony" Mode="In" Type="Int32" />
+            <Parameter Name="FloorInBuilding" Mode="In" Type="String" />
+            <Parameter Name="Furnished" Mode="In" Type="Int32" />
+            <Parameter Name="Facing" Mode="In" Type="Int32" />
+            <Parameter Name="Amenities" Mode="In" Type="String" />
+            <Parameter Name="ShoppingMallDistance" Mode="In" Type="Int32" />
+            <Parameter Name="HospitalDistance" Mode="In" Type="Int32" />
+            <Parameter Name="SchoolDistance" Mode="In" Type="Int32" />
+            <Parameter Name="ATMDistance" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="MemberCity" Mode="In" Type="Int32" />
+            <Parameter Name="MemberAddress" Mode="In" Type="String" />
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="AlternateNumber" Mode="In" Type="String" />
+            <Parameter Name="MemberEmailID" Mode="In" Type="String" />
+            <Parameter Name="Availability" Mode="In" Type="Int32" />
+            <Parameter Name="PropertyOtherCity" Mode="In" Type="String" />
+            <Parameter Name="OwnerOtherCity" Mode="In" Type="String" />
+            <Parameter Name="MemberState" Mode="In" Type="Int32" />
+            <Parameter Name="MemberAddress2" Mode="In" Type="String" />
+            <Parameter Name="MemberAddress3" Mode="In" Type="String" />
+            <Parameter Name="MemberPinCode" Mode="In" Type="String" />
+            <Parameter Name="TimeSlot" Mode="In" Type="Int32" />
+            <Parameter Name="slugUrl" Mode="In" Type="String" />
+            <Parameter Name="LocalityID" Mode="In" Type="Int32" />
+            <Parameter Name="suitable" Mode="In" Type="String" />
+            <Parameter Name="securityDeposit" Mode="In" Type="String" />
+            <Parameter Name="maintenaneCharge" Mode="In" Type="String" />
+            <Parameter Name="minimumContract" Mode="In" Type="Int32" />
+            <Parameter Name="restriction" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_HotProperties" ReturnType="Collection(homely_newModel.usp_HotProperties_Result)" />
+        </EntityContainer>
+        <ComplexType Name="PROC_City_State_Result">
+          <Property Type="Int32" Name="SubCityId" Nullable="false" />
+          <Property Type="String" Name="SubCity" Nullable="false" MaxLength="128" />
+        </ComplexType>
+        <ComplexType Name="PROC_FavouriteProperty_Result">
+          <Property Type="String" Name="Locality" Nullable="true" />
+          <Property Type="String" Name="SocietyName" Nullable="true" />
+          <Property Type="Int32" Name="Rent" Nullable="false" />
+          <Property Type="Int32" Name="Area" Nullable="false" />
+          <Property Type="String" Name="Bathroom" Nullable="true" />
+          <Property Type="String" Name="Bedroom" Nullable="true" />
+          <Property Type="String" Name="PropertyCode" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="TransactionType" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="PROC_ForgotPassword_Result">
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="PROC_GetAmenForDetailPage_Result">
+          <Property Type="Decimal" Name="AmenityId" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="ImageHoverPath" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Amenity" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="BigImagePath" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BigImageHoverPath" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="PROC_HomePage_Result">
+          <Property Type="Int32" Name="FreshListing" Nullable="true" />
+          <Property Type="Int32" Name="LatestListing" Nullable="true" />
+          <Property Type="Int32" Name="DelhiPropertyCount" Nullable="true" />
+          <Property Type="Int32" Name="GZBPropertyCount" Nullable="true" />
+          <Property Type="Int32" Name="GGNPropertyCount" Nullable="true" />
+          <Property Type="Int32" Name="NoidaPropertyCount" Nullable="true" />
+          <Property Type="Int32" Name="MumbaiPropertyCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PROC_HomePageGzbListing_Result">
+          <Property Type="String" Name="Url" Nullable="true" />
+          <Property Type="String" Name="Locality" Nullable="true" />
+          <Property Type="String" Name="SocietyName" Nullable="true" />
+          <Property Type="Int32" Name="Rent" Nullable="false" />
+          <Property Type="String" Name="Area" Nullable="true" />
+          <Property Type="String" Name="Bathroom" Nullable="true" />
+          <Property Type="String" Name="Bedroom" Nullable="true" />
+          <Property Type="String" Name="PropertyCode" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="TransactionType" Nullable="false" />
+          <Property Type="String" Name="areaName" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="PROC_Login_Result">
+          <Property Type="String" Name="Alternate" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="PROC_MasterData_Result">
+          <Property Type="Decimal" Name="TransactionId" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Transaction" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="PROC_MasterData_Review_Result">
+          <Property Type="Decimal" Name="OwnershipId" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Ownership" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="PROC_MemberDetails_Result">
+          <Property Type="Guid" Name="RegistrationID" Nullable="false" />
+          <Property Type="Decimal" Name="OwnershipType" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="City" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Alternate" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Image" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CompanyAddress" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DealsIn" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PropertyType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SpecialiseIn" Nullable="true" />
+          <Property Type="String" Name="PermanentAddress" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PropertiesAt" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PROC_PropCounting_Result">
+          <Property Type="Int32" Name="FreshListing" Nullable="true" />
+          <Property Type="Int32" Name="LatestListing" Nullable="true" />
+          <Property Type="Int32" Name="DelhiPropertyCount" Nullable="true" />
+          <Property Type="Int32" Name="GZBPropertyCount" Nullable="true" />
+          <Property Type="Int32" Name="GGNPropertyCount" Nullable="true" />
+          <Property Type="Int32" Name="NoidaPropertyCount" Nullable="true" />
+          <Property Type="Int32" Name="MumbaiPropertyCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PROC_PropertyComparison_Result">
+          <Property Type="String" Name="PropertyCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Transaction" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Ownership" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="SubPropertyType" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SubCity" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Locality" Nullable="true" />
+          <Property Type="String" Name="Area" Nullable="true" MaxLength="26" />
+          <Property Type="String" Name="SocietyName" Nullable="true" />
+          <Property Type="Int32" Name="Rent" Nullable="false" />
+          <Property Type="String" Name="Bedroom" Nullable="true" />
+          <Property Type="String" Name="Bathroom" Nullable="true" />
+          <Property Type="String" Name="Balcony" Nullable="true" />
+          <Property Type="String" Name="Floor" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="FloorInBuilding" Nullable="true" />
+          <Property Type="String" Name="Furnished" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Facing" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="PROC_PropertyDetails_Result">
+          <Property Type="String" Name="Locality" Nullable="true" />
+          <Property Type="String" Name="SocietyName" Nullable="true" />
+          <Property Type="Int32" Name="Rent" Nullable="false" />
+          <Property Type="String" Name="Area" Nullable="true" />
+          <Property Type="String" Name="Bathroom" Nullable="true" />
+          <Property Type="String" Name="Bedroom" Nullable="true" />
+          <Property Type="String" Name="Balcony" Nullable="true" />
+          <Property Type="String" Name="FloorInBuilding" Nullable="true" />
+          <Property Type="String" Name="Furnished" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Availability" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Facing" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="SubPropertyType" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Mobile" Nullable="true" />
+          <Property Type="String" Name="EmailID" Nullable="true" />
+          <Property Type="String" Name="Ownership" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="OwnerName" Nullable="true" />
+          <Property Type="String" Name="contractName" Nullable="true" />
+          <Property Type="String" Name="Maintenance" Nullable="true" />
+          <Property Type="String" Name="Security" Nullable="true" />
+          <Property Type="String" Name="Floor" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="PROC_Review_Result">
+          <Property Type="String" Name="Review" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="false" MaxLength="22" />
+        </ComplexType>
+        <ComplexType Name="PROC_Search1_Result">
+          <Property Type="String" Name="PropertyCode" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Rent" Nullable="false" />
+          <Property Type="String" Name="Bedroom" Nullable="true" />
+          <Property Type="String" Name="Bathroom" Nullable="true" />
+          <Property Type="Int32" Name="Area" Nullable="false" />
+          <Property Type="String" Name="Locality" Nullable="true" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="PROC_Testimonials_Result">
+          <Property Type="String" Name="Review" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_HotProperties_Result">
+          <Property Type="String" Name="Locality" Nullable="true" />
+          <Property Type="String" Name="SocietyName" Nullable="true" />
+          <Property Type="Int32" Name="Rent" Nullable="false" />
+          <Property Type="String" Name="Area" Nullable="true" />
+          <Property Type="String" Name="Bathroom" Nullable="true" />
+          <Property Type="String" Name="Bedroom" Nullable="true" />
+          <Property Type="String" Name="PropertyCode" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="homely_newModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="homely_newModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ContactUs">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_ContactUs">
+              <MappingFragment StoreEntitySet="tbl_ContactUs">
+                <ScalarProperty Name="ContactUsID" ColumnName="ContactUsID" />
+                <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="QueryFrom" ColumnName="QueryFrom" />
+                <ScalarProperty Name="QueryType" ColumnName="QueryType" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_FavouriteProperty">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_FavouriteProperty">
+              <MappingFragment StoreEntitySet="tbl_FavouriteProperty">
+                <ScalarProperty Name="FavoriteId" ColumnName="FavoriteId" />
+                <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+                <ScalarProperty Name="PropertyCode" ColumnName="PropertyCode" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Feedback">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Feedback">
+              <MappingFragment StoreEntitySet="tbl_Feedback">
+                <ScalarProperty Name="pkId" ColumnName="pkId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="feedback" ColumnName="feedback" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Amenities">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Amenities">
+              <MappingFragment StoreEntitySet="tbl_Master_Amenities">
+                <ScalarProperty Name="AmenityId" ColumnName="AmenityId" />
+                <ScalarProperty Name="Amenity" ColumnName="Amenity" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="BigImagePath" ColumnName="BigImagePath" />
+                <ScalarProperty Name="BigImageHoverPath" ColumnName="BigImageHoverPath" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ImageHoverPath" ColumnName="ImageHoverPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Availability">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Availability">
+              <MappingFragment StoreEntitySet="tbl_Master_Availability">
+                <ScalarProperty Name="AvailabilityId" ColumnName="AvailabilityId" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Bedroom">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Bedroom">
+              <MappingFragment StoreEntitySet="tbl_Master_Bedroom">
+                <ScalarProperty Name="bedroomId" ColumnName="bedroomId" />
+                <ScalarProperty Name="bedroomrestrictionName" ColumnName="bedroomrestrictionName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_City">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_City">
+              <MappingFragment StoreEntitySet="tbl_Master_City">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Country">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Country">
+              <MappingFragment StoreEntitySet="tbl_Master_Country">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Facing">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Facing">
+              <MappingFragment StoreEntitySet="tbl_Master_Facing">
+                <ScalarProperty Name="FacingId" ColumnName="FacingId" />
+                <ScalarProperty Name="Facing" ColumnName="Facing" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Furnished">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Furnished">
+              <MappingFragment StoreEntitySet="tbl_Master_Furnished">
+                <ScalarProperty Name="FurnishedId" ColumnName="FurnishedId" />
+                <ScalarProperty Name="Furnished" ColumnName="Furnished" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Messages">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Messages">
+              <MappingFragment StoreEntitySet="tbl_Master_Messages">
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="MessageFor" ColumnName="MessageFor" />
+                <ScalarProperty Name="MessageType" ColumnName="MessageType" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_MinimumContract">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_MinimumContract">
+              <MappingFragment StoreEntitySet="tbl_Master_MinimumContract">
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+                <ScalarProperty Name="contractName" ColumnName="contractName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Ownership">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Ownership">
+              <MappingFragment StoreEntitySet="tbl_Master_Ownership">
+                <ScalarProperty Name="OwnershipId" ColumnName="OwnershipId" />
+                <ScalarProperty Name="Ownership" ColumnName="Ownership" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_PropertyType">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_PropertyType">
+              <MappingFragment StoreEntitySet="tbl_Master_PropertyType">
+                <ScalarProperty Name="PropertyTypeID" ColumnName="PropertyTypeID" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Restriction">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Restriction">
+              <MappingFragment StoreEntitySet="tbl_Master_Restriction">
+                <ScalarProperty Name="restrictionId" ColumnName="restrictionId" />
+                <ScalarProperty Name="restrictionName" ColumnName="restrictionName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_State">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_State">
+              <MappingFragment StoreEntitySet="tbl_Master_State">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_SubCity">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_SubCity">
+              <MappingFragment StoreEntitySet="tbl_Master_SubCity">
+                <ScalarProperty Name="SubCity" ColumnName="SubCity" />
+                <ScalarProperty Name="SubCityId" ColumnName="SubCityId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_SubPropertyType">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_SubPropertyType">
+              <MappingFragment StoreEntitySet="tbl_Master_SubPropertyType">
+                <ScalarProperty Name="SubPropertyTypeID" ColumnName="SubPropertyTypeID" />
+                <ScalarProperty Name="PropertyTypeID" ColumnName="PropertyTypeID" />
+                <ScalarProperty Name="SubPropertyType" ColumnName="SubPropertyType" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Suitable">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Suitable">
+              <MappingFragment StoreEntitySet="tbl_Master_Suitable">
+                <ScalarProperty Name="suitableId" ColumnName="suitableId" />
+                <ScalarProperty Name="suitableName" ColumnName="suitableName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Master_Transaction">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Master_Transaction">
+              <MappingFragment StoreEntitySet="tbl_Master_Transaction">
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="Transaction" ColumnName="Transaction" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Property">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Property">
+              <MappingFragment StoreEntitySet="tbl_Property">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="OwnershipType" ColumnName="OwnershipType" />
+                <ScalarProperty Name="SubPropertyType" ColumnName="SubPropertyType" />
+                <ScalarProperty Name="PropertyCity" ColumnName="PropertyCity" />
+                <ScalarProperty Name="PropertyOtherCity" ColumnName="PropertyOtherCity" />
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Measure" ColumnName="Measure" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="Balcony" ColumnName="Balcony" />
+                <ScalarProperty Name="FloorInBuilding" ColumnName="FloorInBuilding" />
+                <ScalarProperty Name="Furnished" ColumnName="Furnished" />
+                <ScalarProperty Name="Facing" ColumnName="Facing" />
+                <ScalarProperty Name="Amenities" ColumnName="Amenities" />
+                <ScalarProperty Name="ShoppingMallDistance" ColumnName="ShoppingMallDistance" />
+                <ScalarProperty Name="HospitalDistance" ColumnName="HospitalDistance" />
+                <ScalarProperty Name="SchoolDistance" ColumnName="SchoolDistance" />
+                <ScalarProperty Name="ATMDistance" ColumnName="ATMDistance" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="OwnerCity" ColumnName="OwnerCity" />
+                <ScalarProperty Name="OwnerOtherCity" ColumnName="OwnerOtherCity" />
+                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="AlternateNumber" ColumnName="AlternateNumber" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Verified" ColumnName="Verified" />
+                <ScalarProperty Name="Rented" ColumnName="Rented" />
+                <ScalarProperty Name="HotProperty" ColumnName="HotProperty" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="RegiesterdFrom" ColumnName="RegiesterdFrom" />
+                <ScalarProperty Name="OwnerState" ColumnName="OwnerState" />
+                <ScalarProperty Name="OwnerAddress2" ColumnName="OwnerAddress2" />
+                <ScalarProperty Name="OwnerAddress3" ColumnName="OwnerAddress3" />
+                <ScalarProperty Name="OwnerPinCode" ColumnName="OwnerPinCode" />
+                <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+                <ScalarProperty Name="AnyOtherTime" ColumnName="AnyOtherTime" />
+                <ScalarProperty Name="slugUrl" ColumnName="slugUrl" />
+                <ScalarProperty Name="LocalityId" ColumnName="LocalityId" />
+                <ScalarProperty Name="suitable" ColumnName="suitable" />
+                <ScalarProperty Name="securityDeposit" ColumnName="securityDeposit" />
+                <ScalarProperty Name="maintenanceCharge" ColumnName="maintenanceCharge" />
+                <ScalarProperty Name="restriction" ColumnName="restriction" />
+                <ScalarProperty Name="minimumContract" ColumnName="minimumContract" />
+                <ScalarProperty Name="editPassword" ColumnName="editPassword" />
+                <ScalarProperty Name="PropertyNumberSeries" ColumnName="PropertyNumberSeries" />
+                <ScalarProperty Name="PropertyCode" ColumnName="PropertyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Property1">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Property1">
+              <MappingFragment StoreEntitySet="tbl_Property1">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="PropertyNumberSeries" ColumnName="PropertyNumberSeries" />
+                <ScalarProperty Name="PropertyCode" ColumnName="PropertyCode" />
+                <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="OwnershipType" ColumnName="OwnershipType" />
+                <ScalarProperty Name="SubPropertyType" ColumnName="SubPropertyType" />
+                <ScalarProperty Name="PropertyCity" ColumnName="PropertyCity" />
+                <ScalarProperty Name="PropertyOtherCity" ColumnName="PropertyOtherCity" />
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Measure" ColumnName="Measure" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="Balcony" ColumnName="Balcony" />
+                <ScalarProperty Name="FloorInBuilding" ColumnName="FloorInBuilding" />
+                <ScalarProperty Name="Furnished" ColumnName="Furnished" />
+                <ScalarProperty Name="Facing" ColumnName="Facing" />
+                <ScalarProperty Name="Amenities" ColumnName="Amenities" />
+                <ScalarProperty Name="ShoppingMallDistance" ColumnName="ShoppingMallDistance" />
+                <ScalarProperty Name="HospitalDistance" ColumnName="HospitalDistance" />
+                <ScalarProperty Name="SchoolDistance" ColumnName="SchoolDistance" />
+                <ScalarProperty Name="ATMDistance" ColumnName="ATMDistance" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="OwnerCity" ColumnName="OwnerCity" />
+                <ScalarProperty Name="OwnerOtherCity" ColumnName="OwnerOtherCity" />
+                <ScalarProperty Name="OwnerAddress" ColumnName="OwnerAddress" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="AlternateNumber" ColumnName="AlternateNumber" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Verified" ColumnName="Verified" />
+                <ScalarProperty Name="Rented" ColumnName="Rented" />
+                <ScalarProperty Name="HotProperty" ColumnName="HotProperty" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="RegiesterdFrom" ColumnName="RegiesterdFrom" />
+                <ScalarProperty Name="OwnerState" ColumnName="OwnerState" />
+                <ScalarProperty Name="OwnerAddress2" ColumnName="OwnerAddress2" />
+                <ScalarProperty Name="OwnerAddress3" ColumnName="OwnerAddress3" />
+                <ScalarProperty Name="OwnerPinCode" ColumnName="OwnerPinCode" />
+                <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+                <ScalarProperty Name="AnyOtherTime" ColumnName="AnyOtherTime" />
+                <ScalarProperty Name="slugUrl" ColumnName="slugUrl" />
+                <ScalarProperty Name="LocalityId" ColumnName="LocalityId" />
+                <ScalarProperty Name="suitable" ColumnName="suitable" />
+                <ScalarProperty Name="securityDeposit" ColumnName="securityDeposit" />
+                <ScalarProperty Name="maintenanceCharge" ColumnName="maintenanceCharge" />
+                <ScalarProperty Name="restriction" ColumnName="restriction" />
+                <ScalarProperty Name="minimumContract" ColumnName="minimumContract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_PropertyReview">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_PropertyReview">
+              <MappingFragment StoreEntitySet="tbl_PropertyReview">
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+                <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="HomePage" ColumnName="HomePage" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="OwnershipType" ColumnName="OwnershipType" />
+                <ScalarProperty Name="ReviewFor" ColumnName="ReviewFor" />
+                <ScalarProperty Name="ReviewForValue" ColumnName="ReviewForValue" />
+                <ScalarProperty Name="RatingLocation1" ColumnName="RatingLocation1" />
+                <ScalarProperty Name="RatingLocation2" ColumnName="RatingLocation2" />
+                <ScalarProperty Name="RatingLocation3" ColumnName="RatingLocation3" />
+                <ScalarProperty Name="RatingLocation4" ColumnName="RatingLocation4" />
+                <ScalarProperty Name="RatingLocation5" ColumnName="RatingLocation5" />
+                <ScalarProperty Name="RatingLocation6" ColumnName="RatingLocation6" />
+                <ScalarProperty Name="RatingSociety1" ColumnName="RatingSociety1" />
+                <ScalarProperty Name="RatingSociety2" ColumnName="RatingSociety2" />
+                <ScalarProperty Name="RatingSociety3" ColumnName="RatingSociety3" />
+                <ScalarProperty Name="RatingSociety4" ColumnName="RatingSociety4" />
+                <ScalarProperty Name="RatingSociety5" ColumnName="RatingSociety5" />
+                <ScalarProperty Name="RatingSociety6" ColumnName="RatingSociety6" />
+                <ScalarProperty Name="RatingSociety7" ColumnName="RatingSociety7" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Registration">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_Registration">
+              <MappingFragment StoreEntitySet="tbl_Registration">
+                <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="OwnershipType" ColumnName="OwnershipType" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Alternate" ColumnName="Alternate" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+                <ScalarProperty Name="DealsIn" ColumnName="DealsIn" />
+                <ScalarProperty Name="SpecialiseIn" ColumnName="SpecialiseIn" />
+                <ScalarProperty Name="PropertiesAt" ColumnName="PropertiesAt" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblArea">
+            <EntityTypeMapping TypeName="homely_newModel.tblArea">
+              <MappingFragment StoreEntitySet="tblArea">
+                <ScalarProperty Name="pkAreaId" ColumnName="pkAreaId" />
+                <ScalarProperty Name="fkCity" ColumnName="fkCity" />
+                <ScalarProperty Name="areaName" ColumnName="areaName" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAreas">
+            <EntityTypeMapping TypeName="homely_newModel.tblAreas">
+              <MappingFragment StoreEntitySet="tblAreas">
+                <ScalarProperty Name="pkAreaId" ColumnName="pkAreaId" />
+                <ScalarProperty Name="fkCity" ColumnName="fkCity" />
+                <ScalarProperty Name="areaName" ColumnName="areaName" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCities">
+            <EntityTypeMapping TypeName="homely_newModel.tblCities">
+              <MappingFragment StoreEntitySet="tblCities">
+                <ScalarProperty Name="pkCityId" ColumnName="pkCityId" />
+                <ScalarProperty Name="fkStateId" ColumnName="fkStateId" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCity">
+            <EntityTypeMapping TypeName="homely_newModel.tblCity">
+              <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="pkCityId" ColumnName="pkCityId" />
+                <ScalarProperty Name="fkStateId" ColumnName="fkStateId" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCountries">
+            <EntityTypeMapping TypeName="homely_newModel.tblCountries">
+              <MappingFragment StoreEntitySet="tblCountries">
+                <ScalarProperty Name="pkCountryId" ColumnName="pkCountryId" />
+                <ScalarProperty Name="countryName" ColumnName="countryName" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="shortName" ColumnName="shortName" />
+                <ScalarProperty Name="phoneCode" ColumnName="phoneCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCountry">
+            <EntityTypeMapping TypeName="homely_newModel.tblCountry">
+              <MappingFragment StoreEntitySet="tblCountry">
+                <ScalarProperty Name="pkCountryId" ColumnName="pkCountryId" />
+                <ScalarProperty Name="countryName" ColumnName="countryName" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblState">
+            <EntityTypeMapping TypeName="homely_newModel.tblState">
+              <MappingFragment StoreEntitySet="tblState">
+                <ScalarProperty Name="pkStateId" ColumnName="pkStateId" />
+                <ScalarProperty Name="fkCountryId" ColumnName="fkCountryId" />
+                <ScalarProperty Name="stateName" ColumnName="stateName" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStates">
+            <EntityTypeMapping TypeName="homely_newModel.tblStates">
+              <MappingFragment StoreEntitySet="tblStates">
+                <ScalarProperty Name="pkStateId" ColumnName="pkStateId" />
+                <ScalarProperty Name="fkCountryId" ColumnName="fkCountryId" />
+                <ScalarProperty Name="stateName" ColumnName="stateName" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_PostRequirment">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_PostRequirment">
+              <MappingFragment StoreEntitySet="tbl_PostRequirment">
+                <ScalarProperty Name="PostRequirmentID" ColumnName="PostRequirmentID" />
+                <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CityOther" ColumnName="CityOther" />
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="RequiredArea" ColumnName="RequiredArea" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="Amenities" ColumnName="Amenities" />
+                <ScalarProperty Name="MinimumPrice" ColumnName="MinimumPrice" />
+                <ScalarProperty Name="maximumPrice" ColumnName="maximumPrice" />
+                <ScalarProperty Name="BHK" ColumnName="BHK" />
+                <ScalarProperty Name="AgeConstruction" ColumnName="AgeConstruction" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
+                <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
+                <ScalarProperty Name="ClientAddress2" ColumnName="ClientAddress2" />
+                <ScalarProperty Name="ClientAddress3" ColumnName="ClientAddress3" />
+                <ScalarProperty Name="ClientMobile" ColumnName="ClientMobile" />
+                <ScalarProperty Name="ClientState" ColumnName="ClientState" />
+                <ScalarProperty Name="ClientCity" ColumnName="ClientCity" />
+                <ScalarProperty Name="ClientCityOther" ColumnName="ClientCityOther" />
+                <ScalarProperty Name="ClientPinCode" ColumnName="ClientPinCode" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_QuickListing">
+            <EntityTypeMapping TypeName="homely_newModel.tbl_QuickListing">
+              <MappingFragment StoreEntitySet="tbl_QuickListing">
+                <ScalarProperty Name="ListingID" ColumnName="ListingID" />
+                <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
+                <ScalarProperty Name="ContactFor" ColumnName="ContactFor" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="homely_newModel.Store.Split" FunctionImportName="Split">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.Split_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_AddFavouriteProperty" FunctionName="homely_newModel.Store.PROC_AddFavouriteProperty" />
+          <FunctionImportMapping FunctionImportName="PROC_AddProperty" FunctionName="homely_newModel.Store.PROC_AddProperty" />
+          <FunctionImportMapping FunctionImportName="PROC_AddPropertyReview" FunctionName="homely_newModel.Store.PROC_AddPropertyReview" />
+          <FunctionImportMapping FunctionImportName="PROC_Agent" FunctionName="homely_newModel.Store.PROC_Agent" />
+          <FunctionImportMapping FunctionImportName="PROC_Builder" FunctionName="homely_newModel.Store.PROC_Builder" />
+          <FunctionImportMapping FunctionImportName="PROC_ChangePassword" FunctionName="homely_newModel.Store.PROC_ChangePassword" />
+          <FunctionImportMapping FunctionImportName="PROC_City_State" FunctionName="homely_newModel.Store.PROC_City_State">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_City_State_Result">
+                <ScalarProperty Name="SubCityId" ColumnName="SubCityId" />
+                <ScalarProperty Name="SubCity" ColumnName="SubCity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_ContacUs" FunctionName="homely_newModel.Store.PROC_ContacUs" />
+          <FunctionImportMapping FunctionImportName="PROC_DealersDetial" FunctionName="homely_newModel.Store.PROC_DealersDetial" />
+          <FunctionImportMapping FunctionImportName="PROC_FavouriteProperty" FunctionName="homely_newModel.Store.PROC_FavouriteProperty">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_FavouriteProperty_Result">
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
+                <ScalarProperty Name="PropertyCode" ColumnName="PropertyCode" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_ForgotPassword" FunctionName="homely_newModel.Store.PROC_ForgotPassword">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_ForgotPassword_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_GetAmenForDetailPage" FunctionName="homely_newModel.Store.PROC_GetAmenForDetailPage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_GetAmenForDetailPage_Result">
+                <ScalarProperty Name="AmenityId" ColumnName="AmenityId" />
+                <ScalarProperty Name="ImageHoverPath" ColumnName="ImageHoverPath" />
+                <ScalarProperty Name="Amenity" ColumnName="Amenity" />
+                <ScalarProperty Name="BigImagePath" ColumnName="BigImagePath" />
+                <ScalarProperty Name="BigImageHoverPath" ColumnName="BigImageHoverPath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_HomePage" FunctionName="homely_newModel.Store.PROC_HomePage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_HomePage_Result">
+                <ScalarProperty Name="FreshListing" ColumnName="FreshListing" />
+                <ScalarProperty Name="LatestListing" ColumnName="LatestListing" />
+                <ScalarProperty Name="DelhiPropertyCount" ColumnName="DelhiPropertyCount" />
+                <ScalarProperty Name="GZBPropertyCount" ColumnName="GZBPropertyCount" />
+                <ScalarProperty Name="GGNPropertyCount" ColumnName="GGNPropertyCount" />
+                <ScalarProperty Name="NoidaPropertyCount" ColumnName="NoidaPropertyCount" />
+                <ScalarProperty Name="MumbaiPropertyCount" ColumnName="MumbaiPropertyCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_HomePageGzbListing" FunctionName="homely_newModel.Store.PROC_HomePageGzbListing">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_HomePageGzbListing_Result">
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
+                <ScalarProperty Name="PropertyCode" ColumnName="PropertyCode" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="areaName" ColumnName="areaName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_Login" FunctionName="homely_newModel.Store.PROC_Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_Login_Result">
+                <ScalarProperty Name="Alternate" ColumnName="Alternate" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_MasterData" FunctionName="homely_newModel.Store.PROC_MasterData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_MasterData_Result">
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="Transaction" ColumnName="Transaction" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_MasterData_Review" FunctionName="homely_newModel.Store.PROC_MasterData_Review">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_MasterData_Review_Result">
+                <ScalarProperty Name="OwnershipId" ColumnName="OwnershipId" />
+                <ScalarProperty Name="Ownership" ColumnName="Ownership" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_MemberDetails" FunctionName="homely_newModel.Store.PROC_MemberDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_MemberDetails_Result">
+                <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
+                <ScalarProperty Name="OwnershipType" ColumnName="OwnershipType" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Alternate" ColumnName="Alternate" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="DealsIn" ColumnName="DealsIn" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+                <ScalarProperty Name="SpecialiseIn" ColumnName="SpecialiseIn" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="PropertiesAt" ColumnName="PropertiesAt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_Owner" FunctionName="homely_newModel.Store.PROC_Owner" />
+          <FunctionImportMapping FunctionImportName="PROC_PostRequirment" FunctionName="homely_newModel.Store.PROC_PostRequirment" />
+          <FunctionImportMapping FunctionImportName="PROC_PropCounting" FunctionName="homely_newModel.Store.PROC_PropCounting">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_PropCounting_Result">
+                <ScalarProperty Name="FreshListing" ColumnName="FreshListing" />
+                <ScalarProperty Name="LatestListing" ColumnName="LatestListing" />
+                <ScalarProperty Name="DelhiPropertyCount" ColumnName="DelhiPropertyCount" />
+                <ScalarProperty Name="GZBPropertyCount" ColumnName="GZBPropertyCount" />
+                <ScalarProperty Name="GGNPropertyCount" ColumnName="GGNPropertyCount" />
+                <ScalarProperty Name="NoidaPropertyCount" ColumnName="NoidaPropertyCount" />
+                <ScalarProperty Name="MumbaiPropertyCount" ColumnName="MumbaiPropertyCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_Property_City" FunctionName="homely_newModel.Store.PROC_Property_City" />
+          <FunctionImportMapping FunctionImportName="PROC_Property_City_New" FunctionName="homely_newModel.Store.PROC_Property_City_New" />
+          <FunctionImportMapping FunctionImportName="PROC_PropertyComparison" FunctionName="homely_newModel.Store.PROC_PropertyComparison">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_PropertyComparison_Result">
+                <ScalarProperty Name="PropertyCode" ColumnName="PropertyCode" />
+                <ScalarProperty Name="Transaction" ColumnName="Transaction" />
+                <ScalarProperty Name="Ownership" ColumnName="Ownership" />
+                <ScalarProperty Name="SubPropertyType" ColumnName="SubPropertyType" />
+                <ScalarProperty Name="SubCity" ColumnName="SubCity" />
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="Balcony" ColumnName="Balcony" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FloorInBuilding" ColumnName="FloorInBuilding" />
+                <ScalarProperty Name="Furnished" ColumnName="Furnished" />
+                <ScalarProperty Name="Facing" ColumnName="Facing" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_PropertyDetails" FunctionName="homely_newModel.Store.PROC_PropertyDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_PropertyDetails_Result">
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
+                <ScalarProperty Name="Balcony" ColumnName="Balcony" />
+                <ScalarProperty Name="FloorInBuilding" ColumnName="FloorInBuilding" />
+                <ScalarProperty Name="Furnished" ColumnName="Furnished" />
+                <ScalarProperty Name="Availability" ColumnName="Availability" />
+                <ScalarProperty Name="Facing" ColumnName="Facing" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SubPropertyType" ColumnName="SubPropertyType" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Ownership" ColumnName="Ownership" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="contractName" ColumnName="contractName" />
+                <ScalarProperty Name="Maintenance" ColumnName="Maintenance" />
+                <ScalarProperty Name="Security" ColumnName="Security" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_QuickListing" FunctionName="homely_newModel.Store.PROC_QuickListing" />
+          <FunctionImportMapping FunctionImportName="PROC_Review" FunctionName="homely_newModel.Store.PROC_Review">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_Review_Result">
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_Search1" FunctionName="homely_newModel.Store.PROC_Search1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_Search1_Result">
+                <ScalarProperty Name="PropertyCode" ColumnName="PropertyCode" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_SearchProperty" FunctionName="homely_newModel.Store.PROC_SearchProperty" />
+          <FunctionImportMapping FunctionImportName="PROC_Tenant" FunctionName="homely_newModel.Store.PROC_Tenant" />
+          <FunctionImportMapping FunctionImportName="PROC_Testimonials" FunctionName="homely_newModel.Store.PROC_Testimonials">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.PROC_Testimonials_Result">
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PROC_UpdateProperty" FunctionName="homely_newModel.Store.PROC_UpdateProperty" />
+          <FunctionImportMapping FunctionImportName="usp_HotProperties" FunctionName="homely_newModel.Store.usp_HotProperties">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="homely_newModel.usp_HotProperties_Result">
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="SocietyName" ColumnName="SocietyName" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
+                <ScalarProperty Name="PropertyCode" ColumnName="PropertyCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

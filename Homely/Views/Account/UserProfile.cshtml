@@ -1,0 +1,139 @@
+﻿@model Homely.Common.Model.ProfileViewModel
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    $(function() {
+        $(".userprofile-selected").on("click", function() {
+            var tabClicked = $(this).attr("tab-id");
+            $(".userprofile-selected").removeClass("active");
+            $(this).addClass("active");
+            $(".tabs_container").hide();
+            $("#tab_" + tabClicked).show();
+        })
+    });
+</script>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="userprofile-selected active" tab-id="1">
+                    <ul class="yourprofile-box">
+                        <li><img src="~/images/profile-icon.png" class="img-responsive" alt=""></li>
+                        <li>
+                            <h1><a href="javascript:void(0)">YOUR PROFILE</a></h1>
+                        </li>
+                    </ul>
+                </div>
+                <div class="userprofile-selected" tab-id="2">
+                    <ul class="yourprofile-box">
+                        <li><img src="~/images/changepassword.png" class="img-responsive" alt=""></li>
+                        <li>
+                            <h1><a href="javascript:void(0)">CHANGE PASSWORD</a></h1>
+                        </li>
+                    </ul>
+                </div>
+                <div class="userprofile-selected" tab-id="3">
+                    <ul class="yourprofile-box">
+                        <li><img src="~/images/favorite.png" class="img-responsive" alt=""></li>
+                        <li>
+                            <h1><a href="javascript:void(0)">YOUR FAVORITE</a></h1>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div id="tab_1" class="tabs_container" style="display:block;">
+                    <div class="main-login-wraper">
+                        <div class="main-cont-form">
+                            <form>
+                                <div class="form-line-login">
+                                    <label class="content-user-name">Name</label>
+                                    
+                                    @Html.TextBoxFor(x=>x.Name,Model.Name, new { @class= "text-user-name" })
+                                </div>
+                                <div class="form-line-login2">
+                                    <label class="content-user-name">Email</label>
+                                    @Html.TextBoxFor(x => x.Email, Model.Email, new { @class = "text-user-name" })
+                                   
+                                </div>
+                               
+                                <div class="form-line-login2">
+                                    <ul class="contact-number-name">
+                                        <li class="first-col">&nbsp;</li>
+                                        <li class="second-col">Country Code &amp; Mobile</li>
+                                        
+                                    </ul>
+                                    <label class="content-user-cont-number">Contact Number</label>
+                                    <input type="text" name="" id="" class="text-user-cont-no">
+                                    <input type="text" name="" id="" class="text-user-cont-no2">
+                                    <input type="text" name="" id="" class="text-user-cont-no text-user-cont-no-res">
+                                    <input type="text" name="" id="" class="text-user-cont-no2 text-user-cont-no2-res">
+                                </div>
+                                <div class="form-line-login2">
+                                    <label class="content-user-name">&nbsp;</label>
+                                    <input type="button" name="" id="" class="text-submit-btn" value="Submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab_2" class="tabs_container">
+                    <div class="main-login-wraper">
+                        <div class="main-cont-form">
+                            <form>
+                                <div class="form-line-login2">
+                                    <label class="content-user-name-ch">OLD PASSWORD</label>
+                                    <input type="text" name="" id="" class="text-user-name-ch">
+                                    @Html.TextBoxFor(model=>model.oldPassword, new { @class="text-user-name-ch"})
+                                </div>
+                                <div class="form-line-login2">
+                                    <label class="content-user-name-ch">NEW PASSWORD</label>
+
+                                    <input type="text" name="" id="" class="text-user-name-ch">
+                                    @Html.TextBoxFor(x=>x.newPassword, new { @class = "text-user-name-ch" })
+                                </div>
+                              
+                                <div class="form-line-login">
+                                    <label class="content-user-name">&nbsp;</label>
+                                    <input type="button" name="" id="" class="text-submit-btn" value="Submit Now">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab_3" class="tabs_container">
+                    <div class="main-login-wraper">
+                        <div class="main-box-fav">
+                            <div class="main-content-box-favrate">
+                                <div class="row1">
+                                    <div class="col-md-3">
+                                        <div class="img-section-fav">
+                                            <img src="images/detials-img-big.jpg" class="img-responsive" alt="">
+                                            <h3>Crossings Republik, Ghaziabad, Uttar Pradesh, India </h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="inr-detail-fav">
+                                            <i class="fa fa-inr"></i> 20000
+                                            <span>27 Jan 2016</span>
+                                        </div>
+                                        <ul class="des-detail-fav">
+                                            <li class="homeid"><span>Id</span> HOME100255</li>
+                                            <li class="wed-room">3 Bed Room</li>
+                                            <li class="wath-room">3 Bathroom </li>
+                                            <li class="area-det">1500 SQ.FT</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

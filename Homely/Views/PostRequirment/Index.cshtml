@@ -1,0 +1,324 @@
+﻿@model Homely.Common.Model.PostRequirmentViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="left-side-heading">POST YOUR REQUIRMENT</h1>
+                <p class="post-req-content">SUBMIT YOUR REQUIREMENTS TO RENT OR RESELL A PROPERTY IN INDIA BY ENTERING THE DETAILS BELOW. WE WILL SEND YOU PROPERTIES MATCHING YOUR REQUIREMENT VIA E-MAIL AND SMS. KINDLY, PROVIDE AS MUCH DETAILS AS POSSIBLE TO GET BEST CUSTOMIZED RESULTS. ALSO, DO REGISTER TO AVAIL MORE SERVICES AND SAVE REQUIREMENTS.</p>
+            </div>
+        </div>
+       
+            @using (Html.BeginForm("Index", "PostRequirment",FormMethod.Post))
+            {
+                @Html.HiddenFor(x=>x.minValue, new { value=5000})
+                @Html.HiddenFor(x => x.maxValue, new { value = 30000 })
+
+            <div class="row">
+                <div class="col-md-6 padd-right">
+                    <div class="main-content-list">
+                        <div class="col-md-12 col-md-margin">
+                            <div class="form-group-cont-main">
+                                <label class="content-name">REQUIRE RENTAL PROPERTY</label>
+                                <input type="radio" class="redio-btn"> RENT
+                            </div>
+                            <div class="form-group-cont-main2">
+                                <label class="content-name">PROPERTY TYPE</label>
+                                @Html.DropDownListFor(x => x.SubPropertyType, Model.SubPropertyTypeList, new { @class = "select-fild" })
+                            </div>
+
+                            <div class="form-group-cont-main">
+                                <label class="content-name">STATE</label>
+                                <select class="select-fild new margin_left_form" id="State" name="State" required>
+                                    <option value>Select state</option>
+                                    <option value="1">Andhra Pradesh</option>
+                                    <option value="2">Arunachal Pradesh</option>
+                                    <option value="3">Assam</option>
+                                    <option value="4">Bihar</option>
+                                    <option value="5">Chhattisgarh</option>
+                                    <option value="6">Goa</option>
+                                    <option value="7">Gujarat</option>
+                                    <option value="8">Haryana</option>
+                                    <option value="9">Himachal Pradesh</option>
+                                    <option value="10">Jammu and Kashmir</option>
+                                    <option value="11">Jharkhand</option>
+                                    <option value="12">Karnataka</option>
+                                    <option value="13">Kerala</option>
+                                    <option value="14">Madhya Pradesh</option>
+                                    <option value="15">Maharashtra</option>
+                                    <option value="16">Manipur</option>
+                                    <option value="17">Meghalaya</option>
+                                    <option value="18">Mizoram</option>
+                                    <option value="19">Nagaland</option>
+                                    <option value="20">Odisha(Orissa)</option>
+                                    <option value="21">Punjab</option>
+                                    <option value="22">Rajasthan</option>
+                                    <option value="23">Sikkim</option>
+                                    <option value="24">Tamil Nadu</option>
+                                    <option value="25">Tripura</option>
+                                    <option value="26">Uttar Pradesh</option>
+                                    <option value="27">Uttarakhand</option>
+                                    <option value="28">West Bengal</option>
+                                    <option value="30">Delhi</option>
+                                    <option value="32">Telangana</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-cont-main2">
+                                <label class="content-name">CITY</label>
+                                <select class="select-fild" id="City" name="City" required>
+                                    <option value="">Select city</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-cont-main">
+                                <label class="content-name">LOCALITY</label>
+                                <select name="Locality" id="Locality" class="select-fild new margin_left_form" required>
+                                    <option value="">Select locality</option>
+                                </select>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 padd-left con_sec_right_container">
+                    <div class="main-content-list">
+                        <div class="col-md-12 col-md-margin">
+                            <div class="form-group-cont-main">
+                              @*<label class="content-name">I WANT TO</label>
+                                <input type="radio" class="redio-btn"> RENT*@
+                            </div>
+                            <div class="form-group-cont-main">
+                                @*<label class="content-name">I WANT TO</label>
+                                <input type="radio" class="redio-btn"> RENT*@
+                            </div>
+                            <div class="form-group-cont-main2">
+                                <label class="content-name">BUDGET</label>
+                                <select name="Budget" id="Budget" class="select-fild">
+                                    <option value="5000-7000">5000-7000</option>
+                                    <option value="7000-10000">7000-10000</option>
+                                    <option value="10000-12000">10000-12000</option>
+                                    <option value="12000-15000">12000-15000</option>
+                                    <option value="15000-20000">15000-20000</option>
+                                    <option value="25000-30000">25000-30000</option>
+                                    <option value="30000-35000">30000-35000</option>
+                                    <option value="35000-40000">35000-40000</option>
+                                    <option value="40000-45000">40000-45000</option>
+                                    <option value="45000-50000">45000-50000</option>
+                                    <option value="50000-55000">50000-55000</option>
+                                    <option value="55000-60000">55000-60000</option>
+                                    <option value="60000-65000">60000-65000</option>
+                                    <option value="65000-70000">65000-70000</option>
+                                    <option value="70000-75000">70000-75000</option>
+                                    <option value="75000-80000">75000-80000</option>
+                                    <option value="80000-85000">80000-85000</option>
+                                    <option value="85000-90000">85000-90000</option>
+                                    <option value="90000-95000">90000-95000</option>
+                                    <option value="95000-100000">95000-100000</option>
+                                    <option value="100000-200000">Above 1 Lac</option>
+                                </select>
+                              
+                            </div>
+                            <div class="form-group-cont-main">
+                                <label class="content-name">BHK</label>
+                                @Html.DropDownListFor(x => x.Bedroom, Model.BedroomList, new { @class = "select-fild" })
+                                @*@for (int i = 0; i < Model.chbox.Count; i++)
+                                {
+                                    @Html.CheckBoxFor(m => m.chbox[i].isSelect, new { @class = "redio-btn" })
+                                    <span>@Model.chbox[i].name</span>
+                                    @Html.HiddenFor(m => m.chbox[i].val)
+                                }*@
+                            </div>
+                            
+                            <div class="form-group-cont-main2">
+                                <label class="content-name">LOCATION</label>
+                                @Html.TextBoxFor(x => x.location, new { @class = "text-fild" })
+                            </div>
+                            <div class="form-group-cont-main">
+                                <label class="content-name">MINIMUM AREA</label>
+                                @Html.TextBoxFor(x => x.minArea, new { @class = "text-fild2" })SQ.FT
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-content-list">
+                        <div class="form-group-cont-main2">
+                            <label class="content-name"><strong>AMENITIES</strong></label>
+                            <div class="within">
+                                <ul>
+                                    @for (int i = 0; i < Model.amenities.Count; i++)
+                                    {
+                                        <li>
+                                            @Html.CheckBoxFor(m => m.amenities[i].isSelected)
+                                            @Html.HiddenFor(m => m.amenities[i].AmenityId)
+                                            <img src="@Url.Content("~/" + Model.amenities[i].ImagePath)" class="aminities-icon-post" id="small_@i" />
+                                            <img src="@Url.Content("~/" + Model.amenities[i].ImageHoverPath)" class="aminities-icon-post" id="big_@i" style="display:none" />
+                                            <span style="text-transform: uppercase">@Model.amenities[i].Amenity</span>
+                                        </li>
+                                    }
+                                </ul>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="left-side-heading">PLEASE SUBMIT YOUR INFORMATION</h1>
+            <div class="row">
+                <div class="col-md-6 padd-right">
+                    <div class="main-content-list">
+                        <div class="col-md-12 col-md-margin">
+                            <div class="form-group-cont-main">
+                                <label class="content-name">NAME</label>
+                                @Html.TextBoxFor(x => x.ownerName, new { @class = "text-fild3", @required = "required" })
+                                @Html.ValidationMessageFor(x => x.ownerName)
+                            </div>
+                            <div class="form-group-cont-main2">
+                                <label class="content-name">EMAIL</label>
+                                @Html.TextBoxFor(x => x.clientEmail, new { @class = "text-fild", @required = "required", @type="email" })
+                                @Html.ValidationMessageFor(x=>x.clientEmail)
+                            </div>
+                            <div class="form-group-cont-main">
+                                <label class="content-name">MOBILE NO.</label>
+                                <input type="text" name="" class="text-fild5" value="+91">
+                                @Html.TextBoxFor(x => x.mobile, new { @class = "text-fild4", @required = "required", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" ,@maxlength="10"})
+                                @Html.ValidationMessageFor(x => x.mobile)
+                            </div>
+                            <div class="form-group-cont-main2">
+                                <label class="content-name">STATE</label>
+                                @Html.DropDownListFor(x=>x.OwnerState, Model.OwnerStateList, new { @class = "select-fild" })
+                               
+                            </div>
+                            <div class="form-group-cont-main">
+                                <label class="content-name">CITY</label>
+                                @Html.DropDownListFor(x=>x.OwnerCity, Enumerable.Empty<SelectListItem>(), "Please select", new { @class = "select-fild" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 padd-left">
+                    <div class="main-content-list">
+                        <div class="form-group-cont-main">
+                            <label class="content-name">ADDRESS 1</label>
+                            @Html.TextBoxFor(x => x.address1, new { @class = "text-fild3", @required = "required"})
+                         
+                        </div>
+                        <div class="form-group-cont-main2">
+                            <label class="content-name">ADDRESS 2</label>
+                            @Html.TextBoxFor(x => x.address2, new { @class = "text-fild" })
+                           
+                        </div>
+                        <div class="form-group-cont-main">
+                            <label class="content-name">ADDRESS 3</label>
+                            @Html.TextBoxFor(x => x.address3, new { @class = "text-fild3" })
+                        </div>
+                        <div class="form-group-cont-main2">
+                            <label class="content-name">PINCODE</label>
+                            @Html.TextBoxFor(x => x.pincode, new { @class = "text-fild" })
+                          
+                        </div>
+                        <div class="form-group-cont-main">
+                            <label class="content-name">&nbsp;</label>
+                            <input type="submit" name="SUBMIT" value="SUBMIT" class="btn-sbm2"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+      
+    </div>
+</section>
+
+<script src="~/Scripts/Global/globalFile.js"></script>
+<script>
+    $(function () {
+        $('.within input[type="checkbox"]').click(function () {
+            var s = $(this);
+            var current = parseInt(s.attr('id').split('_')[1]);
+            if ($(this).prop('checked') == true) {
+                $('#small_' + current).hide();
+                $('#big_' + current).show();
+            }
+            else {
+                $('#small_' + current).show();
+                $('#big_' + current).hide();
+            }
+        });
+
+    });
+
+    $('#State').on('change', function () {
+
+        $.ajax({
+            url: getCity + "/" + $("#State").val(),
+            type: "GET",
+            success: function (data) {
+                if (data.length > 0) {
+
+                    $("#City").find('option').remove();
+                    $("#City").append('<option value="' + '' + '">' + 'Please select' + '</option>');
+                    $("#Locality").find('option').remove();
+                    $("#Locality").append('<option value="' + '' + '">' + 'Please select' + '</option>');
+                    for (i = 0; i < data.length; i++) {
+                        $("#City").append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                    }
+
+                }
+                else {
+                    $("#City").find('option').remove();
+                    $("#City").append('<option value="' + -1 + '">' + 'Other' + '</option>');
+                }
+            }
+        });
+    });
+
+    $('#City').on('change', function () {
+        $.ajax({
+            url: getLocality + "/" + $("#City").val(),
+            type: "GET",
+            success: function (data) {
+                if (data.length > 0) {
+                    $("#Locality").find('option').remove();
+                    $("#Locality").append('<option value="' + '' + '">' + 'Please select' + '</option>');
+                    for (i = 0; i < data.length; i++) {
+                        $("#Locality").append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                    }
+                }
+                else {
+                    $("#Locality").find('option').remove();
+                    $("#Locality").append('<option value="' + -1 + '">' + 'Other' + '</option>');
+                }
+            }
+        });
+    })
+
+    $('#OwnerState').on('change', function () {
+        $.ajax({
+            url: getCity + "/" + $("#OwnerState").val(),
+            type: "GET",
+            success: function (data) {
+                if (data.length > 0) {
+                    $("#OwnerCity").find('option').remove();
+                    $("#OwnerCity").append('<option value="' + '' + '">' + 'Please select' + '</option>');
+                    for (i = 0; i < data.length; i++) {
+                        $("#OwnerCity").append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                    }
+                }
+                else {
+                    $("#OwnerCity").find('option').remove();
+                    $("#OwnerCity").append('<option value="' + -1 + '">' + 'Other' + '</option>');
+                }
+            }
+        });
+    });
+
+</script>

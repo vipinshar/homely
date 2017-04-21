@@ -1,0 +1,698 @@
+﻿@model Homely.Common.Model.PropertyViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .field-validation-error {
+        border-color: #ffd800;
+    }
+</style>
+<script>
+    $(function () {
+
+        var dialog1 = $("#dialog1");
+        var checkbox1 = $("#checkbox1");
+
+        dialog1.dialog({
+            autoOpen: false,
+            modal: true,
+            buttons: {
+                Save: function () {
+                    $(this).dialog("close");
+                }
+            },
+            title: "Help",
+            close: function () {
+                checkbox1.prop('checked', false);
+            }
+
+        });
+
+        checkbox1.click(function () {
+            if (checkbox1.prop("checked")) {
+                dialog1.dialog("open");
+            }
+        });
+
+    });
+
+    ;
+
+    var getCity = "@Url.Action("GetCityByState", "Property")";
+    var getLocality = "@Url.Action("GetLocalityByCity", "Property")";
+</script>
+
+@if (!Request.Browser.IsMobileDevice)
+{
+
+
+    <section>
+        <div class="container">
+            @using (Html.BeginForm("Post", "Property", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="hidden" name="propId" value="@Model.propId" />
+                <input type="hidden" name="PropCode" value="@Model.PropCode" />
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="left-side-heading">LIST PROPERTY</h1>
+                        <div class="main-content-list">
+                            @if (TempData["error"] != null)
+                            {
+                                <div class="alert_red_center"><strong>@TempData["error"].ToString()</strong></div>
+                            }
+                            @*<div class="alert_red_center"><strong>ghjhjgjgjhg</strong></div>*@
+
+                            <div class="col-md-4 col-md-margin">
+                                <h4>PROPERTY INFORMATION</h4>
+                                <div class="form-group-cont-main2" style="padding-left:5px;">
+                                    WANT A  HELP
+                                    @*<span class="green_blank_box">asd</span>*@
+                                    <input type="checkbox" id="checkbox1">
+                                    <div id="dialog1">
+                                        <div class="col-md-12">
+                                            <div class="form-area">
+                                                <form role="form">
+                                                    <!-- <br style="clear:both">-->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="names" name="namess" placeholder="Name" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="emailss" name="emailss" placeholder="Email" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="mobile" name="mobiless" placeholder="Mobile Number" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="subject" name="subjectss" placeholder="Query Type" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control text-massage-box" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <button type="button" id="submit" name="submitss" class="btn-sbm pull-right">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-cont-main">
+                                    @{int first = 0;}
+                                    <label class="content-name">TRANSACTION</label>
+                                    @foreach (var trans in Model.transactionList)
+                                    {
+                                        if (first == 0)
+                                        {
+                                            @Html.RadioButtonFor(model => model.TransactionType, trans.id, new { @class = "redio-btn", @checked = "checked" })
+                                        }
+                                        else
+                                        { @Html.RadioButtonFor(model => model.TransactionType, trans.id, new { @class = "redio-btn" })}
+                                        <span>@trans.name</span>
+                                        first = first + 1;
+                                    }
+
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    @{int firstOwner = 0;}
+                                    <label class="content-name">OWNERSHIP</label>
+                                    @foreach (var tra in Model.OwnershipTypeList)
+                                    {
+                                        if (firstOwner == 0)
+                                        { @Html.RadioButtonFor(model => model.OwnershipType, tra.id, new { @class = "redio-btn", @checked = "checked" })}
+                                        else
+                                        { @Html.RadioButtonFor(model => model.OwnershipType, tra.id, new { @class = "redio-btn" })}
+                                        <span>@tra.name</span>
+                                        firstOwner = firstOwner + 1;
+                                    }
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">PROPERTY</label>
+                                    @Html.DropDownListFor(model => model.SubPropertyType, Model.SubPropertyTypeList, "Please select", new { @class = "select-fild", @required = "required" })
+                                    @Html.ValidationMessageFor(x => x.SubPropertyType)
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">STATE</label>
+                                    @Html.DropDownListFor(x => x.PropertyState, Model.PropStateList, "Please select", new { @class = "select-fild", @required = "required" })
+                                    @Html.ValidationMessageFor(x => x.PropertyState)
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">CITY</label>
+                                    @*@Html.DropDownListFor(model => model.PropertyCity, new List<SelectListItem>
+                                        { new SelectListItem{Text="Please select", Value="0"}},
+                                        new { @class = "select-fild" })*@
+                                    @Html.DropDownListFor(model => model.PropertyCity, Model.PropertyCityList, new { @class = "select-fild", @required = "required" })
+                                    @Html.ValidationMessageFor(x => x.PropertyCity)
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">LOCALITY</label>
+                                    @*@Html.DropDownListFor(model => model.Locality, new List<SelectListItem>
+                                        { new SelectListItem{Text="Please select", Value="0"}},
+                                        new { @class = "select-fild" })*@
+                                    @Html.DropDownListFor(model => model.Locality, Model.LocalityList, new { @class = "select-fild", @required = "required" })
+                                    @Html.ValidationMessageFor(x => x.Locality)
+
+                                </div>
+
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">SOCIETY NAME</label>
+
+                                    @Html.TextBoxFor(x => x.SocietyName, new { @class = "text-fild3" })
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">ADDRESS</label>
+                                    @Html.TextBoxFor(x => x.Address, new { @class = "text-fild", @required = "required" })
+                                    @Html.ValidationMessageFor(x => x.Address)
+                                </div>
+
+
+
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">AREA</label>
+                                    @Html.TextBoxFor(x => x.Area, new { @class = "text-fild21", @required = "required", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
+                                    @Html.ValidationMessageFor(x => x.Area)
+                                    @Html.DropDownListFor(model => model.Measure, new List<SelectListItem>
+                               { new SelectListItem{Text="Sq.Ft", Value="Sq.Ft"},
+                                 new SelectListItem{Text="Sq.Me", Value="Sq.Me"}},new { @style= "border:solid 1px #c9c7c7;  padding:7px 5px;  box-shadow: 0 0 3px #c9c7c7; border-radius: 5px;" })
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">BEDROOMS</label>
+                                    @Html.DropDownListFor(x => x.Bedroom, Model.BedroomList, new { @class = "select-fild" })
+                                    @Html.ValidationMessageFor(x => x.Bedroom)
+
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">BATHROOMS</label>
+                                    @Html.DropDownListFor(x => x.Bathroom, Model.BathroomList, new { @class = "select-fild" })
+
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">FLOOR</label>
+
+                                    @Html.TextBoxFor(x => x.Floor, new { @class = "text-fild" })
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">TOTAL FLOORS</label>
+                                    @Html.DropDownListFor(x => x.FloorInBuilding, Model.FloorBuildingList, new { @class = "select-fild" })
+
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">BALCONY</label>
+                                    @Html.DropDownListFor(x => x.Balcony, Model.BalcontList, new { @class = "select-fild" })
+                                </div>
+
+
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">EXPECTED RENT</label>
+                                    @Html.TextBoxFor(x => x.Rent, new { @class = "text-fild", @required = "required", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
+                                    @Html.ValidationMessageFor(x => x.Rent)
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 col-md-margin">
+                                <h4>ADDITIONAL INFORMATION</h4>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">&nbsp;</label>
+                                </div>
+
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">FURNISHED</label>
+                                    @Html.DropDownListFor(x => x.Furnished, Model.FurnishedList, new { @class = "select-fild" })
+
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">FACING</label>
+                                    @Html.DropDownListFor(x => x.Facing, Model.FacingList, new { @class = "select-fild" })
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">AVAILABILITY</label>
+                                    @Html.DropDownListFor(x => x.Availability, Model.AvailList, new { @class = "select-fild" })
+
+                                </div>
+
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">SUITABLE FOR</label>
+                                    @*@Html.DropDownListFor(x => x.Availability, Model.AvailList, new { @class = "select-fild" })*@
+
+                                    @for (int i = 0; i < Model.suitableList.Count; i++)
+                                    {
+
+                                        @Html.CheckBoxFor(m => m.suitableList[i].isSelected, new { @class = "check_btn" })
+
+                                        <span>@Model.suitableList[i].SuitableName</span>
+                                        @Html.HiddenFor(m => m.suitableList[i].SuitableId)
+                                    }
+
+
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">SECURITY</label>
+                                    @Html.TextBoxFor(x => x.securityDeposit, new { @class = "text-fild3" })
+
+                                </div>
+
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">MAINTENANCE</label>
+                                    @Html.TextBoxFor(x => x.maintenaneCharge, new { @class = "text-fild" })
+
+                                </div>
+
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">CONTRACT</label>
+                                    @Html.DropDownListFor(x => x.minimumContract, Model.minimumContractList, new { @class = "select-fild" })
+
+                                </div>
+
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">RESTRICTION</label>
+                                    @Html.DropDownListFor(x => x.restriction, Model.restrictionList, new { @class = "select-fild" })
+
+                                </div>
+
+                                <div class="form-group-cont-main">
+                                    <label class="additional-feature"><strong>FEATURES</strong></label>
+                                </div>
+                                <div class="form-group-cont-main2 relative_position">
+                                    @*<label class="content-name line_height_normal vertical_center"><strong>WITHIN A VICINITY</strong></label>*@
+                                    <div class="within width_post_50">
+                                        <ul>
+                                            @for (int i = 0; i < Model.amenities.Count; i++)
+                                            {
+                                                <li>
+                                                    @Html.CheckBoxFor(m => m.amenities[i].isSelected)
+                                                    @Html.HiddenFor(m => m.amenities[i].AmenityId)
+                                                    <img src="@Url.Content("~/" + Model.amenities[i].ImagePath)" class="aminities-icon-post" id="small_@i" />
+                                                    <img src="@Url.Content("~/" + Model.amenities[i].ImageHoverPath)" class="aminities-icon-post" id="big_@i" style="display:none" />
+                                                    <span style="text-transform: uppercase">@Model.amenities[i].Amenity</span>
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-cont-main2 upload_pic_box">
+                                    <label class="content-name">UPLOAD IMAGE</label>
+                                    <input id="fileUpl" type="file" name="fileUploadProp" class="input-image-field" multiple accept="image/*">
+                                    <div class="clear"></div>
+                                    <div style="text-transform:uppercase;color:#006155">Please upload photos for getting 2 times better response.</div>
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">DESCRIPTION</label>
+                                    @Html.TextAreaFor(x => x.Description, new { @class = "textareafield textarea_full" })
+
+                                </div>
+
+                                @*<div class="form-group-cont-main">
+                                        <label class="content-name2"><strong>LANDMARKS</strong></label>
+                                        <div class="land-mark-div">
+                                            <ul>
+                                                <li>
+                                                    <label class="landmark">MALL (KM)</label>
+                                                    @Html.DropDownListFor(x => x.ShoppingMallDistance, Model.MallList, new { @class = "landmark-select-field" })
+
+                                                </li>
+                                                <li>
+                                                    <label class="landmark">SCHOOL (KM)</label>
+                                                    @Html.DropDownListFor(x => x.SchoolDistance, Model.MallList, new { @class = "landmark-select-field" })
+
+                                                </li>
+                                                <li>
+                                                    <label class="landmark">HOSPITAL (KM)</label>
+                                                    @Html.DropDownListFor(x => x.HospitalDistance, Model.MallList, new { @class = "landmark-select-field" })
+
+                                                </li>
+                                                <li>
+                                                    <label class="landmark">ATM (KM)</label>
+                                                    @Html.DropDownListFor(x => x.ATMDistance, Model.MallList, new { @class = "landmark-select-field" })
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>*@
+                            </div>
+                            <div class="col-md-4 col-md-margin col_3_list_prop">
+                                <h4>CONTACT DETAIL</h4>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">&nbsp;</label>
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">NAME</label>
+                                    @Html.TextBoxFor(x => x.OwnerName, new { @class = "text-fild3", @required = "required" })
+                                    @Html.ValidationMessageFor(x => x.OwnerName)
+
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">ADDRESS 1</label>
+                                    @Html.TextBoxFor(x => x.OwnerAddress, new { @class = "text-fild" })
+
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">ADDRESS 2</label>
+                                    @Html.TextBoxFor(x => x.OwnerAddress2, new { @class = "text-fild3" })
+
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">ADDRESS 3</label>
+                                    @Html.TextBoxFor(x => x.OwnerAddress3, new { @class = "text-fild" })
+
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">COUNTRY</label>
+
+                                    <select name="OwnerCountry" id="" class="select-fild">
+                                        <option selected="selected" value="1">India</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">STATE</label>
+                                    @Html.DropDownListFor(x => x.OwnerState, Model.PropStateList, "Please select", new { @class = "select-fild" })
+
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">CITY</label>
+                                    @Html.DropDownListFor(model => model.OwnerCity, new List<SelectListItem> { new SelectListItem { Text = "Please select", Value = "0" } },
+                                                                                                                   new { @class = "select-fild" })
+
+
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">PINCODE</label>
+                                    @Html.TextBoxFor(x => x.OwnerPinCode, new { @class = "text-fild" })
+
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">MOBILE NUMBER</label>
+                                    <input type="text" name="" class="text-fild5" value="+91">
+                                    @Html.TextBoxFor(x => x.Mobile, new { @class = "text-fild4", @required = "required", @onchange = "return IsMobileNumber();", @maxlength = "10" })
+                                    @Html.ValidationMessageFor(x => x.Mobile)
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name">ALTERNATE NUMBER</label>
+                                    <input type="text" name="" class="text-fild-2" value="+91">
+                                    @Html.TextBoxFor(x => x.AlternateNumber, new { @class = "text-fild4", @maxlength = "10" })
+
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name">Email</label>
+                                    @Html.TextBoxFor(x => x.OwnerEmailID, new { @class = "text-fild3", @required = "required", @type = "email" })
+                                    @Html.ValidationMessageFor(x => x.OwnerEmailID)
+                                </div>
+                                <div class="form-group-cont-main2">
+                                    <label class="content-name upload-image">UPLOAD (IMAGE)</label>
+                                    <input id="ownerFile" type="file" name="OwnerFile" class="input-image-field" accept="image/*">
+                                </div>
+                                <div class="form-group-cont-main">
+                                    <label class="content-name3">
+                                        <input type="checkbox" checked="checked" disabled>I CONFIRM THAT I HAVE READ AND AGREED TO <a href="#">PRIVACY POLICY</a> AND
+                                        <a href="#">TERMS OF USE OF</a> HOMELY.CO.IN
+                                    </label>
+
+                                    <input type="submit" name="Submit" value="Submit" class="btn-sbm" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                                        }
+        </div>
+    </section>
+                                        }
+                                        else
+                                        {
+
+ <!---------------------------------------------------listproperty- Mobile Model start Here -------------------------------------------------->
+
+                                            <div class="mobdisplay">
+                                                <div class="container">
+                                                    @using (Html.BeginForm("Post", "Property", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                    {
+                                                        <input type="hidden" name="propId" value="@Model.propId" />
+                                                        <input type="hidden" name="PropCode" value="@Model.PropCode" />
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+                                                                <h1 class="left-side-heading">LIST PROPERTY</h1>
+                                                                <div class="main-content-list">
+                                                                    @if (TempData["error"] != null)
+                                                                    {
+                                                                        <div class="alert_red_center"><strong>@TempData["error"].ToString()</strong></div>
+                                                                    }
+
+                                                                    <div class="col-md-4 col-md-margin">
+                                                                        <h4>PROPERTY INFORMATION</h4>
+
+                                                                        <div class="form-group-cont-main2">
+                                                                            <input type="checkbox" id="checkbox1">
+                                                                            <label>WANT A HELP</label>
+                                                                            <div id="dialog1">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-area">
+                                                                                        <form role="form">
+                                                                                            <!-- <br style="clear:both">-->
+                                                                                            <div class="col-md-6">
+                                                                                                <div class="form-group">
+                                                                                                    <input type="text" class="form-control" id="names" name="namess" placeholder="Name" required>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-6">
+                                                                                                <div class="form-group">
+                                                                                                    <input type="text" class="form-control" id="emailss" name="emailss" placeholder="Email" required>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-6">
+                                                                                                <div class="form-group">
+                                                                                                    <input type="text" class="form-control" id="mobile" name="mobiless" placeholder="Mobile Number" required>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-6">
+                                                                                                <div class="form-group">
+                                                                                                    <input type="text" class="form-control" id="subject" name="subjectss" placeholder="Query Type" required>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-12">
+                                                                                                <div class="form-group">
+                                                                                                    <textarea class="form-control text-massage-box" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-md-12">
+                                                                                                <button type="button" id="submit" name="submitss" class="btn-sbm pull-right">Submit</button>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group-cont-main">
+                                                                            @{int first = 0;}
+                                                                            <label class="content-name">TRANSACTION</label>
+                                                                            @foreach (var trans in Model.transactionList)
+                                                                            {
+                                                                                if (first == 0)
+                                                                                {
+                                                                                    @Html.RadioButtonFor(model => model.TransactionType, trans.id, new { @class = "redio-btn", @checked = "checked" })
+                                                                                }
+                                                                                else
+                                                                                { @Html.RadioButtonFor(model => model.TransactionType, trans.id, new { @class = "redio-btn" })}
+                                                                                <span>@trans.name</span>
+                                                                                first = first + 1;
+                                                                            }
+
+                                                                        </div>
+                                                                        <div class="form-group-cont-main2">
+                                                                            @{int firstOwner = 0;}
+                                                                            <label class="content-name">OWNERSHIP</label>
+                                                                            @foreach (var tra in Model.OwnershipTypeList)
+                                                                            {
+                                                                                if (firstOwner == 0)
+                                                                                { @Html.RadioButtonFor(model => model.OwnershipType, tra.id, new { @class = "redio-btn", @checked = "checked" })}
+                                                                                else
+                                                                                { @Html.RadioButtonFor(model => model.OwnershipType, tra.id, new { @class = "redio-btn" })}
+                                                                                <span>@tra.name</span>
+                                                                                firstOwner = firstOwner + 1;
+                                                                            }
+                                                                        </div>
+                                                                        <div class="form-group-cont-main">
+                                                                            <label class="content-name">PROPERTY</label>
+                                                                            @Html.DropDownListFor(model => model.SubPropertyType, Model.SubPropertyTypeList, "Please select", new { @class = "select-fild", @required = "required" })
+                                                                            @Html.ValidationMessageFor(x => x.SubPropertyType)
+                                                                        </div>
+                                                                        <div class="form-group-cont-main2">
+                                                                            <label class="content-name">STATE</label>
+                                                                            @Html.DropDownListFor(x => x.PropertyState, Model.PropStateList, "Please select", new { @class = "select-fild", @required = "required" })
+                                                                            @Html.ValidationMessageFor(x => x.PropertyState)
+                                                                        </div>
+                                                                        <div class="form-group-cont-main">
+                                                                            <label class="content-name">CITY</label>
+
+                                                                            @Html.DropDownListFor(model => model.PropertyCity, Model.PropertyCityList, new { @class = "select-fild", @required = "required" })
+                                                                            @Html.ValidationMessageFor(x => x.PropertyCity)
+                                                                        </div>
+                                                                        <div class="form-group-cont-main2">
+                                                                            <label class="content-name">LOCALITY</label>
+
+                                                                            @Html.DropDownListFor(model => model.Locality, Model.LocalityList, new { @class = "select-fild", @required = "required" })
+                                                                            @Html.ValidationMessageFor(x => x.Locality)
+
+                                                                        </div>
+                                                                        <div class="form-group-cont-main">
+                                                                            <label class="content-name">SOCIETY NAME</label>
+
+                                                                            @Html.TextBoxFor(x => x.SocietyName, new { @class = "text-fild3" })
+                                                                        </div>
+                                                                        <div class="form-group-cont-main2">
+                                                                            <label class="content-name">ADDRESS</label>
+                                                                            @Html.TextBoxFor(x => x.Address, new { @class = "text-fild", @required = "required" })
+                                                                            @Html.ValidationMessageFor(x => x.Address)
+                                                                        </div>
+                                                                        <div class="form-group-cont-main">
+                                                                            <label class="content-name">AREA</label>
+                                                                            @Html.TextBoxFor(x => x.Area, new { @class = "text-fild21", @required = "required", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
+                                                                            @Html.ValidationMessageFor(x => x.Area)
+                                                                            @Html.DropDownListFor(model => model.Measure, new List<SelectListItem> { new SelectListItem { Text = "Sq.Ft", Value = "Sq.Ft" }, new SelectListItem { Text = "Sq.Me", Value = "Sq.Me" } }, new { @class = "arean" })
+                                                                        </div>
+                                                                        <div class="form-group-cont-main2">
+                                                                            <label class="content-name">BEDROOMS</label>
+                                                                            @Html.DropDownListFor(x => x.Bedroom, Model.BedroomList, new { @class = "select-fild" })
+                                                                            @Html.ValidationMessageFor(x => x.Bedroom)
+
+                                                                        </div>
+                                                                        <div class="form-group-cont-main">
+                                                                            <label class="content-name">BATHROOMS</label>
+                                                                            @Html.DropDownListFor(x => x.Bathroom, Model.BathroomList, new { @class = "select-fild" })
+
+                                                                        </div>
+                                                                        <div class="form-group-cont-main2">
+                                                                            <label class="content-name">FLOOR</label>
+
+                                                                            @Html.TextBoxFor(x => x.Floor, new { @class = "text-fild" })
+                                                                        </div>
+                                                                        <div class="form-group-cont-main">
+                                                                            <label class="content-name">TOTAL FLOORS</label>
+                                                                            @Html.DropDownListFor(x => x.FloorInBuilding, Model.FloorBuildingList, new { @class = "select-fild" })
+
+                                                                        </div>
+                                                                        <div class="form-group-cont-main2">
+                                                                            <label class="content-name">BALCONY</label>
+                                                                            @Html.DropDownListFor(x => x.Balcony, Model.BalcontList, new { @class = "select-fild" })
+                                                                        </div>
+                                                                        <div class="form-group-cont-main2">
+                                                                            <label class="content-name">EXPECT RENT</label>
+                                                                            @Html.TextBoxFor(x => x.Rent, new { @class = "text-fild", @required = "required", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57" })
+                                                                            @Html.ValidationMessageFor(x => x.Rent)
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="col-md-4 col-md-margin">
+
+                                                                        <div class="form-group-cont-main">
+                                                                            <h4 style="background:#FFFFFF;"><strong>FEATURES</strong></h4>
+                                                                        </div>
+                                                                        <div class="form-group-cont-main2 relative_position">
+                                                                            <div class="withinn1 width_post_30">
+                                                                                <ul>
+                                                                                    @for (int i = 0; i < Model.amenities.Count; i++)
+                                                                                    {
+                                                                                        <li>
+                                                                                            @Html.CheckBoxFor(m => m.amenities[i].isSelected)
+                                                                                            @Html.HiddenFor(m => m.amenities[i].AmenityId)
+                                                                                            <img src="@Url.Content("~/" + Model.amenities[i].ImagePath)" class="aminities-icon-postn" id="small_@i" />
+                                                                                            <img src="@Url.Content("~/" + Model.amenities[i].ImageHoverPath)" class="aminities-icon-postn" id="big_@i" style="display:none" />
+                                                                                            <span style="text-transform: uppercase">@Model.amenities[i].Amenity</span>
+                                                                                        </li>
+                                                                                    }
+
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group-cont-main upload_pic_box">
+                                                                            <label class="content-name">UPLOAD IMAGE</label>
+                                                                            <input id="fileUpl" type="file" name="fileUploadProp" class="input-image-field" multiple accept="image/*">
+                                                                            <div class="clear"></div>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="main-content-list">
+                                                                        <div class="col-md-4 col-md-margin">
+                                                                            <div class="form-group-cont-main2">
+                                                                                <h4 style="background:#FFFFFF;"><strong>CONTACT DETAIL</strong></h4>
+                                                                                <div class="form-group-cont-main">
+                                                                                    <label class="content-name">NAME</label>
+                                                                                    @Html.TextBoxFor(x => x.OwnerName, new { @class = "text-fild3", @required = "required" })
+                                                                                    @Html.ValidationMessageFor(x => x.OwnerName)
+                                                                                </div>
+                                                                                <div class="form-group-cont-main" style="background-color:#FFFFFF;">
+                                                                                    <label class="content-name">MOBILE</label>
+                                                                                    <input type="text" name="" class="text-fild5" value="+91">
+                                                                                    @Html.TextBoxFor(x => x.Mobile, new { @class = "text-fild4", @required = "required", @onchange = "return IsMobileNumber();", @maxlength = "10" })
+                                                                                    @Html.ValidationMessageFor(x => x.Mobile)
+                                                                                </div>
+
+                                                                                <div class="form-group-cont-main">
+                                                                                    <label class="content-name">ADDRESS </label>
+                                                                                    @Html.TextBoxFor(x => x.OwnerAddress, new { @class = "text-fild" })
+                                                                                </div>
+
+                                                                                <div class="form-group-cont-main" style="background-color:#FFFFFF;">
+                                                                                    <label class="content-name">Email</label>
+                                                                                    @Html.TextBoxFor(x => x.OwnerEmailID, new { @class = "text-fild3", @required = "required", @type = "email" })
+                                                                                    @Html.ValidationMessageFor(x => x.OwnerEmailID)
+                                                                                </div>
+
+                                                                                <div class="form-group-cont-main">
+                                                                                    <label class="content-name3">
+                                                                                        <input type="checkbox" checked="checked" disabled>I CONFIRM THAT I HAVE READ AND AGREED TO <a href="#">PRIVACY POLICY</a> AND
+                                                                                        <a href="#">TERMS OF USE OF</a> HOMELY.CO.IN
+                                                                                    </label>
+
+                                                                                    <input type="submit" name="Submit" value="Submit" class="btn-sbm">
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                                                }
+                                                </div>
+
+                                            </div>
+
+                                        <!---------------------------------------------------- Mobile Model close Here -------------------------------------------------->
+                                                                                }
+
+<script src="~/Scripts/ListProperty/Property.js"></script>
+<script>
+    function IsMobileNumber() {
+        debugger;
+        var mob = /^[1-9]{1}[0-9]{9}$/;
+        var txtMobile = document.getElementById("Mobile");
+        if (mob.test(txtMobile.value) == false) {
+            txtMobile.value = '';
+            return false;
+        }
+        return true;
+    }
+
+
+
+</script>
+

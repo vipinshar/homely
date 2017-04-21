@@ -1,0 +1,163 @@
+﻿
+@model Homely.Common.Model.RootObjectForSearchPage
+    @using (Html.BeginForm("SearchProp", "Property",FormMethod.Post))
+    {
+        <div class="left-side-bar">
+            <h1 class="left-side-heading">REFINE YOUR SEARCH</h1>
+            <div class="form-div-group">
+                <label class="conta-name">Minimum Contract</label>
+                @Html.DropDownListFor(x => x.minimumContract, Model.minimumContractList, "Please select", new { @class = "select-field" })
+
+            </div>
+            <div class="form-div-group" id="st">
+                <label class="conta-name">STATE</label>
+                @Html.DropDownListFor(x => x.refine_State, Model._state, new { @class = "select-field" })
+            </div>
+            <div class="form-div-group" id="ci">
+                <label class="conta-name">CITY</label>
+                @Html.DropDownListFor(x => x.refine_City, Enumerable.Empty<SelectListItem>(), new { @class = "select-field" })
+            </div>
+            <div class="form-div-group" id="loc">
+                <label class="conta-name">LOCALITY</label>
+                @Html.DropDownListFor(x => x.refine_Locality, Enumerable.Empty<SelectListItem>(), new { @class = "select-field" })
+            </div>
+            <div class="form-div-group" id="bug">
+                <label class="conta-name">Price</label>
+                <select name="refine_Budget" id="refine_Budget" class="select-field">
+                    <option value="5000-7000">5000-7000</option>
+                    <option value="7000-10000">7000-10000</option>
+                    <option value="10000-12000">10000-12000</option>
+                    <option value="12000-15000">12000-15000</option>
+                    <option value="15000-20000">15000-20000</option>
+                    <option value="25000-30000">25000-30000</option>
+                    <option value="30000-35000">30000-35000</option>
+                    <option value="35000-40000">35000-40000</option>
+                    <option value="40000-45000">40000-45000</option>
+                    <option value="45000-50000">45000-50000</option>
+                    <option value="50000-55000">50000-55000</option>
+                    <option value="55000-60000">55000-60000</option>
+                    <option value="60000-65000">60000-65000</option>
+                    <option value="65000-70000">65000-70000</option>
+                    <option value="70000-75000">70000-75000</option>
+                    <option value="75000-80000">75000-80000</option>
+                    <option value="80000-85000">80000-85000</option>
+                    <option value="85000-90000">85000-90000</option>
+                    <option value="90000-95000">90000-95000</option>
+                    <option value="95000-100000">95000-100000</option>
+                    <option value="100000-200000">Above 1 Lac</option>
+                </select>
+            </div>
+            <div class="form-div-group" id="formSlider" style="display:none">
+                <label class="conta-name">Price</label>
+                <div id="slider-range" class="select-field-range"></div>
+                @*<input type="range" name="" placeholder="Enter Location" class="select-field-range">*@
+                <p>
+                    <label id="amount"></label>
+                </p>
+
+            </div>
+            <div class="form-div-group">
+                <label class="conta-name">Property Id</label>
+
+                @Html.TextBoxFor(x => x.PropertyCode, new { @class = "select-field" })
+            </div>
+            <div class="form-div-group">
+                <input type="submit" name="search" placeholder="" value="Search Now" class="search-now-btn">
+            </div>
+
+            <div>
+                <hr style="border-top -1px solid #e7e5e5;">
+                <h1 class="left-side-heading"><a href="#advancesearch" data-toggle="collapse">ADVANCED SEARCH <i class="fa fa-search"></i></a></h1>
+                <hr style="border-top 1px solid #e7e5e5;">
+                <div id="advancesearch">
+                    <div style="height:40px">
+                        <h4 class="ammmm">AMENITIES</h4>
+                    </div>
+                    <ul class="amenities-detail" id="amen">
+                        @for (int i = 0; i < Model.img.Count; i++)
+                {
+                            <li>
+                                @Html.CheckBoxFor(m => m.img[i].isSelected, new { @class="chk",value= Model.img[i].AmenityId})
+                                @Html.HiddenFor(m => m.img[i].AmenityId)
+                                <img src="@Url.Content("~/"+Model.img[i].ImagePath)" class="aminities-icon-post" id="small_@i" />
+                                <img src="@Url.Content("~/"+Model.img[i].ImageHoverPath)" class="aminities-icon-post" id="big_@i" style="display:none" />
+                                <div> @Model.img[i].Amenity</div>
+                            </li>
+                        }
+                    </ul>
+
+                    <div class="form-div-group">
+                        <label class="conta-name">AVALIABILITY</label>
+                        @Html.DropDownListFor(x => x.avail, Model.AvailList,"Please select", new { @class = "select-field" })
+
+                    </div>
+                    @*<div class="form-div-group">
+                            <label class="conta-name">POSTED BY</label>
+                            <select name="POSTED" id="POSTED" class="select-field">
+                                <option value="0">View All</option>
+                                <option value="1">Owner</option>
+                                <option value="2">Agent</option>
+                                <option value="3">Tenant</option>
+                                <option value="4">Builder</option>
+                            </select>
+                        </div>*@
+                    <div class="form-div-group">
+                        <label class="conta-name">FURNISHING</label>
+                        @Html.DropDownListFor(x => x.Furnished, Model.FurnishedList, "Please select",new { @class = "select-field" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+<script>
+    $(function () {
+        $('#refine_State').on('change', function () {
+
+            $.ajax({
+                url: getCity + "/" + $("#refine_State").val(),
+                type: "GET",
+                success: function (data) {
+                    if (data.length > 0) {
+
+                        $("#refine_City").find('option').remove();
+                        $("#refine_Locality").find('option').remove();
+                        $("#refine_City").append('<option value="' + '' + '">' + 'Please select' + '</option>');
+                        $("#refine_Locality").append('<option value="' + '' + '">' + 'Please select' + '</option>');
+                        for (i = 0; i < data.length; i++) {
+                            $("#refine_City").append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                        }
+
+                    }
+                    else {
+                        $("#refine_City").find('option').remove();
+                        $("#refine_City").append('<option value="' + -1 + '">' + 'Other' + '</option>');
+                        $("#refine_Locality").find('option').remove();
+                        $("#refine_Locality").append('<option value="' + '' + '">' + 'Please select' + '</option>');
+                    }
+                }
+            });
+        });
+
+        $('#refine_City').on('change', function () {
+            $.ajax({
+                url: getLocality + "/" + $("#refine_City").val(),
+                type: "GET",
+                success: function (data) {
+                    if (data.length > 0) {
+                        $("#refine_Locality").find('option').remove();
+                        $("#refine_Locality").append('<option value="' + '' + '">' + 'Please select' + '</option>');
+                        for (i = 0; i < data.length; i++) {
+                            $("#refine_Locality").append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                        }
+                    }
+                    else {
+                        $("#refine_Locality").find('option').remove();
+                        $("#refine_Locality").append('<option value="' + -1 + '">' + 'Other' + '</option>');
+                    }
+                }
+            });
+        })
+    });
+</script>

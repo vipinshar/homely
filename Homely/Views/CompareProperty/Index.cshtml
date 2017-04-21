@@ -1,0 +1,210 @@
+﻿@model List<Homely.Common.Model.PropertyCompareViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="left-side-bar-comp">
+                    <h1 class="left-side-heading-comp">HIGHLIGHT DIFFERENCES</h1>
+                    <p class="left-compa-text">
+                        CHOOSE AT LEAST TWO PROPERTIES OF YOUR CHOICE TO SEE HOW THEY COMPARE ON PRICE, AMENITIES, AND DESCRIPTION. YOU HAVE A CHOICE OF COMPARING NEW PROPERTIES ON RENT AS WELL AS PROPERTIES FOR RESALE IN INDIA.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row1">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="compaire-image">
+                                <div><img src="@Url.Content(item.image)" class="img-responsive" alt=""></div>
+                                <h3 class="compire-title">@item.Bedroom BHK APARTMENT</h3>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="table-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="table-responsive">
+                    <table class="table-bordered table_root_container">
+                        <thead bgcolor="#f1f2f2">
+                            <tr>
+                                <th colspan="4">
+                                    <h1 class="featured-table">FEATURED</h1>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="left-td">
+                                    <table class="table_section_inner_new table">
+                                        <tbody>
+                                            <tr>
+                                                <td>TRANSACTION</td>
+                                                <td>OWNERSHIP</td>
+                                                <td>PROPERTY</td>
+                                                <td>CITY</td>
+                                                <td>LOCALITY</td>
+                                                <td>AREA</td>
+                                                <td>SOCIETY NAME</td>
+                                                <td>RENT</td>
+                                                <td>BEDROOMS</td>
+                                                <td>BATHROOMS</td>
+                                                <td>FLOOR</td>
+                                                <td>DESCRIPTION</td>
+                                                <td>TOTAL FLOORS</td>
+                                                <td>BALCONY</td>
+                                                <td>FURNISHED</td>
+                                                <td>FACING</td>
+                                                <td>ADDITIONAL FEATURES AMENITIES</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                @foreach (var item in Model)
+                                {
+                                    <td>
+                                        <table class="table_section_inner_new table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>@item.Transaction</td>
+                                                    <td>@item.Ownership</td>
+                                                    <td>@item.SubPropertyType</td>
+                                                    <td>@item.SubCity</td>
+                                                    <td>@item.Locality</td>
+                                                    <td>@item.Area</td>
+                                                    <td>@item.SocietyName</td>
+                                                    <td>@item.Rent</td>
+                                                    <td>@item.Bedroom</td>
+                                                    <td>@item.Bathroom</td>
+                                                    <td>@item.Floor</td>
+                                                    <td>@item.Description</td>
+                                                    
+                                                    <td>@item.FloorInBuilding</td>
+                                                    <td>@item.Bathroom</td>
+                                                    <td>@item.Furnished</td>
+                                                    <td>@item.Facing</td>
+                                                    <td>
+                                                        <ul class="aminities-compair">
+                                                            @if (item.amenLst != null && item.amenLst.Count != 0)
+                                                            {
+                                                                foreach (var _item in item.amenLst)
+                                                                {
+                                                                    <li><img src="@Url.Content("~/"+_item.ImagePath)">@_item.Amenity</li>
+                                                                }
+
+
+                                                            }
+
+                                                          
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                }
+                               
+                                @*<td>
+                                    <table class="table_section_inner_new table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                               
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>REnt</td>
+                                                <td>Rent</td>
+                                                <td>
+                                                    <ul class="aminities-compair">
+                                                        <li><img src="images/supermarket02-hover.jpg">GROCERY</li>
+                                                        <li><img src="images/park-hover.jpg">PARK</li>
+                                                        <li><img src="images/Pharmacy-Medical-Store-hover.jpg">PHARMACY</li>
+                                                        <li><img src="images/Restaurants02-hover.jpg">RESTAURANTS</li>
+                                                        <li><img src="images/gym-hover.jpg">GYM</li>
+                                                        <li><img src="images/gaspipeline02-hover.jpg">GAS PIPELINE</li>
+                                                        <li><img src="images/clubhouse02-hover.jpg">CLUB HOUSE</li>
+                                                        <li><img src="images/lift-hover.jpg">LIFT</li>
+                                                        <li><img src="images/parking02-hover.jpg">PARKING</li>
+                                                        <li><img src="images/power-hover.jpg">POWER BACKUP</li>
+                                                        <li><img src="images/swimmingpool-hover.jpg">SWIMMING POOL</li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="table_section_inner_new table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>Rent</td>
+                                                <td>REnt</td>
+                                                <td>Rent</td>
+                                                <td>
+                                                    <ul class="aminities-compair">
+                                                        <li><img src="images/supermarket02-hover.jpg">GROCERY</li>
+                                                        <li><img src="images/park-hover.jpg">PARK</li>
+                                                        <li><img src="images/Pharmacy-Medical-Store-hover.jpg">PHARMACY</li>
+                                                        <li><img src="images/Restaurants02-hover.jpg">RESTAURANTS</li>
+                                                        <li><img src="images/gym-hover.jpg">GYM</li>
+                                                        <li><img src="images/gaspipeline02-hover.jpg">GAS PIPELINE</li>
+                                                        <li><img src="images/clubhouse02-hover.jpg">CLUB HOUSE</li>
+                                                        <li><img src="images/lift-hover.jpg">LIFT</li>
+                                                        <li><img src="images/parking02-hover.jpg">PARKING</li>
+                                                        <li><img src="images/power-hover.jpg">POWER BACKUP</li>
+                                                        <li><img src="images/swimmingpool-hover.jpg">SWIMMING POOL</li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>*@
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

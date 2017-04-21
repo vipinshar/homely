@@ -1,0 +1,30 @@
+﻿
+@model Homely.Common.Model.PropertyCountViewModel
+
+@if (Request.Browser.IsMobileDevice)
+{
+    <div class="home_titlen1"><strong style="font-size:"><span>@Model.FreshListing</span>HOMELY VERIFIED LISTINGS</strong></div>
+    if (Model.LatestListing != 0)
+    {
+        <div class="home_title2"><strong><span>@Model.LatestListing</span> HOMELY'S LATEST</strong></div>
+    }
+}
+
+else
+{
+    <div class="home_title1"><strong>@Model.FreshListing</strong> HOMELY VERIFIED LISTINGS</div>
+    if (Model.LatestListing != 0)
+    {
+        <div class="home_title2">
+            <strong>
+                @Model.LatestListing
+            </strong> HOMELY'S LATEST
+        </div>
+    }
+    else
+    {
+
+    }
+}
+
+

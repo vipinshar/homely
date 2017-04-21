@@ -1,0 +1,51 @@
+﻿@using PagedList;
+@using PagedList.Mvc
+@model IPagedList<Homely.Common.Model.RentPropertyViewModel>
+@if (Model != null && Model.Count != 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="main-content-box">
+            <div class="col-xs-4">
+                <div class="img-section">
+                    <img src="@Url.Content(item.ImgUrl)" class="img-responsive" alt="">
+                    <h3>@item.Locality </h3>
+                    <hr style="margin-bottom:10px; margin-top:10px;">
+                    <p>
+                        @Html.CheckBox("chk",false, new {value=item.PropertyCode }) Compare
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <div class="inr-detail">
+                    <i class="fa fa-inr"></i>@item.Rent
+                    <span>@item.CreateDate.ToString("dd-MMM-yyyy")</span>
+                </div>
+                <ul class="des-detail">
+                    <li class="homeid"><span>Id</span> @item.PropertyCode</li>
+                    <li class="wed-room">@item.Bedroom Bedroom</li>
+                    <li class="wath-room">@item.Bathroom Bathroom </li>
+                    <li class="area-det">@item.Area</li>
+                    <li><a href="@Url.RouteUrl("ProductDetails", new { id = item.Url })">View Detail</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+    <div>
+        <ul class="des-detail2">
+            <li><a href="#" id="comapre">Compare Properties</a></li>
+        </ul>
+    </div>
+    <div>
+        @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("ViewListingNavigation", new { page}), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "viewListPaging" }))
+    </div>
+}
+else
+{
+    <div>Not found</div>
+}
+<script>
+$(function () {
+    $('.pagination-container ul').addClass('pagination pagination_home');
+})
+</script>

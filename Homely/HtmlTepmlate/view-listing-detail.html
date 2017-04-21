@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Homely</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!--<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!--<script src="js/bootstrap.js"></script>-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--Float start-->
+    <script type="text/javascript">
+    $(function() {
+        var offset = $("#social").offset();
+        var topPadding = 170;
+        $(window).scroll(function() {
+            if ($(window).scrollTop() > offset.top) {
+                $("#social").stop().animate({
+                    marginTop: $(window).scrollTop() - offset.top + topPadding
+                });
+            } else {
+                $("#social").stop().animate({
+                    marginTop: 50
+                });
+            };
+        });
+    });
+    </script>
+    <!--Float end-->
+    <!-quick contact start-->
+    <script type="text/javascript">
+    $(function() {
+        $('#imgQkList').on('click', function() {
+            $('#tblQkList').toggle(20);
+        });
+
+        //hide it when clicking anywhere else except the popup and the trigger
+        $(document).on('click', function(event) {
+            if (!$(event.target).parents().addBack().is('#tblQkList')) {
+                $('#tblQkList').hide();
+            }
+        });
+
+        // Stop propagation to prevent hiding "#tooltip" when clicking on it
+        $('#imgQkList').on('click', function(event) {
+            event.stopPropagation();
+        });
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#imgQkContact').click(function() {
+            $('#tblQkContact').toggle(20);
+            $('#btnSubmit').click(function() {
+                $('#tblQkContact').hide();
+            });
+        });
+    });
+    </script>
+    <style>
+    .side-popup-form {
+        width: 300px;
+        overflow: hidden;
+    }
+    
+    .side-popup-form ul {
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .side-popup-form ul li {
+        float: left;
+    }
+    
+    .side-popup-form ul.query-form {
+        width: 76%;
+        margin-left: 10px;
+        z-index: 999;
+        position: relative;
+        background-color: #fff;
+        padding: 5px;
+        border-radius: 3px;
+        border: 5px solid #F5F5F5;
+    }
+    
+    .ff-dd {
+        margin-bottom: 5px;
+        font-size: 13px;
+    }
+    
+    .ff-dd label.title {
+        font-size: 12px;
+        color: #333;
+        font-weight: 300;
+        width: 30%;
+    }
+    
+    .ff-dd input.ffi-in {
+        width: 68%;
+        float: right;
+        -webkit-box-shadow: 0 0 12px #cfcece;
+        box-shadow: 0 0 12px #cfcece;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        border: solid 1px #d3d8e0;
+    }
+    
+    .ff-dd input.ffi-in-btn {
+        background-color: #017163;
+        color: #fff;
+        border: 1px solid #01675A;
+        margin-left: 6px;
+        border-radius: 3px;
+    }
+    
+    .ff-dd input.ffi-in-btn:hover {
+        background-color: #017163;
+    }
+    </style>
+    <link rel="stylesheet" type="text/css" href="date-picker/jquery.datetimepicker.css" />
+    <style type="text/css">
+    .custom-date-style {
+        background-color: red !important;
+    }
+    
+    .input {}
+    
+    .input-wide {
+        width: 500px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="social" style="margin-top: -1px; left: -4px; position: absolute; top: 203px; font-family: Verdana;" class="quick-list-box">
+        <div id="quickList" style="position: relative;">
+            <div class="side-popup-form">
+                <ul>
+                    <li>
+                        <img src="images/quick-contact-img.jpg" border="0" alt="" id="imgQkList" style="cursor:pointer" />
+                    </li>
+                    <li id="tblQkList">
+                        <ul class="query-form">
+                            <li>
+                                <form>
+                                    <div class="ff-dd" style=" background-color:#E5E5E5; padding-left:2px;">
+                                        <label class="title" style="border-right:2px solid #fff;">Query For</label>
+                                        <input type="radio">Listing
+                                        <input type="radio">Rent
+                                    </div>
+                                    <div class="ff-dd">
+                                        <label class="title">Name</label>
+                                        <input type="text" name="" class="ffi-in">
+                                    </div>
+                                    <div class="ff-dd">
+                                        <label class="title">Email</label>
+                                        <input type="text" name="" class="ffi-in">
+                                    </div>
+                                    <div class="ff-dd">
+                                        <label class="title">Mobile</label>
+                                        <input type="text" name="" class="ffi-in">
+                                    </div>
+                                    <div class="ff-dd">
+                                        <label class="title">Date</label>
+                                        <input type="text" name="" class="ffi-in" id="datetimepicker">
+                                    </div>
+                                    <div class="ff-dd">
+                                        <label class="title">&nbsp;</label>
+                                        <input type="button" name="" class="ffi-in-btn" value="Submit">
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- -Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content login-modal">
+                <div class="modal-header login-modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="loginModalLabel">USER LOGIN / REGISTER</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div role="tabpanel" class="login-tab">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs mod-nav" role="tablist">
+                                <li role="presentation" class="active"><a id="signin-taba" href="#home" aria-controls="home" role="tab" data-toggle="tab">Login In</a></li>
+                                <li role="presentation"><a id="signup-taba" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Register</a></li>
+                                <li role="presentation"><a id="forgetpass-taba" href="#forget_password" aria-controls="forget_password" role="tab" data-toggle="tab">Forget Password</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active text-center" id="home"> &nbsp;&nbsp; <span id="login_fail" class="response_error" style="display: none;">Loggin failed, please try again.</span>
+                                    <div class="clearfix"></div>
+                                    <form>
+                                        <div class="social-box">
+                                            <!--<div class="row mg-btm">
+                      <div class="col-md-6"> <a href="#" class="btn btn-primary btn-block login-face"> <i class="icon-facebook"></i> Login with Facebook </a> </div>
+                      <div class="col-md-6"> <a href="#" class="btn btn-danger btn-block login-twitter"> <i class="icon-twitter"></i> Login with G+ </a> </div>
+                    </div>-->
+                                        </div>
+                                        <div class="spacer10"> &nbsp; </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="text" class="form-control" id="login_username" placeholder="Username">
+                                            </div>
+                                            <span class="help-block has-error" id="email-error"></span> </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                                                <input type="text" class="form-control" id="remail" placeholder="Email">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="remail-error"></span> </div>
+                                        <button type="button" id="login_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Signing In...."> User Login</button>
+                                        <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+                                            <div class="row">
+                                                <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab"> Forgot password? </a> </div>
+                                                <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab"> Register </a> </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="profile"> &nbsp;&nbsp; <span id="registration_fail" class="response_error" style="display: none;">Registration failed, please try again.</span>
+                                    <div class="clearfix"></div>
+                                    <form>
+                                        <div class="form-group">
+                                            <div class="input-group form-field">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="text" class="form-control" id="username" placeholder="Username">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="username-error"></span> </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                                                <input type="text" class="form-control" id="remail" placeholder="Email">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="remail-error"></span> </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-mobile"></i></div>
+                                                <input type="password" class="form-control" id="password" placeholder="Mobile No.">
+                                            </div>
+                                            <span class="help-block has-error" id="password-error"></span> </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                            </div>
+                                            <span class="help-block has-error" id="password-error"></span> </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <input type="password" class="form-control" id="password" placeholder="Re-Password">
+                                            </div>
+                                            <span class="help-block has-error" id="password-error"></span> </div>
+                                        <button type="button" id="register_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Registering....">User Register</button>
+                                        <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+                                            <div class="row">
+                                                <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab"> Forgot password? </a> </div>
+                                                <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signin-tab"> Sign In </a> </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane text-center" id="forget_password"> &nbsp;&nbsp; <span id="reset_fail" class="response_error" style="display: none;"></span>
+                                    <div class="clearfix"></div>
+                                    <form>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="text" class="form-control" id="femail" placeholder="Email">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="femail-error"></span> </div>
+                                        <button type="button" id="reset_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Please wait....">Forget Password</button>
+                                        <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+                                            <div class="row">
+                                                <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="signin-tab"> Sign In </a> </div>
+                                                <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab"> Sign Up </a> </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- - Login Model Ends Here -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="logo">
+                        <a href="index.html"><img src="images/Homely-logoInner.jpg" class="img-responsive" alt="" /></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header navbar-brand">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            Cities
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Delhi</a></li>
+                                <li><a href="#">Gurgaon</a></li>
+                                <li><a href="#">Ghaziabad</a></li>
+                                <li><a href="#">Noida</a></li>
+                                <li><a href="#">Faridabad</a></li>
+                                <li><a href="#">Greater Noida</a></li>
+                                <li class="reg-sign"><a href="#loginModal" data-toggle="modal">Register</a></li>
+                                <li><a href="#loginModal" data-toggle="modal">Sign in</a></li>
+                                <li><a href="#">Help</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </nav>
+                    <ul class="rent-nav">
+                        <li><a href="#">Rent</a></li>
+                        <li><a href="list-property.html">List Property</a></li>
+                        <li><a href="post-requirment.html">Post Requirement</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="left-side-bar">
+                        <!--<div class="user-view">
+<img src="images/user-default.png" class="img-responsive" alt="">
+<h4 class="text-center">RAJENDRA PRASAD JOSHI (AGENT)</h4>
+<ul class="user-view-detail">
+<li><i class="fa fa-phone-square"></i> +91-9810720882</li>
+<li><i class="fa fa-envelope"></i> <a href="#">RPJOSHI2007@YAHOO.CO.IN</a></li>
+</ul>
+</div>-->
+                        <h1 class="left-side-heading">REFINE YOUR SEARCH</h1>
+                        <form>
+                            <div class="form-div-group">
+                                <label class="conta-name">City</label>
+                                <select name="" id="" class="select-field">
+                                    <option value="0">View All</option>
+                                    <option value="">Agra</option>
+                                    <option value="">Ahemdabad-west</option>
+                                    <option value="">Ahmedabad</option>
+                                    <option value="">Ahmedabad - Central</option>
+                                    <option value="">Ahmedabad - East</option>
+                                    <option value="">Ahmedabad - North</option>
+                                    <option value="">Ahmedabad - South</option>
+                                    <option value="">Ajmer</option>
+                                    <option value="">Alappuzha</option>
+                                    <option value="">Allahabad</option>
+                                    <option value="">Ambala</option>
+                                    <option value="">Amritsar</option>
+                                    <option value="">Asansol</option>
+                                    <option value="">Aurangabad</option>
+                                    <option value="">Bahadurgarh</option>
+                                    <option value="">Bangalore</option>
+                                    <option value="">Bangalore - East</option>
+                                    <option value="">Bangalore - North</option>
+                                    <option value="">Bangalore - South</option>
+                                    <option value="">Bareilly</option>
+                                    <option value="">Belgaum</option>
+                                    <option value="">BHILAI</option>
+                                    <option value="">Bhiwadi</option>
+                                    <option value="">Bhopal</option>
+                                    <option value="">Bhubaneswar</option>
+                                    <option value="">Bilaspur</option>
+                                    <option value="">Chandigarh</option>
+                                    <option value="">Chennai</option>
+                                    <option value="">Chennai - Central</option>
+                                    <option value="">Chennai - East</option>
+                                    <option value="">Chennai - North</option>
+                                    <option value="">Chennai - South</option>
+                                    <option value="">Chennai - Suburb</option>
+                                    <option value="">Coimbatore</option>
+                                    <option value="">Cuttack</option>
+                                    <option value="">Dehradun</option>
+                                    <option value="">Dharuhera</option>
+                                    <option value="">Durgapur</option>
+                                    <option value="">Ernakulam</option>
+                                    <option value="">Erode</option>
+                                    <option value="">Faridabad</option>
+                                    <option value="">Gandhinagar</option>
+                                    <option value="">Ghaziabad</option>
+                                    <option value="">GOA-Panaji</option>
+                                    <option value="">Gorakhpur</option>
+                                    <option value="">Greater Noida</option>
+                                    <option value="">Gurgaon</option>
+                                    <option value="">Gwalior</option>
+                                    <option value="">Haridwar</option>
+                                    <option value="">Hoogly</option>
+                                    <option value="">Hosur</option>
+                                    <option value="">Howrah</option>
+                                    <option value="">Hubli-Dharwad</option>
+                                    <option value="">Hyderabad</option>
+                                    <option value="">Hyderabad - Central</option>
+                                    <option value="">Hyderabad - North</option>
+                                    <option value="">Hyderabad - South</option>
+                                    <option value="">Indore</option>
+                                    <option value="">Jabalpur</option>
+                                    <option value="">Jaipur</option>
+                                    <option value="">Jalandhar</option>
+                                    <option value="">Jamnagar</option>
+                                    <option value="">Jamshedpur</option>
+                                    <option value="">Jodhpur</option>
+                                    <option value="">Kancheepuram</option>
+                                    <option value="">Kannur</option>
+                                    <option value="">Kanpur</option>
+                                    <option value="">Karnal</option>
+                                    <option value="">Kashipur</option>
+                                    <option value="">Kochi</option>
+                                    <option value="">Kodaikanal</option>
+                                    <option value="">Kolhapur</option>
+                                    <option value="">Kolkata</option>
+                                    <option value="">Kolkata - Central</option>
+                                    <option value="">Kolkata - East</option>
+                                    <option value="">Kolkata - North</option>
+                                    <option value="">Kolkata - South</option>
+                                    <option value="">Kolkata - Suburb</option>
+                                    <option value="">Kollam</option>
+                                    <option value="">Kota</option>
+                                    <option value="">Lansdowne</option>
+                                    <option value="">Lonavala</option>
+                                    <option value="">Lucknow</option>
+                                    <option value="">Ludhiana</option>
+                                    <option value="">Madurai</option>
+                                    <option value="">Mathura</option>
+                                    <option value="">Meerut</option>
+                                    <option value="">Mohali</option>
+                                    <option value="">Moradabad</option>
+                                    <option value="">Mumbai</option>
+                                    <option value="">Mumbai - Central Mumbai</option>
+                                    <option value="">Mumbai - Harbour Line</option>
+                                    <option value="">Mumbai - Western Suburbs</option>
+                                    <option value="">Mysore</option>
+                                    <option value="">Nagpur</option>
+                                    <option value="">Nainital</option>
+                                    <option value="">Nashik</option>
+                                    <option value="">Navi Mumbai</option>
+                                    <option value="">Navsari</option>
+                                    <option value="">Neemrana</option>
+                                    <option value="">New Delhi</option>
+                                    <option value="">New Delhi - Central</option>
+                                    <option value="">New Delhi - East</option>
+                                    <option value="">New Delhi - North</option>
+                                    <option value="">New Delhi - North East</option>
+                                    <option value="">New Delhi - North West</option>
+                                    <option value="">New Delhi - South</option>
+                                    <option value="">New Delhi - South West</option>
+                                    <option value="">New Delhi - West</option>
+                                    <option value="">Noida</option>
+                                    <option value="">North Goa</option>
+                                    <option value="">Ooty</option>
+                                    <option value="">Palghar</option>
+                                    <option value="">Palwal</option>
+                                    <option value="">Panchkula</option>
+                                    <option value="">Patiala</option>
+                                    <option value="">Pimpri Chinchwad</option>
+                                    <option value="">Pipali</option>
+                                    <option value="">Pondicherry</option>
+                                    <option value="">Pune</option>
+                                    <option value="">Pune - Central</option>
+                                    <option value="">Pune - North</option>
+                                    <option value="">Pune - South</option>
+                                    <option value="">Pune - Suburb</option>
+                                    <option value="">Puri</option>
+                                    <option value="">Puttur</option>
+                                    <option value="">Raigad</option>
+                                    <option value="">Raipur</option>
+                                    <option value="">Rajapur</option>
+                                    <option value="">Rajkot</option>
+                                    <option value="">Rajpura</option>
+                                    <option value="">Ranchi</option>
+                                    <option value="">Ranikhet</option>
+                                    <option value="">Ratnagiri</option>
+                                    <option value="">Rewari</option>
+                                    <option value="">Rishikesh</option>
+                                    <option value="">Rohtak</option>
+                                    <option value="">Roorkee</option>
+                                    <option value="">Rudrapur</option>
+                                    <option value="">Salem</option>
+                                    <option value="">Sanand</option>
+                                    <option value="">Satara</option>
+                                    <option value="">Shimla</option>
+                                    <option value="">Shirdi</option>
+                                    <option value="">Siliguri</option>
+                                    <option value="">Sindhudurg</option>
+                                    <option value="">Solan</option>
+                                    <option value="">Solapur</option>
+                                    <option value="">Sonipat</option>
+                                    <option value="">South Goa</option>
+                                    <option value="">Surat</option>
+                                    <option value="">Thane</option>
+                                    <option value="">Thane - Beyond Thane</option>
+                                    <option value="">Thanjavur</option>
+                                    <option value="">Thiruvananthapuram</option>
+                                    <option value="">Tirunelveli</option>
+                                    <option value="">Tumkur</option>
+                                    <option value="">Udaipur</option>
+                                    <option value="">Udupi</option>
+                                    <option value="">Ujjain</option>
+                                    <option value="">Uttarakhand</option>
+                                    <option value="">Vadodara</option>
+                                    <option value="">Varanasi</option>
+                                    <option value="">Vellore</option>
+                                    <option value="">Virar</option>
+                                    <option value="">Visakhapatnam</option>
+                                    <option value="">Vrindavan</option>
+                                    <option value="">Zirakhpur</option>
+                                </select>
+                            </div>
+                            <div class="form-div-group">
+                                <label class="conta-name">Locality</label>
+                                <input type="text" name="" placeholder="Enter Location" class="select-field">
+                            </div>
+                            <div class="form-div-group">
+                                <label class="conta-name">Property Type</label>
+                                <select name="" id="" class="select-field">
+                                    <option value="0">View All</option>
+                                    <option value="">Multistorey Residential Apartment</option>
+                                    <option value="">Paying Guest</option>
+                                    <option value="">Service Apartment</option>
+                                    <option value="">Penthouse</option>
+                                    <option value="">Independent / Builder Floor</option>
+                                    <option value="">Studio Apartment</option>
+                                    <option value="">Independent House/Villa</option>
+                                    <option value="">Residential Land</option>
+                                </select>
+                            </div>
+                            <div class="form-div-group">
+                                <label class="conta-name">Price</label>
+                                <input type="range" name="" placeholder="Enter Location" class="select-field-range">
+                            </div>
+                            <div class="form-div-group">
+                                <label class="conta-name">Property Id</label>
+                                <input type="text" name="" placeholder="" class="select-field">
+                            </div>
+                            <div class="form-div-group">
+                                <input type="button" name="" placeholder="" value="Search Now" class="search-now-btn">
+                            </div>
+                        </form>
+                        <div>
+                            <hr style=" border-top: 1px solid #e7e5e5;">
+                            <h1 class="left-side-heading"><a href="#advancesearch"  data-toggle="collapse">Advanced SEARCH <i class="fa fa-search"></i></a></h1>
+                            <hr style=" border-top: 1px solid #e7e5e5;">
+                            <div id="advancesearch" class="collapse">
+                                <div style="height:40px">
+                                    <h4 class="ammmm">AMENITIES</h4>
+                                </div>
+                                <ul class="amenities-detail">
+                                    <li><img src="images/busstand.jpg" class="img-responsive" alt="">
+                                        <p>Bus Stand</p>
+                                    </li>
+                                    <li><img src="images/supermarket.jpg" class="img-responsive" alt="">
+                                        <p>Grocery</p>
+                                    </li>
+                                    <li><img src="images/gas-station02.jpg" class="img-responsive" alt="">
+                                        <p>Petrol Pump</p>
+                                    </li>
+                                    <li><img src="images/hospital.jpg" class="img-responsive" alt="">
+                                        <p>Hospital</p>
+                                    </li>
+                                    <li><img src="images/park02.jpg" class="img-responsive" alt="">
+                                        <p>Park</p>
+                                    </li>
+                                    <li><img src="images/Pharmacy-Medical-Store02.jpg" class="img-responsive" alt="">
+                                        <p>Pharmacy</p>
+                                    </li>
+                                    <li><img src="images/Restaurants.jpg" class="img-responsive" alt="">
+                                        <p>Restaurants</p>
+                                    </li>
+                                    <li><img src="images/school.jpg" class="img-responsive" alt="">
+                                        <p>School</p>
+                                    </li>
+                                    <li><img src="images/gym02.jpg" class="img-responsive" alt="">
+                                        <p>Gym</p>
+                                    </li>
+                                    <li><img src="images/gaspipeline.jpg" class="img-responsive" alt="">
+                                        <p>Gas Pipeline</p>
+                                    </li>
+                                    <li><img src="images/clubhouse.jpg" class="img-responsive" alt="">
+                                        <p>Club House</p>
+                                    </li>
+                                    <li><img src="images/lift02.jpg" class="img-responsive" alt="">
+                                        <p>Lift</p>
+                                    </li>
+                                    <li><img src="images/parking.jpg" class="img-responsive" alt="">
+                                        <p>Parking</p>
+                                    </li>
+                                    <li><img src="images/power02.jpg" class="img-responsive" alt="">
+                                        <p>Power Backup</p>
+                                    </li>
+                                    <li><img src="images/swim02.jpg" class="img-responsive" alt="">
+                                        <p>Swiming Pool</p>
+                                    </li>
+                                </ul>
+                                <form>
+                                    <div class="form-div-group">
+                                        <label class="conta-name">AVALIABILITY</label>
+                                        <select name="" id="" class="select-field">
+                                            <option value="">View All</option>
+                                            <option value="">30 Days- 45 Days</option>
+                                            <option value="">45 Days-60 Days</option>
+                                            <option value="">30 Days</option>
+                                            <option value="">15 Days</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-div-group">
+                                        <label class="conta-name">POSTED BY</label>
+                                        <select name="" id="" class="select-field">
+                                            <option value="0">View All</option>
+                                            <option value="1">Owner</option>
+                                            <option value="2">Agent</option>
+                                            <option value="3">Tenant</option>
+                                            <option value="4">Builder</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-div-group">
+                                        <label class="conta-name">FURNISHING</label>
+                                        <select name="" id="" class="select-field">
+                                            <option value="0">View All</option>
+                                            <option value="1">Furnished</option>
+                                            <option value="2">Semi Furnished</option>
+                                            <option value="3">Non Furnished</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-div-group">
+                                        <label class="conta-name">BEDROOMS</label>
+                                        <select name="" id="" class="select-field">
+                                            <option value="0">View All</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-div-group">
+                                        <input type="button" name="" placeholder="" value="Search Now" class="search-now-btn">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="map-box">
+                        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+                        <div style="overflow:hidden;height:300px;width:100%;">
+                            <div id="gmap_canvas" style="height:300px;width:100%;"></div>
+                            <style>
+                            #gmap_canvas img {
+                                max-width: none!important;
+                                background: none!important
+                            }
+                            </style><a class="google-map-code" href="http://wordpress-themes.org" id="get-map-data">wordpress themes</a></div>
+                        <script type="text/javascript">
+                        function init_map() {
+                            var myOptions = {
+                                zoom: 14,
+                                center: new google.maps.LatLng(40.7127837, -74.00594130000002),
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                            };
+                            map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
+                            marker = new google.maps.Marker({
+                                map: map,
+                                position: new google.maps.LatLng(40.7127837, -74.00594130000002)
+                            });
+                            infowindow = new google.maps.InfoWindow({
+                                content: "<b>INDIRAPURAM, GHAZIABAD, UTTAR PRADESH, INDIA</b><br/><br/> "
+                            });
+                            google.maps.event.addListener(marker, "click", function() {
+                                infowindow.open(map, marker);
+                            });
+                            infowindow.open(map, marker);
+                        }
+                        google.maps.event.addDomListener(window, 'load', init_map);
+                        </script>
+                    </div>
+                    <div class="row1">
+                        <div class="col-md-8">
+                            <div class="show-result">
+                                <h1 class="left-side-heading">SHANTI VIHAR APARTMENT</h1></div>
+                            <div class="main-content-box">
+                                <div class="row1">
+                                    <div class="col-md-4">
+                                        <div class="img-section">
+                                            <img src="images/detials-img-big.jpg" class="img-responsive" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="inr-detail">
+                                            <i class="fa fa-inr"></i> 20000
+                                            <span>27 Jan 2016</span>
+                                        </div>
+                                        <h3 class="view-detail-title">INDIRAPURAM, GHAZIABAD, UTTAR PRADESH, INDIA </h3>
+                                        <ul class="property-discription-detail">
+                                            <li><span>Bedroom</span> 3 bedroom</li>
+                                            <li><span>Bathroom</span> 3 Bathroom</li>
+                                            <li><span>Balcony</span> 2 Balcony</li>
+                                            <li><span>Floor No</span> Ground Floor</li>
+                                            <li><span>Total Floor</span> 4 Floor</li>
+                                            <li><span>Furnished</span> Fully Furnised</li>
+                                            <li><span>Availability</span> 15 day</li>
+                                            <li><span>Facing</span> Road Facing</li>
+                                            <li><span>Area</span> 1500 SQ.FT</li>
+                                            <li><span>Property Type</span> Multistory Residential Story</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row1">
+                                    <div class="col-md-12">
+                                        <h4>PROPERTY DESCRIPTION</h4>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+                                        <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="user-view">
+                                <img src="images/user-default.png" class="img-responsive" alt="">
+                                <p class="text-center">RAJENDRA PRASAD JOSHI (AGENT)</p>
+                                <ul class="user-view-detail">
+                                    <li><i class="fa fa-phone-square"></i> <strong>+91-9810720882</strong></li>
+                                    <li><i class="fa fa-envelope"></i> <a href="#">RPJOSHI2007@YAHOO.CO.IN</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <h1 class="aminities-heading-title">AMENITIES</h1>
+                    <ul class="amenities-detail-des">
+                        <li><img src="images/busstand-hover.jpg" class="img-responsive" alt="">
+                            <p>BUS STAND</p>
+                        </li>
+                        <li><img src="images/supermarket-hover.jpg" class="img-responsive" alt="">
+                            <p>GROCERY</p>
+                        </li>
+                        <li><img src="images/gas-station02-hover.jpg" class="img-responsive" alt="">
+                            <p>PETROL PUMP</p>
+                        </li>
+                        <li><img src="images/hospital-hover.jpg" class="img-responsive" alt="">
+                            <p>HOSPITAL</p>
+                        </li>
+                        <li><img src="images/park02-hover.jpg" class="img-responsive" alt="">
+                            <p>PARK</p>
+                        </li>
+                        <li><img src="images/Pharmacy-Medical-Store02-hover.jpg" class="img-responsive" alt="">
+                            <p>PHARMECY</p>
+                        </li>
+                        <li><img src="images/Restaurants-hover.jpg" class="img-responsive" alt="">
+                            <p>RESTAURANTS</p>
+                        </li>
+                        <li><img src="images/school-hover.jpg" class="img-responsive" alt="">
+                            <p>SCHOOL</p>
+                        </li>
+                        <li><img src="images/gym02-hover.jpg" class="img-responsive" alt="">
+                            <p>GYM</p>
+                        </li>
+                        <li><img src="images/gaspipeline-hover.jpg" class="img-responsive" alt="">
+                            <p>GAS PIPELINE</p>
+                        </li>
+                        <li><img src="images/parking-hover.jpg" class="img-responsive" alt="">
+                            <p>PARKING</p>
+                        </li>
+                        <li><img src="images/power02-hover.jpg" class="img-responsive" alt="">
+                            <p>POWER BACKUP</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="footer-top">
+                    <div class="col-md-3 pd-100">
+                        <h3>PROPERTY IN INDIA</h3>
+                        <ul>
+                            <li><a href="#">Delhi</a></li>
+                            <li><a href="#">Gurgaon</a></li>
+                            <li><a href="#">Ghaziabzd</a></li>
+                            <li><a href="#">Noida</a></li>
+                            <li><a href="#">Faridabad</a></li>
+                            <li><a href="#">Greater Noida</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 pd-70">
+                        <h3>PROPERTY SERVICES</h3>
+                        <ul>
+                            <li><a href="view-listing.html">RESIDENTIAL PROPERTY</a></li>
+                            <li><a href="view-listing.html">LIST YOUR PROPERTY</a></li>
+                            <li><a href="view-listing.html">SEARCH PROPERTY</a></li>
+                            <li><a href="#">LOGIN</a></li>
+                            <li><a href="#">Register</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 pd-40">
+                        <h3>COMPANY</h3>
+                        <ul>
+                            <li><a href="about-us.html">About us</a></li>
+                            <li><a href="contact-us.html">Contact us</a></li>
+                            <li><a href="privacy-policy.html">Privacy policy</a></li>
+                            <li><a href="term-condition.html">TERMS AND CONDITIONS</a></li>
+                            <li><a href="testimonials.html">TESTIMONIALS</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 ">
+                        <h3>FOLLOW US</h3>
+                        <ul class="followus">
+                            <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottum">
+                    <p>Copyright @ 2016 Homely.co.in - All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<!--<script src="date-picker/jquery.js"></script>-->
+<script src="date-picker/jquery.datetimepicker.full.js"></script>
+<script>
+/*
+window.onerror = function(errorMsg) {
+  $('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+
+$.datetimepicker.setLocale('en');
+
+$('#datetimepicker_format').datetimepicker({
+    value: '2015/04/15 05:03',
+    format: $("#datetimepicker_format_value").val()
+});
+$("#datetimepicker_format_change").on("click", function(e) {
+    $("#datetimepicker_format").data('xdsoft_datetimepicker').setOptions({
+        format: $("#datetimepicker_format_value").val()
+    });
+});
+$("#datetimepicker_format_locale").on("change", function(e) {
+    $.datetimepicker.setLocale($(e.currentTarget).val());
+});
+
+$('#datetimepicker').datetimepicker({
+    dayOfWeekStart: 1,
+    lang: 'en',
+    disabledDates: ['1986/01/08', '1986/01/09', '1986/01/10'],
+    startDate: '1986/01/05'
+});
+$('#datetimepicker').datetimepicker({
+    value: '2015/04/15 05:03',
+    step: 10
+});
+
+$('.some_class').datetimepicker();
+
+$('#default_datetimepicker').datetimepicker({
+    formatTime: 'H:i',
+    formatDate: 'd.m.Y',
+    //defaultDate:'8.12.1986', // it's my birthday
+    defaultDate: '+03.01.1970', // it's my birthday
+    defaultTime: '10:00',
+    timepickerScrollbar: false
+});
+
+$('#datetimepicker10').datetimepicker({
+    step: 5,
+    inline: true
+});
+$('#datetimepicker_mask').datetimepicker({
+    mask: '9999/19/39 29:59'
+});
+
+$('#datetimepicker1').datetimepicker({
+    datepicker: false,
+    format: 'H:i',
+    step: 5
+});
+$('#datetimepicker2').datetimepicker({
+    yearOffset: 222,
+    lang: 'ch',
+    timepicker: false,
+    format: 'd/m/Y',
+    formatDate: 'Y/m/d',
+    minDate: '-1970/01/02', // yesterday is minimum date
+    maxDate: '+1970/01/02' // and tommorow is maximum date calendar
+});
+$('#datetimepicker3').datetimepicker({
+    inline: true
+});
+$('#datetimepicker4').datetimepicker();
+$('#open').click(function() {
+    $('#datetimepicker4').datetimepicker('show');
+});
+$('#close').click(function() {
+    $('#datetimepicker4').datetimepicker('hide');
+});
+$('#reset').click(function() {
+    $('#datetimepicker4').datetimepicker('reset');
+});
+$('#datetimepicker5').datetimepicker({
+    datepicker: false,
+    allowTimes: ['12:00', '13:00', '15:00', '17:00', '17:05', '17:20', '19:00', '20:00'],
+    step: 5
+});
+$('#datetimepicker6').datetimepicker();
+$('#destroy').click(function() {
+    if ($('#datetimepicker6').data('xdsoft_datetimepicker')) {
+        $('#datetimepicker6').datetimepicker('destroy');
+        this.value = 'create';
+    } else {
+        $('#datetimepicker6').datetimepicker();
+        this.value = 'destroy';
+    }
+});
+var logic = function(currentDateTime) {
+    if (currentDateTime && currentDateTime.getDay() == 6) {
+        this.setOptions({
+            minTime: '11:00'
+        });
+    } else
+        this.setOptions({
+            minTime: '8:00'
+        });
+};
+$('#datetimepicker7').datetimepicker({
+    onChangeDateTime: logic,
+    onShow: logic
+});
+$('#datetimepicker8').datetimepicker({
+    onGenerate: function(ct) {
+        $(this).find('.xdsoft_date')
+            .toggleClass('xdsoft_disabled');
+    },
+    minDate: '-1970/01/2',
+    maxDate: '+1970/01/2',
+    timepicker: false
+});
+$('#datetimepicker9').datetimepicker({
+    onGenerate: function(ct) {
+        $(this).find('.xdsoft_date.xdsoft_weekend')
+            .addClass('xdsoft_disabled');
+    },
+    weekends: ['01.01.2014', '02.01.2014', '03.01.2014', '04.01.2014', '05.01.2014', '06.01.2014'],
+    timepicker: false
+});
+var dateToDisable = new Date();
+dateToDisable.setDate(dateToDisable.getDate() + 2);
+$('#datetimepicker11').datetimepicker({
+    beforeShowDay: function(date) {
+        if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
+            return [false, ""]
+        }
+
+        return [true, ""];
+    }
+});
+$('#datetimepicker12').datetimepicker({
+    beforeShowDay: function(date) {
+        if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
+            return [true, "custom-date-style"];
+        }
+
+        return [true, ""];
+    }
+});
+$('#datetimepicker_dark').datetimepicker({
+    theme: 'dark'
+})
+</script>
+
+</html>

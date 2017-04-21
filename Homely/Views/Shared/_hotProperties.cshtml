@@ -1,0 +1,32 @@
+﻿
+@model List<Homely.Common.Model.HotPropertyViewModel>
+    @foreach (var item in Model)
+    {
+        <div class="home-img-detail-box2">
+            <div class="tip-item">
+                <div class="activator tip-specific-class">
+                    <a href="@Url.RouteUrl("ProductDetails",new { id=item.Url})">
+                        <img src="@Url.Content(item.imageUrl)" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="home-detail">
+
+                    <ul>
+                        <li class="first-collum">
+                            @item.Locality
+                            <br><span>@item.SocietyName</span>
+                        </li>
+                        <li class="second-collum"><i class="fa fa-inr"></i> @item.Rent</li>
+                    </ul>
+
+                </div>
+                <ul class="ssss">
+                    <li class="area">@item.Area</li>
+                    <li class="area2">@item.Bathroom</li>
+                    <li class="area3">@item.Bedroom</li>
+                </ul>
+            </div>
+        </div>
+    }
+
+

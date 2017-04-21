@@ -1,0 +1,1262 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Homely</title>
+    <script src="~/Scripts/js/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement
+          (o)
+          ,
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-72967688-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    @*<link  href="~/Content/default.css" rel="stylesheet" async />
+    <link  href="~/Content/component.css" rel="stylesheet" async/>*@
+    <script  src="~/Content/modernizr.custom.js" async></script>
+    <script>
+        var s = '@Url.Action("FeaturedListing", "Home", new { @id=14})';
+        $(function () {
+            $.ajax({
+                url: s,
+                dataType: 'html',
+                success: function (result) {
+                    $('#featuredListingPartial').html('');
+                    $('#featuredListingPartial').html(result);
+                }
+            });
+        });
+    </script>
+
+    @section Scripts{
+        <script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js" async></script>
+
+
+    }
+    @{
+        if (TempData["signup"] != null)
+        {
+            <text>
+                <script>
+                    $(function () {
+                        $('#loginModal').modal('show');
+                        $('#registration_fail').css('display', 'block');
+                    });
+                </script>
+            </text>
+
+        }
+        if (TempData["login"] != null)
+        {
+            <text>
+                <script>
+                    $(function () {
+                        $('#loginModal').modal('show');
+                        $('#login_fail').css('display', 'block');
+                    });
+                </script>
+            </text>
+        }
+    }
+
+
+
+
+    <script>
+        var featuredUrl = "@Url.Action("FeaturedListing", "Home")";
+        var imgUrl = "@Request.ApplicationPath";
+        var getCity = "@Url.Action("GetCityByState", "Property")";
+        var getLocality = "@Url.Action("GetLocalityByCity", "Property")";
+        var quickUrl = "@Url.Action("QuickListing", "Home")";
+    </script>
+    @{
+
+    }
+
+    @Scripts.Render("~/bundles/index")
+    @Styles.Render("~/Content/indexCss")
+
+    <style type="text/css" media="screen">
+        .activator {
+            /*background:#0099ff;*/
+            width: 100%;
+            /*height:100px;
+        padding:20px;*/
+            cursor: pointer;
+        }
+
+        .tip-item {
+            position: relative;
+        }
+
+        .tip {
+            display: none;
+            width: 300px;
+            /*height:100px;*/
+            background: #017163;
+            padding: 5px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 1;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            box-shadow: 1px 1px 5px #000;
+            -moz-box-shadow: 1px 1px 5px #000;
+            -webkit-box-shadow: 1px 1px 5px #999;
+        }
+
+        .tip-box {
+            background-color: #fff;
+        }
+    </style>
+    <!-----------------------testimonials ------------------------>
+
+    <style>
+        .vticker {
+            /*border: 1px solid red;*/
+            width: 100%;
+        }
+
+            .vticker ul {
+                padding: 0;
+            }
+
+            .vticker li {
+                list-style: none;
+                /*border-bottom: 1px solid green;*/
+                padding: 10px;
+            }
+
+        .et-run {
+            background: red;
+        }
+    </style>
+    <!-----------------------quick connect popup ------------------------>
+    <!-----------------------datetime picker ------------------------>
+    @*<link href="~/Content/date-picker/jquery.datetimepicker.css" rel="stylesheet" />*@
+    @*<script src="~/Content/date-picker/jquery.datetimepicker.full.js"></script>*@
+
+
+
+
+</head>
+
+<body>
+
+    <!------------------------------- RIGHT NAV TAP START HERE-------------------------------------->
+    
+    <div id="social" style="" class="quick-list-box">
+        <div id="quickList" style="position: relative;">
+            <div class="side-popup-form">
+                <ul>
+                    <li>
+                        <img src="@Url.Content("~/images/contact_us.png")" border="0" alt="" id="imgQkList" style="cursor:pointer" />
+
+                    </li>
+                    <li id="tblQkList">
+                        <ul class="query-form">
+
+                            <li>
+                                <form>
+                                    <div class="ff-dd title_new_cntn">
+
+                                        <div class="newtablel"><input type="radio" name="quickFor" checked="checked" value="1" /></div>
+                                        <div class="newtabler"><strong>List Your Property</strong></div>
+                                        <div class="clear"></div>
+                                        <div class="newtablel"><input type="radio" name="quickFor" value="2" /></div>
+                                        <div class="newtabler"> <strong>Search Rental Property</strong></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title"><strong>NAME</strong></label>
+                                        <input type="text" name="quickName" id="quickName" class="ffi-in" required>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title"><strong>EMAIL</strong></label>
+                                        <input type="text" name="quickEmail" id="quickEmail" class="ffi-in" required>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title"><strong>MOBILE</strong></label>
+                                        <input type="text" name="quickMobile" id="quickMobile" class="ffi-in">
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title"><strong>DATE</strong></label>
+                                        <input type="text" name="quickDate" class="ffi-in" id="datetimepicker">
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="ff-dd">
+                                        <label class="title">
+                                            <br>
+                                        </label>
+                                        <input type="button" name="quickSubmit" id="quickSubmit" class="ffi-in-btn" value="SUBMIT">
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- -Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content login-modal">
+                <div class="modal-header login-modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="loginModalLabel">USER LOGIN / REGISTER</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div role="tabpanel" class="login-tab">
+                            <!-- Nav tabs -->
+                            <span id="registration_fail" class="response_error" style="display:none;">The entered Email Id/Mobile is already registered. Please enter another Email Id/Mobile.</span>
+                            <ul class="nav nav-tabs mod-nav" role="tablist">
+
+                                <li role="presentation" class="active"><a id="signin-taba" href="#home" aria-controls="home" role="tab" data-toggle="tab">Login In</a></li>
+                                <li role="presentation"><a id="signup-taba" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">New User Register</a></li>
+                                @*<li role="presentation"><a id="forgetpass-taba" href="#forget_password" aria-controls="forget_password" role="tab" data-toggle="tab">Forget Password</a></li>*@
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active text-center" id="home">
+                                    &nbsp;&nbsp; <span id="login_fail" class="response_error" style="display: none;">Loggin failed, please try again.</span>
+                                    <div class="clearfix"></div>
+                                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                                    {   <div class="social-box">
+                                        <!--<div class="row mg-btm">
+                                          <div class="col-md-6"> <a href="#" class="btn btn-primary btn-block login-face"> <i class="icon-facebook"></i> Login with Facebook </a> </div>
+                                          <div class="col-md-6"> <a href="#" class="btn btn-danger btn-block login-twitter"> <i class="icon-twitter"></i> Login with G+ </a> </div>
+                                        </div>-->
+                                    </div>
+                                    <div class="spacer10"> &nbsp; </div>
+                                    <div class="form-group form-field">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                            <input type="text" class="form-control padnone" id="login_username" placeholder="Email" name="login_username">
+                                        </div>
+                                        <span class="help-block has-error" id="email-error"></span>
+                                    </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                                                <input type="password" class="form-control" id="login_passw" placeholder="Password" name="login_passw">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="remail-error"></span>
+                                        </div>
+                                        <input type="submit" id="login_btn" class="btn btn-danger login-btn" data-loading-text="Signing In...." value="submit" />
+                                        @*<button type="submit" id="login_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Signing In...."> User Login</button>*@
+                                        <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+                                            <div class="row">
+                                                <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab"> Forgot password? </a> </div>
+                                                <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab"> Register </a> </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="profile">
+                                    &nbsp;&nbsp;
+                                    <div class="clearfix"></div>
+                                    @using (Html.BeginForm("Registers", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "signUp" }))
+                                    {
+                                        /**/
+
+                                        <div class="form-group form-field">
+                                            <div class="input-group home_login">
+                                                @{int firstOwner = 0;}
+                                                <label class="content-name">OWNERSHIP</label>
+                                                @foreach (var tra in ViewBag.OwnerShip as List<Homely.Common.Model.MetaDataViewModel>)
+                                                {
+                                                    if (firstOwner == 0)
+                                                    {
+                                                        @Html.RadioButton("ownerShipType", tra.id, true, new { @class = "redio-btn input_align" })
+                                                    }
+                                                    else
+                                                    { @Html.RadioButton("ownerShipType", tra.id, new { @class = "redio-btn input_align" })}
+                                                    <span>@tra.name</span>
+                                                    firstOwner = firstOwner + 1;
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="text" class="form-control" id="Name" placeholder="Name" required name="Name">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-at"></i></div>
+                                                <input type="email" class="form-control" id="reg_email" placeholder="EMAIL" required name="emailId">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="remail-error"></span>
+                                        </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-mobile-phone"></i></div>
+                                                <input name="mobile" type="text" class="form-control" id="reg_mobile" placeholder="MOBILE" required maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                            </div>
+                                            <span class="help-block has-error" id="password-error"></span>
+                                        </div>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <input type="password" class="form-control" id="reg_password" placeholder="PASSWORD" required name="password">
+                                            </div>
+                                            <span class="help-block has-error" id="password-error"></span>
+                                        </div>
+
+                                        <div class="form-group form-field" style="display:none" id="div_reg_company_name">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <input type="text" class="form-control" id="reg_company_name" placeholder="COMPANY NAME" name="companyName">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-field" style="display:none" id="div_reg_company_address">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <input type="text" class="form-control" id="reg_company_address" placeholder="COMPANY ADDRESS" name="companyAddress">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <select id="reg_state" name="reg_state" class="form-control" required>
+                                                    <option value>Please select</option>
+                                                    <option value="1">Andhra Pradesh</option>
+                                                    <option value="2">Arunachal Pradesh</option>
+                                                    <option value="3">Assam</option>
+                                                    <option value="4">Bihar</option>
+                                                    <option value="5">Chhattisgarh</option>
+                                                    <option value="6">Goa</option>
+                                                    <option value="7">Gujarat</option>
+                                                    <option value="8">Haryana</option>
+                                                    <option value="9">Himachal Pradesh</option>
+                                                    <option value="10">Jammu and Kashmir</option>
+                                                    <option value="11">Jharkhand</option>
+                                                    <option value="12">Karnataka</option>
+                                                    <option value="13">Kerala</option>
+                                                    <option value="14">Madhya Pradesh</option>
+                                                    <option value="15">Maharashtra</option>
+                                                    <option value="16">Manipur</option>
+                                                    <option value="17">Meghalaya</option>
+                                                    <option value="18">Mizoram</option>
+                                                    <option value="19">Nagaland</option>
+                                                    <option value="20">Odisha(Orissa)</option>
+                                                    <option value="21">Punjab</option>
+                                                    <option value="22">Rajasthan</option>
+                                                    <option value="23">Sikkim</option>
+                                                    <option value="24">Tamil Nadu</option>
+                                                    <option value="25">Tripura</option>
+                                                    <option value="26">Uttar Pradesh</option>
+                                                    <option value="27">Uttarakhand</option>
+                                                    <option value="28">West Bengal</option>
+                                                    <option value="30">Delhi</option>
+                                                    <option value="32">Telangana</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <select id="reg_City" class="form-control" name="locality" required>
+                                                    <option>Please select</option>
+                                                </select>
+                                            </div>
+                                            <span class="help-block has-error" id="password-error"></span>
+                                        </div>
+
+
+                                        <div class="form-group form-field" style="display:none" id="div_reg_tenet_perm_address">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <input type="text" class="form-control" id="reg_tenet_perm_address" placeholder="PERMANENT ADDRESS">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-field" style="display:none" id="div_reg_tenet_comp_add">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                                <input type="text" class="form-control" id="reg_tenet_comp_add" placeholder="COMPANY ADDRESS">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="file" class="form-control" id="reg_file" placeholder="PROFILE IMAGE" name="profileImage">
+                                            </div>
+
+                                        </div>
+                                        <input type="submit" name="UserRegister" value="User Register" id="register_btn" class="btn btn-danger login-btn" />
+                                        @*<button type="button" id="register_btn" class="btn btn-block btn-danger login-btn" data-loading-text="Registering....">User Register</button>*@
+                                                    <div class="clearfix"></div>
+                                                    <div class="login-modal-footer">
+                                                        <div class="row">
+                                                            <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab"> Forgot password? </a> </div>
+                                                            <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signin-tab"> Sign In </a> </div>
+                                                        </div>
+                                                    </div>
+                                                    }
+                                </div>
+                                <div role="tabpanel" class="tab-pane text-center" id="forget_password">
+                                    &nbsp;&nbsp; <span id="reset_fail" class="response_error" style="display: none;"></span>
+                                    <div class="clearfix"></div>
+                                    <form>
+                                        <div class="form-group form-field">
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                                <input type="text" class="form-control" id="forg_email" placeholder="Email">
+                                            </div>
+                                            <span class="help-block has-error" data-error='0' id="femail-error"></span>
+                                        </div>
+                                        <button type="button" id="forget_btn" class="btn btn-danger login-btn" data-loading-text="Please wait....">Forget Password</button>
+                                        <div class="clearfix"></div>
+                                        <div class="login-modal-footer">
+                                            <div class="row">
+                                                <div class="col-md-6" style="text-align:right"> <i class="fa fa-lock"></i> <a href="javascript:;" class="signin-tab"> Sign In </a> </div>
+                                                <div class="col-md-6" style="text-align:left"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab"> Sign Up </a> </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- - Login Model Ends Here -->
+    @if (!Request.Browser.IsMobileDevice)
+    {
+
+        
+        <div class="webdisplay">
+            <header>
+                <div class="tapnav1">
+                    <div class="logo" style="padding: 20px 10px 10px 45px">
+                        <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/images/logo.jpg")" width="180" class="img-responsive" alt="" /></a>
+                    </div>
+                </div>
+
+                <!-- Class "cbp-spmenu-open" gets applied to menu -->
+                <div class="tapnav2">
+                    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+                        <h3><img src="@Url.Content("~/images/logo.jpg")" width="120" class="img-responsive" alt="" /></h3>
+                        @if (User.Identity.IsAuthenticated)
+                        { <a href="#">DASHBOARD</a> }
+                        else
+                        {
+                            <a href="#loginModal" data-toggle="modal">SIGN UP</a>
+                        }
+                        <a href="#">CAREER</a>
+                        <a href="#">HELP</a>
+
+                    </nav>
+
+                    <div class="main" style="margin-left:35%;">
+                        @*<section class="buttonset">
+                            <button id="showRightPush" style="padding:0;"><img src="@Url.Content("~/images/homely-nav-icon.png")" width="30" id="imgNav"></button>
+                        </section>*@
+                        <section class="buttonset">
+                            <button id="showRightPush" style="padding: 0px;"> &nbsp;<img src="/images/homely-nav-icon.png" width="30" id="imgNav">
+                            </button>MENU
+                        </section>
+                       
+                    </div>
+
+                  
+
+                    <script src="~/Content/classie.js" async></script>
+                    <script>
+                        var menuLeft = document.getElementById('cbp-spmenu-s1'),
+                            menuRight = document.getElementById('cbp-spmenu-s2'),
+                            menuTop = document.getElementById('cbp-spmenu-s3'),
+                            menuBottom = document.getElementById('cbp-spmenu-s4'),
+
+                            showRightPush = document.getElementById('showRightPush'),
+                            body = document.body;
+
+
+                        showRightPush.onclick = function () {
+                            classie.toggle(this, 'active');
+                            classie.toggle(body, 'cbp-spmenu-push-toleft');
+                            classie.toggle(menuRight, 'cbp-spmenu-open');
+                            disableOther('showRightPush');
+                        };
+
+                        function disableOther(button) {
+
+                            if (button !== 'showRightPush') {
+                                classie.toggle(showRightPush, 'disabled');
+                            }
+                        }
+                    </script>
+                </div>
+
+            </header>
+            <section>
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="home-map">
+                                <img src="@Url.Content("~/images/home-map.jpg")" class="img-responsive" alt="" />
+
+                                <div class="home_map_title">
+                                    @Html.Action("FreshCount", "Home")
+                                </div>
+
+                                <div class="home_map_overlay_main_logo_small_gzb home_map_overlay_main_logo_small" style="display:block"><img src="@Url.Content("~/images/logo_small.png")" alt="" /></div>
+                                <div class="home_map_overlay_main_logo_small_delhi home_map_overlay_main_logo_small" style="display:block"><img src="@Url.Content("~/images/logo_small.png")" alt="" /></div>
+                                <div class="home_map_overlay_main_logo_small_gurgaon home_map_overlay_main_logo_small" style="display:block"><img src="@Url.Content("~/images/logo_small.png")" alt="" /></div>
+                                <div class="home_map_overlay_main_logo_small_faridabad home_map_overlay_main_logo_small" style="display:block"><img src="@Url.Content("~/images/logo_small.png")" alt="" /></div>
+                                <div class="home_map_overlay1 home_map_overlay_main" style="display:none;font-size: small" id="DelhiPopup">@ViewBag.countDelhi</div>
+                                <div class="home_map_overlay2 home_map_overlay_main" style="display:none;font-size: small" id="NoidaPopup">@ViewBag.countnoida</div>
+                                <div class="home_map_overlay3 home_map_overlay_main" style="display:none;font-size: small" id="GGNPopup">@ViewBag.countgurg</div>
+                                <div class="home_map_overlay4 home_map_overlay_main" style="display:none;font-size: small" id="FaridabadPopup">@ViewBag.countfari</div>
+                                <div class="home_map_overlay5 home_map_overlay_main" style="display:none;font-size: small" id="GhaziabadPopup">@ViewBag.countgzb</div>
+                                <div class="home_map_overlay6 home_map_overlay_main" style="display:none;font-size: small" id="GreateNoidaPopup">@ViewBag.countgreater</div>
+                                <div class="home_map_overlay7 home_map_overlay_main" style="display:none;font-size: small" id="KundloTDI">@ViewBag.countkundli</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="home-right">
+                                <h1 class="top-main">OUR PRESENCE</h1>
+                                <ul class="our-presence">
+                                    <li>
+                                        <div class="img-row" id="divDelhiImage">
+
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Delhi" })">
+                                                <img src="@Url.Content("~/images/img01.jpg")" class="img-responsive img01" alt="" id="img1" />
+                                                <img src="@Url.Content("~/images/img01-hover.jpg")" class="img-responsive img01" id="img1-hover" alt="" style="display:none" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Delhi", "CityDetails", new { id = "Delhi" })</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-row" id="divGGNImage">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Gurgaon" })">
+                                                <img src="@Url.Content("~/images/img02.jpg")" class="img-responsive img02" alt="" id="img2" />
+                                                <img src="@Url.Content("~/images/img02-hover.jpg")" class="img-responsive img02" id="img2-hover" alt="" style="display:none" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Gurgaon", "CityDetails", new { id = "Gurgaon" })</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-row" id="divGZBImage">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Ghaziabad" })">
+                                                <img src="@Url.Content("~/images/img03.jpg")" class="img-responsive img03" alt="" id="img03" />
+                                                <img src="@Url.Content("~/images/img03-hover.jpg")" class="img-responsive img03" id="img3-hover" alt="" style="display:none" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Ghaziabad", "CityDetails", new { id = "Ghaziabad" })</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-row" id="divNoidaImage">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Noida" })">
+                                                <img src="@Url.Content("~/images/img04.jpg")" class="img-responsive img04" alt="" id="img04" />
+                                                <img src="@Url.Content("~/images/img04-hover.jpg")" class="img-responsive img04" id="img4-hover" alt="" style="display:none" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Noida", "CityDetails", new { id = "Noida" })</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-row" id="divFaridabadImage">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Faridabad" })">
+                                                <img src="@Url.Content("~/images/img05.jpg")" class="img-responsive img05" alt="" id="img05" />
+                                                <img src="@Url.Content("~/images/img05-hover.jpg")" class="img-responsive img05" id="img5-hover" alt="" style="display:none" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Faridabad", "CityDetails", new { id = "Faridabad" })</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-row" id="divSonipatImage">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Sonipat" })">
+                                                <img src="@Url.Content("~/images/img13.jpg")" class="img-responsive img13" alt="" id="img13" />
+                                                <img src="@Url.Content("~/images/img13-hover.jpg")" class="img-responsive" alt="" id="img13-hover" style="display:none" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Kundli", "CityDetails", new { id = "Sonipat" })</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                <div class="rentingtopbox">
+                                    <h1 class="head_bold">RENTING FASTER THAN PIZZA DELIVERY</h1>
+                                    <ul class="renting-fater">
+                                        <li>
+                                            <input type="radio" name="rent" checked="checked" value="1" /> List your property
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="rent" value="2"> Search rental property
+                                        </li>
+                                    </ul>
+                                    @using (Html.BeginForm("Index", "Property", FormMethod.Post, new { id = "formHome" }))
+                                    {
+                                        <input type="hidden" name="hdnForChk" id="hdnForChk" />
+
+                            <!-------------------------------searchbarbox start here------------------------------------>
+
+
+                                        <div style="border:1px solid #017163;width:95%;padding: 2px 0px 9px 5px;height: 35px;background-color: #017163;/* margin-left: 2px; */">
+                                            <div class="renting-faster-search-boxn001">
+                                                <div class="renting-faster-search-boxnew2 botbod" style="box-shadow:none;">
+                                                    @Html.DropDownList("State", (SelectList)ViewBag.State, "Select state", new { @required = "required" })
+                                                </div>
+
+                                            </div>
+
+                                            <div class="renting-faster-search-boxn002">
+                                                <div class="renting-faster-search-boxnew2 botbod">
+                                                    @Html.DropDownList("City", new List<SelectListItem> { new SelectListItem { Text = "Select city", Value = "" } }, new { @required = "required" })
+                                                </div>
+                                            </div>
+
+                                            <div class="renting-faster-search-boxn003">
+                                                <div class="renting-faster-search-boxnew2 botbod">
+                                                    @Html.DropDownList("Locality", new List<SelectListItem> { new SelectListItem { Text = "Select locality", Value = "" } })
+                                                </div>
+                                            </div>
+
+                                            <div class="renting-faster-search-boxnbhk">
+                                                <div class="renting-faster-search-boxnew2 botbod">
+                                                    <select name="BHK" id="BHK" required>
+                                                        <option value>BHK</option>
+                                                        <option value="1">1 BHK</option>
+                                                        <option value="2">2 BHK</option>
+                                                        <option value="3">3 BHK</option>
+                                                        <option value="4">4 BHK</option>
+                                                        <option value="5">5 BHK</option>
+                                                        <option value="6">PG</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="renting-faster-search-boxnbudget">
+                                                <div class="renting-faster-search-boxnew2 botbod">
+                                                    <select name="Budget" id="Budget" required>
+                                                        <option value>Budget</option>
+                                                        <option value="5000-7000">5000-7000</option>
+                                                        <option value="7000-10000">7000-10000</option>
+                                                        <option value="10000-12000">10000-12000</option>
+                                                        <option value="12000-15000">12000-15000</option>
+                                                        <option value="15000-20000">15000-20000</option>
+                                                        <option value="20000-25000">20000-25000</option>
+                                                        <option value="25000-30000">25000-30000</option>
+                                                        <option value="30000-35000">30000-35000</option>
+                                                        <option value="35000-40000">35000-40000</option>
+                                                        <option value="40000-45000">40000-45000</option>
+                                                        <option value="45000-50000">45000-50000</option>
+                                                        <option value="50000-55000">50000-55000</option>
+                                                        <option value="55000-60000">55000-60000</option>
+                                                        <option value="60000-65000">60000-65000</option>
+                                                        <option value="65000-70000">65000-70000</option>
+                                                        <option value="70000-75000">70000-75000</option>
+                                                        <option value="75000-80000">75000-80000</option>
+                                                        <option value="80000-85000">80000-85000</option>
+                                                        <option value="85000-90000">85000-90000</option>
+                                                        <option value="90000-95000">90000-95000</option>
+                                                        <option value="95000-100000">95000-100000</option>
+                                                        <option value="100000-200000">Above 1 Lac</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="marginleft">
+                                                <div class="renting-faster-search-boxn3">
+                                                    <div class="renting-faster-search-box2">
+
+                                         <input type="submit" name="searchFast" id="searchFast" value="PROCEED" class="input-search-btn6" style="border: none;box-shadow: none;padding-top: 2%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+
+                     <!-------------------------------searchbarbox end here------------------------------------>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 featured-width">
+                            <h1 class="home-tabing-title">FEATURED NEW LISTINGS</h1>
+                            <div class="panel with-nav-tabs panel-default">
+                                <div class="panel-heading">
+                                    <ul class="nav nav-tabs" id="homePageCities">
+                                        <li id="41"><a href="#tab1default" data-toggle="tab" data-id="41">Delhi</a></li>
+                                        <li id="7"><a href="#tab2default" data-toggle="tab" data-id="7">Gurgaon</a></li>
+                                        <li id="1"><a href="#tab3default" data-toggle="tab" data-id="1">Noida</a></li>
+                                        <li id="14" class="active"><a href="#tab4default" data-toggle="tab" data-id="14">Ghaziabad</a></li>
+                                        <li id="6"><a href="#tab5default" data-toggle="tab" data-id="6">Faridabad</a></li>
+                                        @*<li id="57"><a href="#tab5default" data-toggle="tab" data-id="57">Greater Noida</a></li>*@
+                                        <li id="8"><a href="#tab5default" data-toggle="tab" data-id="8">Kundli</a></li>
+                                    </ul>
+                                </div>
+                                <input type="hidden" id="CurrentHdnCity" value="14" />
+                                <div class="panel-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade in active" id="tab1default">
+                                            <div id="featuredListingPartial"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<ul class="pagination pagination_home">*@
+                            @*@Html.Action("GetNaviagtion", "Home", new { id = 72 })*@
+                            @*</ul>*@
+                        </div>
+                        <div class="col-md-3 hot-pro-width">
+                            <h1 class="home-tabing-title">HOT PROPERTIES</h1>
+                            <div class="hot-properties-section">
+                                @*@Html.Partial("_hotProperties", Model.hotPropertyViewModel)*@
+                                @Html.Action("HotProperties", "Home")
+                            </div>
+                        </div>
+                        <div class="col-md-3 testimonials-box-main">
+                            <h1 class="home-tabing-title">TESTIMONIALS</h1>
+                            <div class="testimonials-box">
+                                <div class="vticker">
+                                    <ul>
+                                        <li>
+                                            <div class="testimonial-block">
+                                                <div class="testimonial-img">
+                                                    <img src="@Url.Content("~/images/testi-img01.jpg")" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="testimonial-content">
+                                                    <p>
+                                                        <i class="fa fa-quote-left left"></i><span>Yogesh,Software Professional in Delhi/ NCR</span>
+                                                        <br>Homely gives us option to list property for rent on a rental focused platform, in a cluttered online market.<i class="fa fa-quote-right right"></i>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="testimonial-block">
+                                                <div class="testimonial-img">
+                                                    <img src="@Url.Content("~/images/testi-img02.jpg")" class="img-responsive" alt="">
+                                                </div>
+                                                <div class="testimonial-content">
+                                                    <p>
+                                                        <i class="fa fa-quote-left left"></i><span>Nitin,Software Professional in Noida</span>
+                                                        <br>Homely gives us option to list property for rent on a rental focused platform, in a cluttered online market.<i class="fa fa-quote-right right"></i>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h1 class="home-tabing-title">OUR STORY</h1>
+                            <div class="our-story-box">
+                                <p>
+                                    In the cluttered space of rental and resale properties
+                                    <br> online in India, Homely seek to fill the gap of clean, clear and verified data by introducing an online platform for the end user. Homely is aimed at renting made easy through verified and fresh listings from owners, agents and builders. Our Philosophy
+                                    <br> "Renting faster than pizza delivery" is visualized by keeping in mind the fast moving modern Indian. Therefore, a hassle free, easily accessible, data oriented rental services for the time crunched savvy urbanites.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+
+
+            <footer class="footer-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-top">
+                            <div class="col-md-3 pd-100">
+                                <h3>PROPERTY IN INDIA</h3>
+                                <ul>
+                                    <li><a href="@Url.RouteUrl("CityDetails", new { id = "Delhi" })">Delhi</a></li>
+                                    <li><a href="@Url.RouteUrl("CityDetails", new { id = "Gurgaon" })">Gurgaon</a></li>
+                                    <li><a href="@Url.RouteUrl("CityDetails", new { id = "Ghaziabad" })">Ghaziabad</a></li>
+                                    <li><a href="@Url.RouteUrl("CityDetails", new { id = "Noida" })">Noida</a></li>
+                                    <li><a href="@Url.RouteUrl("CityDetails", new { id = "Faridabad" })">Faridabad</a></li>
+                                    @*<li><a href="@Url.RouteUrl("CityDetails", new { id = "Greater Noida" })">Greater Noida</a></li>*@
+                                </ul>
+                            </div>
+                            <div class="col-md-3 pd-70">
+                                <h3>PROPERTY SERVICES</h3>
+                                <ul>
+                                    <li>@Html.RouteLink("Rental Properties", "CityDetails", new { id = "RENT" })</li>
+                                    <li>@Html.ActionLink("List Property", "Index", "Property")</li>
+                                    <li>@Html.ActionLink("Post Requirment", "Index", "PostRequirment")</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3 pd-40">
+                                <h3>COMPANY</h3>
+                                <ul>
+                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">Contact us</a></li>
+                                    <li><a href="#">Privacy policy</a></li>
+                                    <li><a href="#">TERMS AND CONDITIONS</a></li>
+                                    <li><a href="#">TESTIMONIALS</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h3>FOLLOW US</h3>
+                                <ul class="followus">
+                                    <li><a href="https://www.facebook.com/Renting-495701037291296/" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-bottum">
+                            <p>Copyright @@2016 Homely.co.in - All Rights Reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <script type="text/javascript">
+                jQuery(function () {
+                    jQuery('.activator.tip-specific-class').BAToolTip({
+                        tipOpacity: 1.0,
+                        tipOffset: 20
+                    });
+                })
+            </script>
+            @*<div class="col-xs-1" align="right">
+                    <div style=" -webkit-box-shadow -1px 3px 31px 3px rgba(0,0,0,0.43);
+                         -moz-box-shadow -1px 3px 31px 3px rgba(0,0,0,0.43);
+                         box-shadow -1px 3px 31px 3px rgba(0,0,0,0.43);
+                         box-radius 10px;
+                         width 300px;
+                         position fixed;
+                         bottom 0px;
+                         left 1045px;
+                         float right;
+                         height 155px;
+                         background #f2f2f2;
+                         color #000;
+                         padding 10px 30px;">
+                        <div class="fright"><h3>X</h3></div>
+                        <h3 align="center">This is a text area</h3>
+                    </div>
+                </div>*@
+
+        </div>
+
+    }
+    else
+    {
+        <div class="mobdisplay">
+
+            <header>
+                <div class="tapnav1">
+                    <div class="logo">
+                        <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/images/logo.jpg")" class="img-responsive" alt="" /></a>
+                    </div>
+                </div>
+
+                <!-- Class "cbp-spmenu-open" gets applied to menu -->
+                <div class="tapnav2">
+                    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+                        <h3><img src="@Url.Content("~/images/logo.jpg")" class="img-responsive" alt="" width="120" /></h3>
+                        @if (User.Identity.IsAuthenticated)
+                        { <a href="#">DASHBOARD</a> }
+                        else
+                        {
+                           
+                            <a href="#loginModal" data-toggle="modal">SIGN UP</a>
+                        }
+                        <a href="#">CAREER</a>
+                        <a href="#">HELP</a>
+
+                    </nav>
+
+                    <div class="main" style="padding: 0 1.875em 3.125em 5.875em">
+                        <section class="buttonset" style="font-size: 10px;">
+
+                            <button id="showRightPush" style="padding-left: 0px;padding-right: 0px;" class="active">
+
+                                <img src="/images/innericon.png" width="28" id="imgNav">
+                            </button>
+                            MENU
+                        </section>
+                    </div>
+
+                    <!-- Classie - class helper functions by @@desandro https://github.com/desandro/classie -->
+
+                    <script src="~/Content/classie.js" async></script>
+                    <script>
+                        var menuLeft = document.getElementById('cbp-spmenu-s1'),
+                            menuRight = document.getElementById('cbp-spmenu-s2'),
+                            menuTop = document.getElementById('cbp-spmenu-s3'),
+                            menuBottom = document.getElementById('cbp-spmenu-s4'),
+
+                            showRightPush = document.getElementById('showRightPush'),
+                            body = document.body;
+
+
+                        showRightPush.onclick = function () {
+                            classie.toggle(this, 'active');
+                            classie.toggle(body, 'cbp-spmenu-push-toleft');
+                            classie.toggle(menuRight, 'cbp-spmenu-open');
+                            disableOther('showRightPush');
+                        };
+
+                        function disableOther(button) {
+
+                            if (button !== 'showRightPush') {
+                                classie.toggle(showRightPush, 'disabled');
+                            }
+                        }
+                    </script>
+                </div>
+
+            </header>
+
+
+
+            <!---------------------------------------------------- Header -------------------------------------------------->
+            <!---------------------------------------------------- search bar -------------------------------------------------->
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="mapnbg">
+                        <img src="@Url.Content("~/images/home-map.png")" class="img-responsive" width="250">
+                        <div class="home_map_title01">
+                            @Html.Action("FreshCount", "Home")
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="paditop"></div>
+                    <div class="mapnbg2">
+
+                        <div class="clearfix"></div>
+
+
+                        <div class="listprodiv">
+                            <ul class="renting-fater2">
+                                <li>
+                                    <input type="radio" name="rent" checked="checked" value="1" />
+                                </li>
+                                <li class="listpro"><strong>List your property</strong></li>
+                                <li>
+                                    <input type="radio" name="rent" value="2" />
+                                </li>
+                                <li class="listpro2"><strong>Search rental Property</strong></li>
+                            </ul>
+                        </div>
+
+                        <div style="clear:both;"></div>
+                        @using (Html.BeginForm("Index", "Property", FormMethod.Post, new { id = "formHome" }))
+                        {
+                        <div class="renting-faster-search-boxn01">
+                            <div class="renting-faster-search-box2">
+                                @Html.DropDownList("State", (SelectList)ViewBag.State, "Select state", new { @required = "required" })
+                            </div>
+                        </div>
+                        <div class="renting-faster-search-boxn02">
+                            <div class="renting-faster-search-box2">
+                                @Html.DropDownList("City", new List<SelectListItem> { new SelectListItem { Text = "Select city", Value = "" } },
+                                           new { @required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="renting-faster-search-boxn03">
+                            <div class="renting-faster-search-box2">
+                                @Html.DropDownList("Locality", new List<SelectListItem> { new SelectListItem { Text = "Select locality", Value = "" } })
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <div class="renting-faster-search-boxn01">
+                            <div class="renting-faster-search-box2">
+                                <select name="BHK" id="BHK" required>
+                                    <option value>BHK</option>
+                                    <option value="1">1 BHK</option>
+                                    <option value="2">2 BHK</option>
+                                    <option value="3">3 BHK</option>
+                                    <option value="4">4 BHK</option>
+                                    <option value="5">5 BHK</option>
+                                    <option value="6">PG</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="renting-faster-search-boxn02">
+                            <div class="renting-faster-search-box2">
+                                <select name="Budget" id="Budget" required class="renting0000">
+                                    <option value>Budget</option>
+                                    <option value="5000-7000">5000-7000</option>
+                                    <option value="7000-10000">7000-10000</option>
+                                    <option value="10000-12000">10000-12000</option>
+                                    <option value="12000-15000">12000-15000</option>
+                                    <option value="15000-20000">15000-20000</option>
+                                    <option value="25000-30000">25000-30000</option>
+                                    <option value="30000-35000">30000-35000</option>
+                                    <option value="35000-40000">35000-40000</option>
+                                    <option value="40000-45000">40000-45000</option>
+                                    <option value="45000-50000">45000-50000</option>
+                                    <option value="50000-55000">50000-55000</option>
+                                    <option value="55000-60000">55000-60000</option>
+                                    <option value="60000-65000">60000-65000</option>
+                                    <option value="65000-70000">65000-70000</option>
+                                    <option value="70000-75000">70000-75000</option>
+                                    <option value="75000-80000">75000-80000</option>
+                                    <option value="80000-85000">80000-85000</option>
+                                    <option value="85000-90000">85000-90000</option>
+                                    <option value="90000-95000">90000-95000</option>
+                                    <option value="95000-100000">95000-100000</option>
+                                    <option value="100000-200000">Above 1 Lac</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="renting-faster-search-boxn03">
+                            <div class="renting-faster-search-box2">
+                                <input type="submit" name="searchFast" id="searchFast" value="PROCEED" class="input-search-btn5" style="width:100%">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        }
+                    </div>
+                    <div class="clear"></div><div class="paditop">&nbsp;</div>
+
+
+
+                </div>
+                <!---------------------------------------------------- search bar -------------------------------------------------->
+                <!---------------------------------------------------- OUR PRESENCE -------------------------------------------------->
+                <div class="clear"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="home-right">
+                                <h1 class="top-main">OUR PRESENCE</h1>
+                                <ul class="our-presence2">
+                                    <li>
+                                        <div class="img-row">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Delhi" })">
+                                                <img src="@Url.Content("~/images/img01.jpg")" class="img-responsive img01" alt="" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Delhi", "CityDetails", new { id = "Delhi" })</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-row">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Gurgaon" })">
+                                                <img src="@Url.Content("~/images/img13.jpg")" class="img-responsive img02" alt="" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Gurgaon", "CityDetails", new { id = "Gurgaon" })</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-row">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Ghaziabad" })">
+                                                <img src="@Url.Content("~/images/img-03.jpg")" class="img-responsive img03" alt="" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Ghaziabad", "CityDetails", new { id = "Ghaziabad" })</div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                                <div class="clear"></div>
+
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <div class="col-md-12">
+                            <div class="home-right">
+
+                                <ul class="our-presence2">
+
+                                    <li>
+                                        <div class="img-row">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Noida" })">
+                                                <img src="@Url.Content("~/images/img-04.jpg")" class="img-responsive img-04" alt="" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Noida", "CityDetails", new { id = "Noida" })</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-row">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Faridabad" })">
+                                                <img src="@Url.Content("~/images/img-05.jpg")" class="img-responsive img-05" alt="" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Faridabad", "CityDetails", new { id = "Faridabad" })</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-row">
+                                            <a href="@Url.RouteUrl("CityDetails", new { id = "Kundli" })">
+                                                <img src="@Url.Content("~/images/img-13.jpg")" class="img-responsive img05" alt="" />
+                                            </a>
+                                            <div class="our-presence-title">@Html.RouteLink("Kundli", "CityDetails", new { id = "Kundli" })</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="clear"></div>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!---------------------------------------------------- OUR PRESENCE -------------------------------------------------->
+                <!---------------------------------------------------- testimonials -------------------------------------------------->
+
+
+                <div class="container">
+                    <div class="col-md-3 testimonials-box-main">
+                        <h1 class="home-tabing-title">TESTIMONIALS</h1>
+                        <div class="testimonials-box">
+                            <div class="vticker">
+                                <ul>
+                                    <li>
+                                        <div class="testimonial-block">
+                                            <div class="testimonial-img">
+                                                <img src="@Url.Content("~/images/testi-img01.jpg")" class="img-responsive" alt="">
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>
+                                                    <i class="fa fa-quote-left left"></i><span>Nitin,Software Professional in Delhi/ NCR</span>
+                                                    <br>Homely gives us option to list property for rent on a rental focused platform, in a cluttered online market.<i class="fa fa-quote-right right"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="testimonial-block">
+                                            <div class="testimonial-img">
+                                                <img src="@Url.Content("~/images/testi-img02.jpg")" class="img-responsive" alt="">
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>
+                                                    <i class="fa fa-quote-left left"></i><span>Nitin,Software Professional in Delhi/ NCR</span>
+                                                    <br>Homely gives us option to list property for rent on a rental focused platform, in a cluttered online market.<i class="fa fa-quote-right right"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <!---------------------------------------------------- testimonials -------------------------------------------------->
+                <!---------------------------------------------------- footer -------------------------------------------------->
+                <footer class="footer-section_margin">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="footer-top2">
+                                    <div class="footer01">
+                                        <h3>PROPERTY IN INDIA</h3>
+                                        <ul>
+                                            <li><a href="@Url.RouteUrl("CityDetails", new { id = "Delhi" })">Delhi</a></li>
+                                            <li><a href="@Url.RouteUrl("CityDetails", new { id = "Gurgaon" })">Gurgaon</a></li>
+                                            <li><a href="@Url.RouteUrl("CityDetails", new { id = "Ghaziabad" })">Ghaziabad</a></li>
+                                            <li><a href="@Url.RouteUrl("CityDetails", new { id = "Noida" })">Noida</a></li>
+                                            <li><a href="@Url.RouteUrl("CityDetails", new { id = "Faridabad" })">Faridabad</a></li>
+                                            @*<li><a href="#">Greater Noida</a></li>*@
+                                        </ul>
+                                    </div>
+                                    <div class="footer01">
+                                        <h3>PROPERTY SERVICES</h3>
+                                        <ul>
+                                            <li>@Html.RouteLink("Rental Properties", "CityDetails", new { id = "RENT" })</li>
+                                            <li>@Html.ActionLink("List Property", "Index", "Property")</li>
+                                            <li>@Html.ActionLink("Post Requirment", "Index", "PostRequirment")</li>
+                                        </ul>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="footer01">
+                                        <h3>COMPANY</h3>
+                                        <ul>
+                                            <li><a href="#">About us</a></li>
+                                            <li><a href="#">Contact us</a></li>
+                                            <li><a href="#">Privacy policy</a></li>
+                                            <li><a href="#">Terms and Conditions</a></li>
+                                            <li><a href="#">Testimonials</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="footer01">
+                                        <h3>FOLLOW US</h3>
+                                        <ul class="followus">
+                                            <li><a href="https://www.facebook.com/Renting-495701037291296/" target="_blank"><i class="fa fa-facebook-square"></i></a> </li>
+                                            <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+                <div class="footer-bottum">
+                    <p align="center">
+                        Copyright @@ 2016 Homely.co.in
+                        All Rights Reserved
+                    </p>
+                </div>
+            </div>
+            <!---------------------------------------------------- footer -------------------------------------------------->
+        </div>
+    }
+    <link href="~/Content/style-new.css" rel="stylesheet" />
+</body>
+
+
+</html>
