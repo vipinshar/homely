@@ -396,6 +396,7 @@ namespace Homely.Controllers
             }
             return PartialView("_ViewListingPartial", data);
         }
+
         //public ActionResult SearchProp(SearchViewModel model)
         //{
         //    if (model != null)
