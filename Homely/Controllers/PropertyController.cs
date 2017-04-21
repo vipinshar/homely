@@ -542,6 +542,10 @@ namespace Homely.Controllers
             #endregion
         }
 
+        /// <summary>
+        /// Get Detail
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult GetDetail()
         {
