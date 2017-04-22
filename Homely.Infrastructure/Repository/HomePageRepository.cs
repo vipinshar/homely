@@ -70,7 +70,7 @@ namespace Homely.Infrastructure.Repository
             }
 
 
-            return property.ToPagedList(1, 9);
+            return property.ToPagedList(1, 3);
         }
         public List<HotPropertyViewModel> GetHotProperties()
         {
@@ -120,8 +120,8 @@ namespace Homely.Infrastructure.Repository
 
         public IPagedList<FeaturedListingViewModel> GetPropertyByCityAndPage(int page, int city, string For)
         {
-            int pageSize = 9;
-            var count = db.tbl_Property.Where(x => x.Enabled == true && x.Rented == false && x.PropertyCity == city).Count();
+            int pageSize = 3;
+            int count = 0; /*db.tbl_Property.Where(x => x.Enabled == true && x.Rented == false && x.PropertyCity == city).Count();*/
             var data = db.Database.SqlQuery<FeaturedListingViewModel>("EXEC PROC_GetPropByPaging @City,@For,@PageNumber,@RowspPage",
                 new SqlParameter("@City", city), new SqlParameter("@For", For), new SqlParameter("@PageNumber", page), new SqlParameter("@RowspPage", pageSize)).ToList();
 
@@ -132,6 +132,7 @@ namespace Homely.Infrastructure.Repository
                 data.ForEach(x => x.Url = x.Url.Replace(',', '-'));
                 data.ForEach(x => x.Url = x.Url.Replace(@"/", "-"));
                 data.ForEach(x => x.Url = x.Url.Replace(' ', '-'));
+                count = data[0].TotalRows;
             }
             StaticPagedList<FeaturedListingViewModel> obj = new StaticPagedList<FeaturedListingViewModel>(data, page, pageSize, count);
             return obj;

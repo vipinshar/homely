@@ -209,12 +209,12 @@ namespace Homely.Controllers
                                 }
                                 catch (System.IO.DirectoryNotFoundException)
                                 {
-                                    item.ImgUrl = "~/PropertyImages/detials-img-big.jpg";
+                                    item.ImgUrl = "~/images/detials-img-big.jpg";
                                 }
                             }
                             else
                             {
-                                item.ImgUrl = "~/PropertyImages/detials-img-big.jpg";
+                                item.ImgUrl = "~/images/detials-img-big.jpg";
                             }
                         }
 

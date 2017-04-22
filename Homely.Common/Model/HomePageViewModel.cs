@@ -56,6 +56,7 @@ namespace Homely.Common.Model
         public int TransactionType { get; set; }
 
         public string imageUrl { get; set; }
+        public int TotalRows { get; set; }
     }
 
     public class ReviewViewModel
