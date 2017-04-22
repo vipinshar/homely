@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[tbl_Registration] (
+    [RegistrationID]   UNIQUEIDENTIFIER CONSTRAINT [DF_tbl_Registration_RegistrationID] DEFAULT (newid()) NOT NULL,
+    [EmailId]          VARCHAR (50)     NOT NULL,
+    [Password]         VARCHAR (20)     NOT NULL,
+    [OwnershipType]    NUMERIC (18)     NOT NULL,
+    [FirstName]        VARCHAR (50)     NOT NULL,
+    [LastName]         VARCHAR (50)     NULL,
+    [Mobile]           VARCHAR (15)     NOT NULL,
+    [Alternate]        VARCHAR (15)     NULL,
+    [City]             NUMERIC (18)     NOT NULL,
+    [CompanyAddress]   VARCHAR (500)    NULL,
+    [CompanyName]      VARCHAR (100)    NULL,
+    [PropertyType]     VARCHAR (50)     NULL,
+    [DealsIn]          VARCHAR (500)    NULL,
+    [SpecialiseIn]     VARCHAR (MAX)    NULL,
+    [PropertiesAt]     VARCHAR (MAX)    NULL,
+    [CreateDate]       DATETIME         CONSTRAINT [DF_tbl_Registration_CreateDate] DEFAULT (getdate()) NOT NULL,
+    [CreatedBy]        NUMERIC (18)     NULL,
+    [UpdateDate]       DATETIME         NULL,
+    [UpdatedBy]        NUMERIC (18)     NULL,
+    [Enabled]          BIT              NOT NULL,
+    [PermanentAddress] VARCHAR (500)    NULL,
+    [Image]            VARCHAR (100)    NULL,
+    CONSTRAINT [PK_tbl_Registration] PRIMARY KEY CLUSTERED ([EmailId] ASC)
+);
+

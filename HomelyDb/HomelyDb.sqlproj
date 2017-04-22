@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>HomelyDb</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{1a822e65-6dcf-41c0-92b8-b43d40941d7a}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>HomelyDb</RootNamespace>
+    <AssemblyName>HomelyDb</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="homely\" />
+    <Folder Include="homely\Stored Procedures\" />
+    <Folder Include="Server Objects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\tbl_FavouriteProperty.sql" />
+    <Build Include="dbo\Tables\tbl_Master_Amenities.sql" />
+    <Build Include="dbo\Tables\tbl_Master_Availability.sql" />
+    <Build Include="dbo\Tables\tbl_Master_City.sql" />
+    <Build Include="dbo\Tables\tbl_Master_Country.sql" />
+    <Build Include="dbo\Tables\tbl_Master_Facing.sql" />
+    <Build Include="dbo\Tables\tbl_Master_Furnished.sql" />
+    <Build Include="dbo\Tables\tbl_Master_Messages.sql" />
+    <Build Include="dbo\Tables\tbl_Master_PropertyType.sql" />
+    <Build Include="dbo\Tables\tbl_Master_State.sql" />
+    <Build Include="dbo\Tables\tbl_Master_SubCity.sql" />
+    <Build Include="dbo\Tables\tbl_Master_SubPropertyType.sql" />
+    <Build Include="dbo\Tables\tbl_Master_Transaction.sql" />
+    <Build Include="dbo\Tables\tbl_PostRequirment.sql" />
+    <Build Include="dbo\Tables\tbl_Property.sql" />
+    <Build Include="dbo\Tables\tbl_PropertyReview.sql" />
+    <Build Include="dbo\Tables\tbl_QuickListing.sql" />
+    <Build Include="dbo\Tables\tbl_Registration.sql" />
+    <Build Include="dbo\Tables\tbl_Master_Ownership.sql" />
+    <Build Include="dbo\Tables\tbl_ContactUs.sql" />
+    <Build Include="Security\sa.sql" />
+    <Build Include="Security\DESKTOP-6N9VP9N_asus.sql" />
+    <Build Include="Security\NT SERVICE_SQLWriter.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Functions\Split.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_AddFavouriteProperty.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_AddProperty.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_AddPropertyReview.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_Agent.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_Builder.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_ChangePassword.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_City_State.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_ContacUs.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_DealersDetial.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_FavouriteProperty.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_ForgotPassword.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_HomePage.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_Login.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_MasterData.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_MasterData_Review.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_MemberDetails.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_Owner.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_PostRequirment.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_Property_City.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_PropertyComparison.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_PropertyDetails.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_QuickListing.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_Search1.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_SearchProperty.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_Tenant.sql" />
+    <Build Include="dbo\Stored Procedures\PROC_Testimonials.sql" />
+    <Build Include="homely\Stored Procedures\PROC_Country_State.sql" />
+    <Build Include="Security\MS_SQLEnableSystemAssemblyLoadingKey.sql" />
+    <Build Include="Security\homely.sql" />
+    <Build Include="Server Objects\AlwaysOn_health.sql" />
+  </ItemGroup>
+</Project>
