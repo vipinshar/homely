@@ -88,7 +88,10 @@ namespace Homely.Controllers
                 string result = _IPropertyListingRepository.SaveProperty(model);
                 if (!string.IsNullOrEmpty(result))
                 {
-                    CommonUtility.SendMail("Property", model.OwnerName, model.OwnerEmailID, model.pwd, model.OwnerEmailID, "Property Listing");
+                    if (model.PropCode == null)
+                    {
+                        CommonUtility.SendMail("Property", model.OwnerName, model.OwnerEmailID, model.pwd, model.OwnerEmailID, "Property Listing");
+                    }
 
                     ViewBag.Result = result;
                     DirectoryInfo ObjSearchDir = new DirectoryInfo(Server.MapPath("~/PropertyImages/" + result));
@@ -119,8 +122,16 @@ namespace Homely.Controllers
                             OwnerFile.SaveAs(Path.Combine(FolderPathMember, OwnerFile.FileName));
                         }
                     }
-                    
-                    return View("thankyouIndex",new SuccessMessageViewModel { message= "Your property has been listed successfully. Your unique Property Id is <b>: " + result + ".</b><br/>" } );
+                    SuccessMessageViewModel _message = new SuccessMessageViewModel();
+                    if (model.PropCode == null)
+                    {
+                        _message.message = "Your property has listed successfully. Your unique Property Id is <b>: " + result + ".</b><br/>";
+                    }
+                    else
+                    {
+                        _message.message = "Your property has updated successfully.</b><br/>";
+                    }
+                    return View("thankyouIndex",_message);
                 }
             }
             else
